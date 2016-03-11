@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion">
+<html class="theme-next mist use-motion">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -60,25 +60,25 @@
 
 
 <meta name="description" content="查询了不需要的数据查询了一些不需要的行从文章表里面查询最新的10篇文章，这种查询一般是按时间排序，取最新的10篇文章。如果不加其它的限制则会查询表中所有的记录，这样会导致执行效率降低，增加limit可以有效的限制查询的行数，提高效率
-查询了一些不需要的列返回电影《Academy Dinosaur》中所有的演员，不要使用下面的查询1234SELECT * FROM sakila.actorINNER">
+查询了一些不需要的列返回电影《Academy Dinosaur》中所有的演员，不要使用下面的查询SELECT * FROM sakila.actorINNER JOI">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mysql查询优化">
 <meta property="og:url" content="yujunyong.github.com/2015/11/05/mysql查询优化/index.html">
 <meta property="og:site_name" content="Geek">
 <meta property="og:description" content="查询了不需要的数据查询了一些不需要的行从文章表里面查询最新的10篇文章，这种查询一般是按时间排序，取最新的10篇文章。如果不加其它的限制则会查询表中所有的记录，这样会导致执行效率降低，增加limit可以有效的限制查询的行数，提高效率
-查询了一些不需要的列返回电影《Academy Dinosaur》中所有的演员，不要使用下面的查询1234SELECT * FROM sakila.actorINNER">
+查询了一些不需要的列返回电影《Academy Dinosaur》中所有的演员，不要使用下面的查询SELECT * FROM sakila.actorINNER JOI">
 <meta property="og:updated_time" content="2015-11-06T09:07:41.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mysql查询优化">
 <meta name="twitter:description" content="查询了不需要的数据查询了一些不需要的行从文章表里面查询最新的10篇文章，这种查询一般是按时间排序，取最新的10篇文章。如果不加其它的限制则会查询表中所有的记录，这样会导致执行效率降低，增加limit可以有效的限制查询的行数，提高效率
-查询了一些不需要的列返回电影《Academy Dinosaur》中所有的演员，不要使用下面的查询1234SELECT * FROM sakila.actorINNER">
+查询了一些不需要的列返回电影《Academy Dinosaur》中所有的演员，不要使用下面的查询SELECT * FROM sakila.actorINNER JOI">
 
 
 
 <script type="text/javascript" id="hexo.configuration">
   var NexT = window.NexT || {};
   var CONFIG = {
-    scheme: 'Muse',
+    scheme: 'Mist',
     sidebar: {"position":"left","display":"always"},
     fancybox: true,
     motion: true,
@@ -288,9 +288,9 @@
 
       
         <h1 id="查询了不需要的数据"><a href="#查询了不需要的数据" class="headerlink" title="查询了不需要的数据"></a>查询了不需要的数据</h1><h2 id="查询了一些不需要的行"><a href="#查询了一些不需要的行" class="headerlink" title="查询了一些不需要的行"></a>查询了一些不需要的行</h2><p>从文章表里面查询最新的10篇文章，这种查询一般是按时间排序，取最新的10篇文章。如果不加其它的限制则会查询表中所有的记录，这样会导致执行效率降低，增加<code>limit</code>可以有效的限制查询的行数，提高效率</p>
-<h2 id="查询了一些不需要的列"><a href="#查询了一些不需要的列" class="headerlink" title="查询了一些不需要的列"></a>查询了一些不需要的列</h2><p>返回电影《Academy Dinosaur》中所有的演员，不要使用下面的查询<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> sakila.actor</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> sakila.film_actor <span class="keyword">USING</span>(actor_id)</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> sakila.film <span class="keyword">USING</span>(film_id)</span><br><span class="line"><span class="keyword">WHERE</span> sakila.film.title = <span class="string">'Academy Dinosaur'</span>;</span><br></pre></td></tr></table></figure></p>
+<h2 id="查询了一些不需要的列"><a href="#查询了一些不需要的列" class="headerlink" title="查询了一些不需要的列"></a>查询了一些不需要的列</h2><p>返回电影《Academy Dinosaur》中所有的演员，不要使用下面的查询<br><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> sakila.actor</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> sakila.film_actor <span class="keyword">USING</span>(actor_id)</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> sakila.film <span class="keyword">USING</span>(film_id)</span><br><span class="line"><span class="keyword">WHERE</span> sakila.film.title = <span class="string">'Academy Dinosaur'</span>;</span><br></pre></td></tr></table></figure></p>
 <p>上面的查询会返回3个表中所有的列，但是我们只需要actor表中的字段</p>
-<p>应该使用下面的查询<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> sakila.actor.* <span class="keyword">FROM</span> sakila.actor</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> sakila.film_actor <span class="keyword">USING</span>(actor_id)</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> sakila.film <span class="keyword">USING</span>(film_id)</span><br><span class="line"><span class="keyword">WHERE</span> sakila.film.title = <span class="string">'Academy Dinosaur'</span>;</span><br></pre></td></tr></table></figure></p>
+<p>应该使用下面的查询<br><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> sakila.actor.* <span class="keyword">FROM</span> sakila.actor</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> sakila.film_actor <span class="keyword">USING</span>(actor_id)</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> sakila.film <span class="keyword">USING</span>(film_id)</span><br><span class="line"><span class="keyword">WHERE</span> sakila.film.title = <span class="string">'Academy Dinosaur'</span>;</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -497,7 +497,7 @@
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
+    NexT.Mist
   </a>
 </div>
 

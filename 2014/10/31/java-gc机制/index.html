@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion">
+<html class="theme-next mist use-motion">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -61,27 +61,27 @@
 
 <meta name="description" content="存活判定算法引用计数算法(Reference counting)每个对象都含有一个引用记数器，当有引用连接至对象时，引用计数加1。当引用离开作用域或被置为null时，引用计数减1。垃圾回收器在含有全部对象的列表上遍历时，如果发现某个引用计数器的值为0时，就释放其占用的空间。这种方法有个缺陷，如果对象之间存在循环引用，可能会出现“对象应该被回收，但引用计数却不为零”的情况。
 请看下面的代码：
-123">
+pub">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java gc机制">
 <meta property="og:url" content="yujunyong.github.com/2014/10/31/java-gc机制/index.html">
 <meta property="og:site_name" content="Geek">
 <meta property="og:description" content="存活判定算法引用计数算法(Reference counting)每个对象都含有一个引用记数器，当有引用连接至对象时，引用计数加1。当引用离开作用域或被置为null时，引用计数减1。垃圾回收器在含有全部对象的列表上遍历时，如果发现某个引用计数器的值为0时，就释放其占用的空间。这种方法有个缺陷，如果对象之间存在循环引用，可能会出现“对象应该被回收，但引用计数却不为零”的情况。
 请看下面的代码：
-123">
+pub">
 <meta property="og:updated_time" content="2015-03-04T15:39:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java gc机制">
 <meta name="twitter:description" content="存活判定算法引用计数算法(Reference counting)每个对象都含有一个引用记数器，当有引用连接至对象时，引用计数加1。当引用离开作用域或被置为null时，引用计数减1。垃圾回收器在含有全部对象的列表上遍历时，如果发现某个引用计数器的值为0时，就释放其占用的空间。这种方法有个缺陷，如果对象之间存在循环引用，可能会出现“对象应该被回收，但引用计数却不为零”的情况。
 请看下面的代码：
-123">
+pub">
 
 
 
 <script type="text/javascript" id="hexo.configuration">
   var NexT = window.NexT || {};
   var CONFIG = {
-    scheme: 'Muse',
+    scheme: 'Mist',
     sidebar: {"position":"left","display":"always"},
     fancybox: true,
     motion: true,
@@ -292,7 +292,7 @@
       
         <h2 id="存活判定算法"><a href="#存活判定算法" class="headerlink" title="存活判定算法"></a>存活判定算法</h2><h3 id="引用计数算法-Reference-counting"><a href="#引用计数算法-Reference-counting" class="headerlink" title="引用计数算法(Reference counting)"></a>引用计数算法(Reference counting)</h3><p>每个对象都含有一个引用记数器，当有引用连接至对象时，引用计数加1。当引用离开作用域或被置为null时，引用计数减1。<br>垃圾回收器在含有全部对象的列表上遍历时，如果发现某个引用计数器的值为0时，就释放其占用的空间。<br>这种方法有个缺陷，如果对象之间存在循环引用，可能会出现“对象应该被回收，但引用计数却不为零”的情况。</p>
 <p>请看下面的代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ReferenceCountingGC</span></span>&#123;</span><br><span class="line">	<span class="keyword">public</span> Object instance = <span class="keyword">null</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">testGC</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		ReferenceCountingGC objA = <span class="keyword">new</span> ReferenceCountingGC();</span><br><span class="line">		ReferenceCountingGC objB = <span class="keyword">new</span> ReferenceCountingGC();</span><br><span class="line">		objA.instance = objB;</span><br><span class="line">		objB.instance = objA;</span><br><span class="line">		objA = <span class="keyword">null</span>;</span><br><span class="line">		objB = <span class="keyword">null</span>;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//假设在这行发生GC, objA和objB是否会被回收？</span></span><br><span class="line">		System.gc();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ReferenceCountingGC</span></span>&#123;</span><br><span class="line">	<span class="keyword">public</span> Object instance = <span class="keyword">null</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">testGC</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		ReferenceCountingGC objA = <span class="keyword">new</span> ReferenceCountingGC();</span><br><span class="line">		ReferenceCountingGC objB = <span class="keyword">new</span> ReferenceCountingGC();</span><br><span class="line">		objA.instance = objB;</span><br><span class="line">		objB.instance = objA;</span><br><span class="line">		objA = <span class="keyword">null</span>;</span><br><span class="line">		objB = <span class="keyword">null</span>;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//假设在这行发生GC, objA和objB是否会被回收？</span></span><br><span class="line">		System.gc();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
 <p>虽然objA和objB都已经为null，它们new出来的对象已经不可能再被访问，但是它们无法被回收，因为它们相互引用着对方，它们的引用计数器都不为0，于是引用计数器无法通知GC收集器回收它们。</p>
 <p>因此Java虚拟机没有选用引用计数算法来管理内存。</p>
@@ -524,7 +524,7 @@
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
+    NexT.Mist
   </a>
 </div>
 

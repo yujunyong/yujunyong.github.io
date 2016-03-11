@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion">
+<html class="theme-next mist use-motion">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -65,7 +65,7 @@
 在vim配置文件中添加如下代码
 
 
-123456789101112&quot; 设置配色主题if $TERM =~ &apos;^xterm&apos; || $TERM =~ &apos;^screen&apos; || $TERM=~ &apos;256color$&apos;	set background=dark	let g:">
+&quot; 设置配色主题if $TERM =~ &apos;^xterm&apos; || $TERM =~ &apos;^screen&apos; || $TERM=~ &apos;256color$&apos;	set background=dark	let g:solarized_termc">
 <meta property="og:type" content="article">
 <meta property="og:title" content="vim配色问题">
 <meta property="og:url" content="yujunyong.github.com/2014/11/04/vim配色问题/index.html">
@@ -76,7 +76,7 @@
 在vim配置文件中添加如下代码
 
 
-123456789101112&quot; 设置配色主题if $TERM =~ &apos;^xterm&apos; || $TERM =~ &apos;^screen&apos; || $TERM=~ &apos;256color$&apos;	set background=dark	let g:">
+&quot; 设置配色主题if $TERM =~ &apos;^xterm&apos; || $TERM =~ &apos;^screen&apos; || $TERM=~ &apos;256color$&apos;	set background=dark	let g:solarized_termc">
 <meta property="og:image" content="yujunyong.github.com/images/vim-solarized-theme-tmux-bug.png">
 <meta property="og:image" content="yujunyong.github.com/images/vim-solarized-theme-terminal-normal.png">
 <meta property="og:updated_time" content="2015-06-02T03:12:17.000Z">
@@ -88,7 +88,7 @@
 在vim配置文件中添加如下代码
 
 
-123456789101112&quot; 设置配色主题if $TERM =~ &apos;^xterm&apos; || $TERM =~ &apos;^screen&apos; || $TERM=~ &apos;256color$&apos;	set background=dark	let g:">
+&quot; 设置配色主题if $TERM =~ &apos;^xterm&apos; || $TERM =~ &apos;^screen&apos; || $TERM=~ &apos;256color$&apos;	set background=dark	let g:solarized_termc">
 <meta name="twitter:image" content="yujunyong.github.com/images/vim-solarized-theme-tmux-bug.png">
 
 
@@ -96,7 +96,7 @@
 <script type="text/javascript" id="hexo.configuration">
   var NexT = window.NexT || {};
   var CONFIG = {
-    scheme: 'Muse',
+    scheme: 'Mist',
     sidebar: {"position":"left","display":"always"},
     fancybox: true,
     motion: true,
@@ -311,7 +311,7 @@
 <li><p>在vim配置文件中添加如下代码</p>
 </li>
 </ol>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">" 设置配色主题</span></span><br><span class="line"><span class="keyword">if</span> $TERM =~ <span class="string">'^xterm'</span> || $TERM =~ <span class="string">'^screen'</span> || $TERM=~ <span class="string">'256color$'</span></span><br><span class="line">	<span class="keyword">set</span> background=dark</span><br><span class="line">	<span class="keyword">let</span> <span class="variable">g:solarized_termcolors</span> = <span class="number">256</span></span><br><span class="line">	<span class="keyword">colorscheme</span> solarized</span><br><span class="line"><span class="keyword">elseif</span> <span class="built_in">has</span>(<span class="string">'gui_running'</span>)</span><br><span class="line">	<span class="keyword">set</span> background=dark</span><br><span class="line">	<span class="keyword">let</span> <span class="variable">g:solarized_termcolors</span> = <span class="number">256</span></span><br><span class="line">	<span class="keyword">colorscheme</span> solarized</span><br><span class="line"><span class="keyword">elseif</span> $TERM =~ <span class="string">'cons25'</span></span><br><span class="line">	<span class="keyword">colorscheme</span> default</span><br><span class="line"><span class="keyword">endif</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line"><span class="comment">" 设置配色主题</span></span><br><span class="line"><span class="keyword">if</span> $TERM =~ <span class="string">'^xterm'</span> || $TERM =~ <span class="string">'^screen'</span> || $TERM=~ <span class="string">'256color$'</span></span><br><span class="line">	<span class="keyword">set</span> background=dark</span><br><span class="line">	<span class="keyword">let</span> <span class="variable">g:solarized_termcolors</span> = <span class="number">256</span></span><br><span class="line">	<span class="keyword">colorscheme</span> solarized</span><br><span class="line"><span class="keyword">elseif</span> <span class="built_in">has</span>(<span class="string">'gui_running'</span>)</span><br><span class="line">	<span class="keyword">set</span> background=dark</span><br><span class="line">	<span class="keyword">let</span> <span class="variable">g:solarized_termcolors</span> = <span class="number">256</span></span><br><span class="line">	<span class="keyword">colorscheme</span> solarized</span><br><span class="line"><span class="keyword">elseif</span> $TERM =~ <span class="string">'cons25'</span></span><br><span class="line">	<span class="keyword">colorscheme</span> default</span><br><span class="line"><span class="keyword">endif</span></span><br></pre></td></tr></table></figure>
 <a id="more"></a>
 <h1 id="可能出现的问题"><a href="#可能出现的问题" class="headerlink" title="可能出现的问题"></a>可能出现的问题</h1><p>环境变量也可以设置成：<code>export TERM=xterm-256color</code>。</p>
 <p>但是如果你在tmux中使用vim的话会出现如下图的情况：<br><img src="/images/vim-solarized-theme-tmux-bug.png" alt="tmux bug"></p>
@@ -523,7 +523,7 @@
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
+    NexT.Mist
   </a>
 </div>
 
