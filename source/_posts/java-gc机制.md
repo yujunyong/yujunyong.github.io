@@ -2,7 +2,7 @@
 title: "java gc机制"
 date: 2014-10-31 20:03:39 +0800
 categories: java
-tags: [gc]
+tags: [gc, java]
 ---
 
 ## 存活判定算法

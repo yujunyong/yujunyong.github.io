@@ -2,7 +2,7 @@
 title: "core java"
 date: 2015-01-05 23:17:04 +0800
 categories: java
-tags: [core java]
+tags: [java]
 ---
 
 ## 语法规则
