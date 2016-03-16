@@ -270,6 +270,13 @@
 
           
             
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/04/ssh登录/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/04/ssh登录/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -383,6 +390,13 @@
 
           
             
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/01/20/mysql连接相关/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/20/mysql连接相关/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -491,6 +505,13 @@
           
 
           
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/12/15/docker常用命令/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/15/docker常用命令/" itemprop="commentsCount"></span>
+                </a>
+              </span>
             
           
 
@@ -604,6 +625,13 @@
 
           
             
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/11/05/mysql查询优化/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/05/mysql查询优化/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -714,6 +742,13 @@
           
 
           
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/10/30/cron表达式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/30/cron表达式/" itemprop="commentsCount"></span>
+                </a>
+              </span>
             
           
 
@@ -834,6 +869,13 @@
 
           
             
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/10/22/线程池/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/22/线程池/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -941,6 +983,13 @@
 
           
             
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/10/15/处理多线程问题的方法/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/15/处理多线程问题的方法/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -960,15 +1009,17 @@
 
       
         
-          <h1 id="使用同步锁"><a href="#使用同步锁" class="headerlink" title="使用同步锁"></a>使用同步锁</h1><h2 id="同步锁的缺点"><a href="#同步锁的缺点" class="headerlink" title="同步锁的缺点"></a>同步锁的缺点</h2><ul>
+          <h1 id="使用synchronize"><a href="#使用synchronize" class="headerlink" title="使用synchronize"></a>使用synchronize</h1><h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h2><ul>
 <li>多线程环境下，多个线程竞争一个共享的资源，没竞争到的线程只能等待到该资源被释放，再去竞争，这样有点浪费时间。</li>
 <li>在高并发的情况下，会有很多线程被悬挂后面再被恢复，悬挂和恢复操作比较消耗系统资源，需要的时间比较长。</li>
 <li>大多数需要锁的代码块执行的时间比较短，这样就导致了在高并发环境下，消耗的时间主要在线程的悬挂和恢复上。</li>
 <li>可能会出现死锁的问题，可能会阻塞优先级较高，较重要的线程，可能获得锁的线程一直不释放锁(如出现死循环的情况)</li>
-</ul>
-<h1 id="使用Lock"><a href="#使用Lock" class="headerlink" title="使用Lock"></a>使用Lock</h1><h2 id="synchronize方法的缺点"><a href="#synchronize方法的缺点" class="headerlink" title="synchronize方法的缺点"></a>synchronize方法的缺点</h2><ul>
 <li>无法中断正在请求同步锁的线程, 在获取锁之前线程会一直等待着, 容易出现死锁问题</li>
 <li>只能在方法内部请求，释放锁，没法跨方法</li>
+</ul>
+<h1 id="使用Lock"><a href="#使用Lock" class="headerlink" title="使用Lock"></a>使用Lock</h1><h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><ul>
+<li>可以控制获取锁时的公平性，当在公平的模式下，等待时间久的线程会优先获取锁(比非公平模式的效率要低)</li>
+<li>一个锁可以有多个Condition, 线程间的交流更加精确（sychronized可以认为只有一个Condition）。</li>
 </ul>
 <h1 id="使用不可变的对象"><a href="#使用不可变的对象" class="headerlink" title="使用不可变的对象"></a>使用不可变的对象</h1><ul>
 <li>String, Boolean, Long, Integer等都是不可变对象，它们是线程安全的，因为不可变所以不会出现脏读，脏写的情况</li>
@@ -1066,6 +1117,13 @@
           
 
           
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/09/29/mysql常用sql/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/09/29/mysql常用sql/" itemprop="commentsCount"></span>
+                </a>
+              </span>
             
           
 
@@ -1180,6 +1238,13 @@
           
 
           
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/09/26/shell中的表达式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/09/26/shell中的表达式/" itemprop="commentsCount"></span>
+                </a>
+              </span>
             
           
 
@@ -1380,6 +1445,13 @@
 
           
             
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/09/25/shell常用命令/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/09/25/shell常用命令/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -1509,7 +1581,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -1643,9 +1715,28 @@
 
   
 
+  
+    
+  
 
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"yujunyong"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
 
   
+    
+  
+
+
 
 
 
