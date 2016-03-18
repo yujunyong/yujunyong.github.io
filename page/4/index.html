@@ -228,6 +228,248 @@
             
               
                 
+                <a class="post-title-link" href="/2014/11/04/vim配色问题/" itemprop="url">
+                  vim配色问题
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-11-04T01:05:44+08:00" content="2014-11-04">
+              2014-11-04
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/os/" itemprop="url" rel="index">
+                    <span itemprop="name">os</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/11/04/vim配色问题/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/11/04/vim配色问题/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="在终端为vim配置使用solarized-theme"><a href="#在终端为vim配置使用solarized-theme" class="headerlink" title="在终端为vim配置使用solarized theme"></a>在终端为vim配置使用solarized theme</h1><ol>
+<li><p>设置环境变量TERM：<code>export TERM=screen-256color</code></p>
+</li>
+<li><p>在vim配置文件中添加如下代码</p>
+</li>
+</ol>
+<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line"><span class="comment">" 设置配色主题</span></span><br><span class="line"><span class="keyword">if</span> $TERM =~ <span class="string">'^xterm'</span> || $TERM =~ <span class="string">'^screen'</span> || $TERM=~ <span class="string">'256color$'</span></span><br><span class="line">	<span class="keyword">set</span> background=dark</span><br><span class="line">	<span class="keyword">let</span> <span class="variable">g:solarized_termcolors</span> = <span class="number">256</span></span><br><span class="line">	<span class="keyword">colorscheme</span> solarized</span><br><span class="line"><span class="keyword">elseif</span> <span class="built_in">has</span>(<span class="string">'gui_running'</span>)</span><br><span class="line">	<span class="keyword">set</span> background=dark</span><br><span class="line">	<span class="keyword">let</span> <span class="variable">g:solarized_termcolors</span> = <span class="number">256</span></span><br><span class="line">	<span class="keyword">colorscheme</span> solarized</span><br><span class="line"><span class="keyword">elseif</span> $TERM =~ <span class="string">'cons25'</span></span><br><span class="line">	<span class="keyword">colorscheme</span> default</span><br><span class="line"><span class="keyword">endif</span></span><br></pre></td></tr></table></figure>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2014/11/04/vim配色问题/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/10/31/java-gc机制/" itemprop="url">
+                  java gc机制
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-10-31T20:03:39+08:00" content="2014-10-31">
+              2014-10-31
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/10/31/java-gc机制/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/10/31/java-gc机制/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="存活判定算法"><a href="#存活判定算法" class="headerlink" title="存活判定算法"></a>存活判定算法</h2><h3 id="引用计数算法-Reference-counting"><a href="#引用计数算法-Reference-counting" class="headerlink" title="引用计数算法(Reference counting)"></a>引用计数算法(Reference counting)</h3><p>每个对象都含有一个引用记数器，当有引用连接至对象时，引用计数加1。当引用离开作用域或被置为null时，引用计数减1。<br>垃圾回收器在含有全部对象的列表上遍历时，如果发现某个引用计数器的值为0时，就释放其占用的空间。<br>这种方法有个缺陷，如果对象之间存在循环引用，可能会出现“对象应该被回收，但引用计数却不为零”的情况。</p>
+<p>请看下面的代码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ReferenceCountingGC</span></span>&#123;</span><br><span class="line">	<span class="keyword">public</span> Object instance = <span class="keyword">null</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">testGC</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		ReferenceCountingGC objA = <span class="keyword">new</span> ReferenceCountingGC();</span><br><span class="line">		ReferenceCountingGC objB = <span class="keyword">new</span> ReferenceCountingGC();</span><br><span class="line">		objA.instance = objB;</span><br><span class="line">		objB.instance = objA;</span><br><span class="line">		objA = <span class="keyword">null</span>;</span><br><span class="line">		objB = <span class="keyword">null</span>;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//假设在这行发生GC, objA和objB是否会被回收？</span></span><br><span class="line">		System.gc();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2014/10/31/java-gc机制/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2014/10/31/maven-deploy到archiva的相关配制/" itemprop="url">
                   maven deploy 到 archiva 上面的相关配置
                 </a>
@@ -820,7 +1062,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">34</span>
+              <span class="site-state-item-count">36</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -837,7 +1079,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">24</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

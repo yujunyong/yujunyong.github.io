@@ -228,6 +228,349 @@
             
               
                 
+                <a class="post-title-link" href="/2015/09/26/shell中的表达式/" itemprop="url">
+                  shell中的表达式
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-09-26T12:52:56+08:00" content="2015-09-26">
+              2015-09-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/unix/" itemprop="url" rel="index">
+                    <span itemprop="name">unix</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/09/26/shell中的表达式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/09/26/shell中的表达式/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="文件表达式"><a href="#文件表达式" class="headerlink" title="文件表达式"></a>文件表达式</h1><table>
+<thead>
+<tr>
+<th style="text-align:left">表达式</th>
+<th style="text-align:left">返回True的条件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><em>file1</em> -ef <em>file2</em></td>
+<td style="text-align:left">file1和file2是同一个文件（link之类的文件）</td>
+</tr>
+<tr>
+<td style="text-align:left"><em>file1</em> -nt <em>file2</em></td>
+<td style="text-align:left">file1比file2新</td>
+</tr>
+<tr>
+<td style="text-align:left"><em>file1</em> -ot <em>file2</em></td>
+<td style="text-align:left">file1比file2旧</td>
+</tr>
+<tr>
+<td style="text-align:left">-e <em>file</em></td>
+<td style="text-align:left">file存在</td>
+</tr>
+<tr>
+<td style="text-align:left">-r <em>file</em></td>
+<td style="text-align:left">file存在并且可读</td>
+</tr>
+<tr>
+<td style="text-align:left">-w <em>file</em></td>
+<td style="text-align:left">file存在并且可写</td>
+</tr>
+<tr>
+<td style="text-align:left">-x <em>file</em></td>
+<td style="text-align:left">file存在并且可执行/可搜索</td>
+</tr>
+<tr>
+<td style="text-align:left">-s <em>file</em></td>
+<td style="text-align:left">file存在并且size大于0</td>
+</tr>
+<tr>
+<td style="text-align:left">-S <em>file</em></td>
+<td style="text-align:left">file存在并且是网络Socket</td>
+</tr>
+<tr>
+<td style="text-align:left">-d <em>file</em></td>
+<td style="text-align:left">file存在并且是文件夹</td>
+</tr>
+<tr>
+<td style="text-align:left">-f <em>file</em></td>
+<td style="text-align:left">file存在并且是普通文件</td>
+</tr>
+<tr>
+<td style="text-align:left">-b <em>file</em></td>
+<td style="text-align:left">file存在并且是<a href="#块文件Block_File">块文件</a></td>
+</tr>
+<tr>
+<td style="text-align:left">-c <em>file</em></td>
+<td style="text-align:left">file存在并且是<a href="#字符文件Character_File">字符文件</a></td>
+</tr>
+<tr>
+<td style="text-align:left">-g <em>file</em></td>
+<td style="text-align:left">file存在并且被设置为<a href="#SGID">SGID</a></td>
+</tr>
+<tr>
+<td style="text-align:left">-u <em>file</em></td>
+<td style="text-align:left">file存在并且被设置为<a href="#SUID">SUID</a></td>
+</tr>
+<tr>
+<td style="text-align:left">-k <em>file</em></td>
+<td style="text-align:left">file存在并且被设置为<a href="#Sticky_Bit">Sticky Bit</a></td>
+</tr>
+<tr>
+<td style="text-align:left">-G <em>file</em></td>
+<td style="text-align:left">file存在并且和调用程序是同一个用户组</td>
+</tr>
+<tr>
+<td style="text-align:left">-O <em>file</em></td>
+<td style="text-align:left">file存在并且和调用程序是同一个拥有者</td>
+</tr>
+<tr>
+<td style="text-align:left">-p <em>file</em></td>
+<td style="text-align:left">file存在并且是命名管道</td>
+</tr>
+<tr>
+<td style="text-align:left">-L <em>file</em></td>
+<td style="text-align:left">file存在并且是符号链接文件</td>
+</tr>
+</tbody>
+</table>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/09/26/shell中的表达式/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/09/25/shell常用命令/" itemprop="url">
+                  shell常用命令
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-09-25T17:57:17+08:00" content="2015-09-25">
+              2015-09-25
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/unix/" itemprop="url" rel="index">
+                    <span itemprop="name">unix</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/09/25/shell常用命令/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/09/25/shell常用命令/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="创建文件-文件夹"><a href="#创建文件-文件夹" class="headerlink" title="创建文件/文件夹"></a>创建文件/文件夹</h1><h2 id="创建文件"><a href="#创建文件" class="headerlink" title="创建文件"></a>创建文件</h2><ul>
+<li>创建内容为空的文件, <code>touch abc.txt 123.txt</code></li>
+<li>创建一行内容的文件, <code>echo &quot;hello world!&quot; &gt;&gt; hello-world.txt</code></li>
+<li>创建多行内容的文件, <code>cat &gt; cat.txt</code>, Ctrl+D结束输入; <code>&gt; cat.txt</code>, Ctrl+C结束输入</li>
+</ul>
+<h2 id="创建文件夹"><a href="#创建文件夹" class="headerlink" title="创建文件夹"></a>创建文件夹</h2><ul>
+<li>自动创建父文件夹，<code>mkdir -p /tmp/fold1/fold2</code></li>
+</ul>
+<h1 id="显示"><a href="#显示" class="headerlink" title="显示"></a>显示</h1><h2 id="显示文件大小"><a href="#显示文件大小" class="headerlink" title="显示文件大小"></a>显示文件大小</h2><ul>
+<li>显示当前文件夹大小, <code>du -sh</code></li>
+<li>显示当前文件夹下面所有文件的大小, <code>du -sh *</code></li>
+</ul>
+<h2 id="显示系统信息"><a href="#显示系统信息" class="headerlink" title="显示系统信息"></a>显示系统信息</h2><ul>
+<li>显示当前操作系统的信息, <code>lsb_release -a</code></li>
+</ul>
+<h2 id="显示文件夹中的信息"><a href="#显示文件夹中的信息" class="headerlink" title="显示文件夹中的信息"></a>显示文件夹中的信息</h2><ul>
+<li>显示文件夹中的所有文件信息，<code>ls -alh</code></li>
+<li>只显示文件夹中的直接子文件夹，<code>ls | grep ^d</code></li>
+<li>只显示文件夹中的文件，<code>ls | grep -v ^d</code></li>
+<li>显示子文件夹的信息，而不是子文件夹中的内容，<code>ls -dl dir</code></li>
+</ul>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/09/25/shell常用命令/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/09/25/shell中的特殊变量/" itemprop="url">
                   shell中的特殊变量
                 </a>
@@ -1266,253 +1609,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/06/02/策略模式/" itemprop="url">
-                  策略模式
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-06-02T11:43:29+08:00" content="2015-06-02">
-              2015-06-02
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/design/" itemprop="url" rel="index">
-                    <span itemprop="name">design</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/06/02/策略模式/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/06/02/策略模式/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="策略模式-strategy"><a href="#策略模式-strategy" class="headerlink" title="策略模式(strategy)"></a>策略模式(strategy)</h1><p>策略模式定义了一系列算法，并将每个算法封装起来，使他们可以相互替换，且算法的变化不会影响到使用算法的客户。需要设计一个接口，为一系列实现类提供统一的方法，多个实现类实现该接口，设计一个抽象类（可有可无，属于辅助类），提供辅助函数，关系图如下：</p>
-<p><img src="/images/strategy-uml.png" alt="strategy-uml"></p>
-<p>图中ICalculator提供同意的方法，<br>AbstractCalculator是辅助类，提供辅助方法，接下来，依次实现下每个类：<br>首先统一接口：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ICalculator</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">calculate</span><span class="params">(String exp)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>辅助类：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">AbstractCalculator</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">int</span>[] split(String exp,String opt)&#123;</span><br><span class="line">		String array[] = exp.split(opt);</span><br><span class="line">		<span class="keyword">int</span> arrayInt[] = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">2</span>];</span><br><span class="line">		arrayInt[<span class="number">0</span>] = Integer.parseInt(array[<span class="number">0</span>]);</span><br><span class="line">		arrayInt[<span class="number">1</span>] = Integer.parseInt(array[<span class="number">1</span>]);</span><br><span class="line">		<span class="keyword">return</span> arrayInt;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/06/02/策略模式/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/06/02/git常用操作/" itemprop="url">
-                  git常用操作
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-06-02T10:47:37+08:00" content="2015-06-02">
-              2015-06-02
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/command/" itemprop="url" rel="index">
-                    <span itemprop="name">command</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/06/02/git常用操作/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/06/02/git常用操作/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h1><h2 id="添加"><a href="#添加" class="headerlink" title="添加"></a>添加</h2><ul>
-<li>将所有文件添加到git中: <code>git add -A</code></li>
-</ul>
-<h2 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h2><ul>
-<li>删除已经在git中的文件: <code>git rm --cached &lt;name_of_file&gt;</code></li>
-<li>删除没有添加到git的文件：<code>git clean -df</code></li>
-</ul>
-<h1 id="分支操作"><a href="#分支操作" class="headerlink" title="分支操作"></a>分支操作</h1><h2 id="删除-1"><a href="#删除-1" class="headerlink" title="删除"></a>删除</h2><ul>
-<li>删除本地分支: <code>git branch -d &lt;local_branch&gt;</code></li>
-<li>删除远程分支: <code>git push origin &lt;:the_remote_branch&gt;</code></li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1558,7 +1654,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">34</span>
+              <span class="site-state-item-count">36</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1575,7 +1671,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">24</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
