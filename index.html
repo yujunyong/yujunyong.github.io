@@ -228,6 +228,116 @@
             
               
                 
+                <a class="post-title-link" href="/2016/03/21/uml类间关系/" itemprop="url">
+                  uml类间关系
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-21T11:10:36+08:00" content="2016-03-21">
+              2016-03-21
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/21/uml类间关系/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/21/uml类间关系/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="泛化-Generalization-继承-inheritance"><a href="#泛化-Generalization-继承-inheritance" class="headerlink" title="泛化 Generalization (继承 inheritance)"></a>泛化 Generalization (继承 inheritance)</h1><p>继承指的是一个类（称为子类、子接口）继承另外一个类（称为父类、父接口）的功能，并可以增加它自己的新功能的能力，在Java中此类关系通过关键字extends明确标识<br><img src="/images/uml-class-generalization.png" alt="uml class generalization"></p>
+<h1 id="实现-Realization"><a href="#实现-Realization" class="headerlink" title="实现 Realization"></a>实现 Realization</h1><p>实现指的是一个class类实现interface接口（可以是多个）的功能，在Java中此类关系通过关键字implements明确标识<br><img src="/images/uml-class-realization.png" alt="uml class realization"></p>
+<h1 id="依赖-Dependency"><a href="#依赖-Dependency" class="headerlink" title="依赖 Dependency"></a>依赖 Dependency</h1><p>依赖可以理解为类A使用到了另一个类B，而这种使用关系是具有偶然性的、临时性的，非常弱的，但是B类的变化 会影响到A；比如某人要过河，需要借用一条船，此时人与船之间的关系就是依赖。</p>
+<p>表现在代码层面就是类B作为参数被类A在某个method中使用<br><img src="/images/uml-class-dependency.png" alt="uml class dependency"></p>
+<h1 id="关联-Association"><a href="#关联-Association" class="headerlink" title="关联 Association"></a>关联 Association</h1><p>关联体现的是两个类或者类与接口之间语义级别的一种强依赖关系，比如我和我的朋友；这种关系比依赖更强，关系一般是长期的，稳定的。双方的关系一般是平等的、关联可以是单向，也可以是双向，箭头表示依赖的方向。</p>
+<p>表现在代码层面就是被关联类B以类属性的形式出现在关联类A中，也可能是关联类A引用了一个类型为被关联类型为B的全局变量<br><img src="/images/uml-class-association.png" alt="uml class association"></p>
+<h1 id="聚合-Aggregation"><a href="#聚合-Aggregation" class="headerlink" title="聚合 Aggregation"></a>聚合 Aggregation</h1><p>聚合是关联关系的一个特例，他体现的是整体与部分、拥有的关系，即<code>has-a</code>的关系；此时整体与部分之间是可分离的，他们可以具有各自的生命周期，部分可以属于多个整体对象，也可以为多个整体对象共享；比如计算机与CPU、公司与员工的关系等</p>
+<p>表现在代码层面是和关联关系一致的，只能从语义级别来区分。<br><img src="/images/uml-class-aggregation.png" alt="uml class aggregation"></p>
+<h1 id="组合-Composition"><a href="#组合-Composition" class="headerlink" title="组合 Composition"></a>组合 Composition</h1><p>组合也是关联关系的一种特例，他体现的是一种contains-a的关系，这种关系比聚合更强，也称为强聚合；他同样体现整体与部分间的关系，但此时整体与部分是不可分的，整体的生命周期结束也就意味着部分的生命周期结束；比如你和你的大脑</p>
+<p>表现在代码层面是和关联关系一致的，只能从语义级别来区分。<br><img src="/images/uml-class-composition.png" alt="uml class composition"></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ul>
+<li>泛化、实现这两种关系体现的是类与类或者类与接口间的纵向关系</li>
+<li>依赖、关联、聚合、组合体现的是类与类、类与接口间的引用，是横向关系</li>
+<li>横向关系的强弱依次为组合 &gt; 聚合 &gt; 关联 &gt; 依赖</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/03/18/java内存区域/" itemprop="url">
                   java内存区域
                 </a>
@@ -1273,127 +1383,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/09/29/mysql常用sql/" itemprop="url">
-                  mysql常用sql
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-09-29T00:40:23+08:00" content="2015-09-29">
-              2015-09-29
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/database/" itemprop="url" rel="index">
-                    <span itemprop="name">database</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/09/29/mysql常用sql/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/09/29/mysql常用sql/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h1><h2 id="在where子句中引用取别名的列"><a href="#在where子句中引用取别名的列" class="headerlink" title="在where子句中引用取别名的列"></a>在where子句中引用取别名的列</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span></span><br><span class="line">(</span><br><span class="line">  <span class="keyword">select</span> sal <span class="keyword">as</span> salary, comm <span class="keyword">as</span> commission</span><br><span class="line">  <span class="keyword">from</span> emp</span><br><span class="line">) <span class="keyword">as</span> x</span><br><span class="line"><span class="keyword">where</span> salary &lt; <span class="number">5000</span>;</span><br></pre></td></tr></table></figure>
-<h2 id="在select语句中使用条件逻辑"><a href="#在select语句中使用条件逻辑" class="headerlink" title="在select语句中使用条件逻辑"></a>在select语句中使用条件逻辑</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> ename, sal,</span><br><span class="line">	<span class="keyword">case</span> <span class="keyword">when</span> sal &lt;= <span class="number">2000</span> <span class="keyword">then</span> <span class="string">'UNDERPAID'</span></span><br><span class="line">		 <span class="keyword">when</span> sal &gt;= <span class="number">4000</span> <span class="keyword">then</span> <span class="string">'OVERPAID'</span></span><br><span class="line">		 <span class="keyword">else</span> <span class="string">'OK'</span></span><br><span class="line">	<span class="keyword">end</span> <span class="keyword">as</span> <span class="keyword">status</span></span><br><span class="line"><span class="keyword">from</span> emp;</span><br></pre></td></tr></table></figure>
-<h2 id="从表中随机返回n条记录"><a href="#从表中随机返回n条记录" class="headerlink" title="从表中随机返回n条记录"></a>从表中随机返回n条记录</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> ename, job <span class="keyword">from</span> emp <span class="keyword">order</span> <span class="keyword">by</span> <span class="keyword">rand</span>() <span class="keyword">limit</span> <span class="number">5</span>;</span><br></pre></td></tr></table></figure>
-<h2 id="找到满足这样条件的员工：即他的收入比紧随其后聘用的员工要少"><a href="#找到满足这样条件的员工：即他的收入比紧随其后聘用的员工要少" class="headerlink" title="找到满足这样条件的员工：即他的收入比紧随其后聘用的员工要少"></a>找到满足这样条件的员工：即他的收入比紧随其后聘用的员工要少</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> ename, sal, hiredate <span class="keyword">from</span></span><br><span class="line">(</span><br><span class="line">	<span class="keyword">select</span> a.ename, a.sal, a.hiredate,</span><br><span class="line">		(<span class="keyword">select</span> <span class="keyword">min</span>(hiredate) <span class="keyword">from</span> emp b</span><br><span class="line">			<span class="keyword">where</span> b.hiredate &gt; a.hiredate</span><br><span class="line">			<span class="keyword">and</span> b.sal &gt; a.sal) <span class="keyword">as</span> next_sal_grtr,</span><br><span class="line">		(<span class="keyword">select</span> <span class="keyword">min</span>(hiredate) <span class="keyword">from</span> emp b</span><br><span class="line">			<span class="keyword">where</span> b.hiredate &gt; a.hiredate) <span class="keyword">as</span> next_hire</span><br><span class="line">	<span class="keyword">from</span> emp a</span><br><span class="line">) x</span><br><span class="line"><span class="keyword">where</span> next_sal_grtr = next_hire;</span><br></pre></td></tr></table></figure>
-<h2 id="返回一个结果集，它包含每个部门中所有员工的姓名，所在部门，工资，聘用日期以及部门中最新聘用员工的工资"><a href="#返回一个结果集，它包含每个部门中所有员工的姓名，所在部门，工资，聘用日期以及部门中最新聘用员工的工资" class="headerlink" title="返回一个结果集，它包含每个部门中所有员工的姓名，所在部门，工资，聘用日期以及部门中最新聘用员工的工资"></a>返回一个结果集，它包含每个部门中所有员工的姓名，所在部门，工资，聘用日期以及部门中最新聘用员工的工资</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> e.deptno, e.ename, e.sal, e.hiredate,</span><br><span class="line">	(<span class="keyword">select</span> <span class="keyword">max</span>(d.sal) <span class="keyword">from</span> emp d</span><br><span class="line">		<span class="keyword">where</span> d.deptno = e.deptno <span class="keyword">and</span> d.hiredate =</span><br><span class="line">			(<span class="keyword">select</span> <span class="keyword">max</span>(f.hiredate) <span class="keyword">from</span> emp f</span><br><span class="line">				<span class="keyword">where</span> f.deptno = e.deptno)) <span class="keyword">as</span> latest_sal</span><br><span class="line"><span class="keyword">from</span> emp e</span><br><span class="line"><span class="keyword">order</span> <span class="keyword">by</span> e.deptno, e.hiredate <span class="keyword">desc</span>;</span><br></pre></td></tr></table></figure>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/09/29/mysql常用sql/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1439,7 +1428,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">36</span>
+              <span class="site-state-item-count">37</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1456,7 +1445,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-count">25</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

@@ -228,6 +228,141 @@
             
               
                 
+                <a class="post-title-link" href="/2015/06/20/浮点数在计算机中的表示/" itemprop="url">
+                  浮点数在计算机中的表示
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-06-20T21:40:41+08:00" content="2015-06-20">
+              2015-06-20
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/os/" itemprop="url" rel="index">
+                    <span itemprop="name">os</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/06/20/浮点数在计算机中的表示/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/06/20/浮点数在计算机中的表示/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h1><ul>
+<li>在java中<code>2.0/0</code>的结果是<code>Infinity</code>，而<code>2/0</code>的结果是<code>java.lang.ArithmeticException: / by zero</code>，为什么浮点数除以0是无穷大而整数除以0却会报错呢？</li>
+<li>在Float和Double中可以看到<code>POSITIVE_INFINITY</code>, <code>NEGATIVE_INFINITY</code>, <code>NaN</code>这几个常量，而在Integer和Long中却没有，这又是为什么呢？</li>
+<li>浮点数中有+0.0和-0.0的表示，但整数只有0，这又是为什么呢？</li>
+</ul>
+<p>如果你了解浮点数在计算机是是怎么表示的话，就会明白出现上面2种情况的原因了</p>
+<h1 id="浮点数在计算机中的表示"><a href="#浮点数在计算机中的表示" class="headerlink" title="浮点数在计算机中的表示"></a>浮点数在计算机中的表示</h1><p>根据国际标准IEEE 754，任意一个二进制浮点数V可以表示成下面的形式:</p>
+<p>$$V = (-1)^s \times M \times 2^E$$</p>
+<ul>
+<li>$(-1)^s$表示符号位，当s=0时，V为正数；当s=1时，V为负数。</li>
+<li>M表示有效位数，1 &lt;= M &lt; 2</li>
+<li>$2^E$表示指数位</li>
+</ul>
+<p>如：</p>
+<ul>
+<li>十进制的5.0，写成二进制是101.0，可以表示成$1.01 \times 2^2$。按照上面V的公式可以得出：s=0, M=1.01, E=2</li>
+<li>十进制的-5.0，写成二进制是-101.0，可以表示成$-1 \times 1.01 \times 2^2$按照上面V的公式可以得出：s=1， M=1.01, E=2</li>
+</ul>
+<p>IEEE 754规定，对于32位的浮点数，最高的1位是符号位s，接着的8位是指数E，剩下的23位为有效数字M；<br>对于64位的浮点数，最高的1位是符号位S，接着的11位是指数E，剩下的52位为有效数字M，如下图：<br><img src="/images/standard-floating-point-formats.jpg" alt="standard-floating-point-formats"></p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/06/20/浮点数在计算机中的表示/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/06/02/策略模式/" itemprop="url">
                   策略模式
                 </a>
@@ -672,7 +807,7 @@
 <li>如果在对象A中直接new出对象B，则对象A持有了对象B的引用，如果对象B有改动(如：重命名), 则必需重新编译对象A</li>
 <li>使用工厂模式在对象A中创建对象B的子类，A中不包含B子类的任何信息，达到了解耦的目的，如果以后在A中想使用B的其它子类，也无需更改A中的代码</li>
 <li>工厂模式可以多次返回相同的实例，如jdk中getInstance(), valueOf()这类方法返回的就是相同的实例</li>
-<li>构造方法通过重载得到不同要求的对象实例，这样无法通过方法名知道实例的差别，工厂模式可以通过不同的方法名增加可读性，知道得到实例的不同</li>
+<li>构造方法通过重载得到不同要求的对象实例，这样无法通过方法名知道实例的差别，工厂模式可以通过不同的方法名增加可读性，展示出实例间的差别</li>
 </ul>
 <h1 id="工厂方法模式（Factory-Method）"><a href="#工厂方法模式（Factory-Method）" class="headerlink" title="工厂方法模式（Factory Method）"></a>工厂方法模式（Factory Method）</h1><h2 id="普通工厂模式"><a href="#普通工厂模式" class="headerlink" title="普通工厂模式"></a>普通工厂模式</h2><p>就是建立一个工厂类，对实现了同一接口的一些类进行实例的创建。首先看下关系图：</p>
 <p><img src="/images/simple-factory-method-uml.png" alt="simple-factory-method-uml"></p>
@@ -1330,126 +1465,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014/11/09/面向对象设计原则/" itemprop="url">
-                  面象对象设计原则
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2014-11-09T10:36:49+08:00" content="2014-11-09">
-              2014-11-09
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/design/" itemprop="url" rel="index">
-                    <span itemprop="name">design</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2014/11/09/面向对象设计原则/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/11/09/面向对象设计原则/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="开闭原则（Open-Close-Principle）"><a href="#开闭原则（Open-Close-Principle）" class="headerlink" title="开闭原则（Open Close Principle）"></a>开闭原则（Open Close Principle）</h2><p>对扩展开放，对修改关闭。在程序需要进行拓展的时候，不能去修改原有的代码，实现一个热插拔的效果。所以一句话概括就是：为了使程序的扩展性好，易于维护和升级。</p>
-<h2 id="里氏代换原则（Liskov-Substitution-Principle）"><a href="#里氏代换原则（Liskov-Substitution-Principle）" class="headerlink" title="里氏代换原则（Liskov Substitution Principle）"></a>里氏代换原则（Liskov Substitution Principle）</h2><p>任何基类可以出现的地方，子类一定可以出现。 LSP是继承复用的基石，只有当衍生类可以替换掉基类，软件单位的功能不受到影响时，基类才能真正被复用，而衍生类也能够在基类的基础上增加新的行为。里氏代换原则是对“开-闭”原则的补充。实现“开-闭”原则的关键步骤就是抽象化。而基类与子类的继承关系就是抽象化的具体实现，所以里氏代换原则是对实现抽象化的具体步骤的规范。</p>
-<h2 id="依赖倒转原则（Dependence-Inversion-Principle）"><a href="#依赖倒转原则（Dependence-Inversion-Principle）" class="headerlink" title="依赖倒转原则（Dependence Inversion Principle）"></a>依赖倒转原则（Dependence Inversion Principle）</h2><p>针对接口编程，依赖于抽象而不依赖于具体</p>
-<h2 id="接口隔离原则（Interface-Segregation-Principle）"><a href="#接口隔离原则（Interface-Segregation-Principle）" class="headerlink" title="接口隔离原则（Interface Segregation Principle）"></a>接口隔离原则（Interface Segregation Principle）</h2><p>使用多个隔离的接口，比使用单个接口要好。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2014/11/09/面向对象设计原则/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1495,7 +1510,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">36</span>
+              <span class="site-state-item-count">37</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1512,7 +1527,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-count">25</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
