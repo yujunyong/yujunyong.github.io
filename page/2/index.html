@@ -228,6 +228,499 @@
             
               
                 
+                <a class="post-title-link" href="/2015/11/05/mysql查询优化/" itemprop="url">
+                  mysql查询优化
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-11-05T15:30:55+08:00" content="2015-11-05">
+              2015-11-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/database/" itemprop="url" rel="index">
+                    <span itemprop="name">database</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/11/05/mysql查询优化/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/05/mysql查询优化/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="查询了不需要的数据"><a href="#查询了不需要的数据" class="headerlink" title="查询了不需要的数据"></a>查询了不需要的数据</h1><h2 id="查询了一些不需要的行"><a href="#查询了一些不需要的行" class="headerlink" title="查询了一些不需要的行"></a>查询了一些不需要的行</h2><p>从文章表里面查询最新的10篇文章，这种查询一般是按时间排序，取最新的10篇文章。如果不加其它的限制则会查询表中所有的记录，这样会导致执行效率降低，增加<code>limit</code>可以有效的限制查询的行数，提高效率</p>
+<h2 id="查询了一些不需要的列"><a href="#查询了一些不需要的列" class="headerlink" title="查询了一些不需要的列"></a>查询了一些不需要的列</h2><p>返回电影《Academy Dinosaur》中所有的演员，不要使用下面的查询<br><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> sakila.actor</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> sakila.film_actor <span class="keyword">USING</span>(actor_id)</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> sakila.film <span class="keyword">USING</span>(film_id)</span><br><span class="line"><span class="keyword">WHERE</span> sakila.film.title = <span class="string">'Academy Dinosaur'</span>;</span><br></pre></td></tr></table></figure></p>
+<p>上面的查询会返回3个表中所有的列，但是我们只需要actor表中的字段</p>
+<p>应该使用下面的查询<br><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> sakila.actor.* <span class="keyword">FROM</span> sakila.actor</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> sakila.film_actor <span class="keyword">USING</span>(actor_id)</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> sakila.film <span class="keyword">USING</span>(film_id)</span><br><span class="line"><span class="keyword">WHERE</span> sakila.film.title = <span class="string">'Academy Dinosaur'</span>;</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/10/30/cron表达式/" itemprop="url">
+                  cron表达式
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-10-30T14:23:28+08:00" content="2015-10-30">
+              2015-10-30
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/unix/" itemprop="url" rel="index">
+                    <span itemprop="name">unix</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/10/30/cron表达式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/30/cron表达式/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="cron表达式的格式"><a href="#cron表达式的格式" class="headerlink" title="cron表达式的格式"></a>cron表达式的格式</h1><p>Seconds Minutes Hours DayofMonth Month DayofWeek Year或<br>Seconds Minutes Hours DayofMonth Month DayofWeek</p>
+<h1 id="每个或可出现的字符"><a href="#每个或可出现的字符" class="headerlink" title="每个或可出现的字符"></a>每个或可出现的字符</h1><ul>
+<li>Seconds: <code>, – * /</code>四个字符，或0-59的整数</li>
+<li>Minutes: <code>, – * /</code>四个字符，或0-59的整数</li>
+<li>Hours: <code>, – * /</code>四个字符，或0-23的整数</li>
+<li>DayofMonth: <code>, – * / ? L W C</code>八个字符，或0-31的整数</li>
+<li>Month: <code>, – * /</code>四个字符，或1-12的整数，或<code>JAN, FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOV and DEC</code></li>
+<li>DayofWeek: <code>, – * / ? L C #</code>八个字符，或1-7的整数，或<code>SUN, MON, TUE, WED, THU, FRI and SAT</code>, <strong>1表示星期天</strong></li>
+<li>Year: <code>, – * /</code>四个字符，或1970-2099的整数</li>
+</ul>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/10/30/cron表达式/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/10/22/线程池/" itemprop="url">
+                  线程池
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-10-22T19:24:25+08:00" content="2015-10-22">
+              2015-10-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/10/22/线程池/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/22/线程池/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/10/15/处理多线程问题的方法/" itemprop="url">
+                  处理多线程问题的方法
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-10-15T15:26:54+08:00" content="2015-10-15">
+              2015-10-15
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/10/15/处理多线程问题的方法/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/15/处理多线程问题的方法/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="使用synchronize"><a href="#使用synchronize" class="headerlink" title="使用synchronize"></a>使用synchronize</h1><h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h2><ul>
+<li>多线程环境下，多个线程竞争一个共享的资源，没竞争到的线程只能等待到该资源被释放，再去竞争，这样有点浪费时间。</li>
+<li>在高并发的情况下，会有很多线程被悬挂后面再被恢复，悬挂和恢复操作比较消耗系统资源，需要的时间比较长。</li>
+<li>大多数需要锁的代码块执行的时间比较短，这样就导致了在高并发环境下，消耗的时间主要在线程的悬挂和恢复上。</li>
+<li>可能会出现死锁的问题，可能会阻塞优先级较高，较重要的线程，可能获得锁的线程一直不释放锁(如出现死循环的情况)</li>
+<li>无法中断正在请求同步锁的线程, 在获取锁之前线程会一直等待着, 容易出现死锁问题</li>
+<li>只能在方法内部请求，释放锁，没法跨方法</li>
+</ul>
+<h1 id="使用Lock"><a href="#使用Lock" class="headerlink" title="使用Lock"></a>使用Lock</h1><h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><ul>
+<li>可以控制获取锁时的公平性，当在公平的模式下，等待时间久的线程会优先获取锁(比非公平模式的效率要低)</li>
+<li>一个锁可以有多个Condition, 线程间的交流更加精确（sychronized可以认为只有一个Condition）。</li>
+</ul>
+<h1 id="使用不可变的对象"><a href="#使用不可变的对象" class="headerlink" title="使用不可变的对象"></a>使用不可变的对象</h1><ul>
+<li>String, Boolean, Long, Integer等都是不可变对象，它们是线程安全的，因为不可变所以不会出现脏读，脏写的情况</li>
+</ul>
+<h1 id="使用原子类"><a href="#使用原子类" class="headerlink" title="使用原子类"></a>使用原子类</h1><ul>
+<li>原子类使用高效的方式<a href="#CAS">CAS</a> (compare and swap) + volatile和native方法解决多线程问题，在执行方法时不会被其它线程打断，不会阻塞线程</li>
+<li>AtomicInteger, AtomicLong这些类没有重写hashCode和equals方法，因此它们在比较两个对象值是否相等时是有问题的,它们不能放入集合类中</li>
+</ul>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/10/15/处理多线程问题的方法/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/09/29/mysql常用sql/" itemprop="url">
                   mysql常用sql
                 </a>
@@ -1123,483 +1616,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/07/29/restful/" itemprop="url">
-                  RESTful
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-07-29T20:51:39+08:00" content="2015-07-29">
-              2015-07-29
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/design/" itemprop="url" rel="index">
-                    <span itemprop="name">design</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/07/29/restful/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/29/restful/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="名称"><a href="#名称" class="headerlink" title="名称"></a>名称</h2><p>REST， 即Representational State Transfer(表现状态转化)。<br>REST的名称”表现状态转化”中，省略了主语，”表现状态”其实指的是”资源”（Resources）的”表现状态”；即REST名称表达的是”资源的表现状态转化”</p>
-<p>如果一个架构符合REST原则，就称它为RESTful架构，它是一种面向资源的构架。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/07/29/restful/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/07/04/boot2docker-问题/" itemprop="url">
-                  boot2docker 问题
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-07-04T11:00:51+08:00" content="2015-07-04">
-              2015-07-04
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/虚拟化/" itemprop="url" rel="index">
-                    <span itemprop="name">虚拟化</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/07/04/boot2docker-问题/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/04/boot2docker-问题/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="docker命令无法正常执行"><a href="#docker命令无法正常执行" class="headerlink" title="docker命令无法正常执行"></a>docker命令无法正常执行</h1><p>在执行docker命令时出现以下的错误：</p>
-<p><code>An error occurred trying to connect: Get https://192.168.59.107:2376/v1.18/containers/json?all=1: x509: certificate is valid for 127.0.0.1, 10.0.2.15, not 192.168.59.107</code></p>
-<p>这个问题在boot2docker 1.7.0版会出现</p>
-<h2 id="解决方法："><a href="#解决方法：" class="headerlink" title="解决方法："></a>解决方法：</h2><p>执行下这个命令<code>boot2docker ssh sudo /etc/init.d/docker restart</code></p>
-<p>github上有对这个问题的讨论，<a href="https://github.com/boot2docker/boot2docker/issues/824" target="_blank" rel="external">boot2docker(v 1.4.1 and 1.5) bad cert issues on OSX 10.9.3</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/07/04/docker-pull-问题/" itemprop="url">
-                  docker pull 问题
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-07-04T10:44:35+08:00" content="2015-07-04">
-              2015-07-04
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/虚拟机/" itemprop="url" rel="index">
-                    <span itemprop="name">虚拟机</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/07/04/docker-pull-问题/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/04/docker-pull-问题/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="docker-pull命令无法执行成功"><a href="#docker-pull命令无法执行成功" class="headerlink" title="docker pull命令无法执行成功"></a><code>docker pull</code>命令无法执行成功</h1><p>在执行<code>docker pull</code>命令的时候会碰到速度慢，或者time out的问题。</p>
-<h2 id="解决方法："><a href="#解决方法：" class="headerlink" title="解决方法："></a>解决方法：</h2><p>使用<a href="http://get.daocloud.io/" target="_blank" rel="external">daocloud</a>提供的”Docker Hub加速器”</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/06/21/程序员的职业素养读后感/" itemprop="url">
-                  程序员的职业素养读后感
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-06-21T09:52:38+08:00" content="2015-06-21">
-              2015-06-21
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/成长/" itemprop="url" rel="index">
-                    <span itemprop="name">成长</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/06/21/程序员的职业素养读后感/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/06/21/程序员的职业素养读后感/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>“有时候，获取正确决策的唯一途径，便是勇敢无畏地说出“不”字……我们要明白，委屈专业原则以求全，并非问题的解决之道。舍弃这些原则，只会制造出更多的麻烦…..”</p>
-<p>在很多时候项目会规定一个结束时间，要求一定要在这个时间完成项目，然而这个时间却很紧，是不能保质的完成任务的，到时候只能是交出一个一堆bug的东西，项目上线后只能是给公司，给自己带来无尽的麻烦。如果要做一个专业的程序员就必需在项目完成时间上说“不”。专业人士敢于说明真相面不屈从于权势。专业人士有勇气对他们的项目经理说“不”。优秀的经理人对于能说“不”的人，总是求贤若渴。因为只有敢于说“不”，才能真正做成一些事情，一切都屈服于经理的人是做不出什么像样的东西的。</p>
-<p>当经理给你施加压力让你“试试看”的时候，这时最糟的回应就是“好的，我会试试看”。从本质上面来说，“试试看”就是一种不诚实的表现。你在说谎。你这么做的原因，可能是为了护住面子和避免冲突。“完不成“是你在尽全力下的表现，既然尽全力了都”完不成”，又哪里存在试试看的可能性。你这样回答到最后只能是交出一个很烂的项目，使经理不再信认你，也使公司蒙受损失。</p>
-<p>既然公司已经有测试人员了，那写代码时就不用写测试了。很多人都认为写单元测试是在浪费时间，会拖慢项目进度。测试驱动开发(TDD)才是正确的方式。在看到糟糕的代码时，你为什么不修改呢？看到混乱的函数时，你的第一反应是：“真是一团糟，这个函数需要整理。”你的第二反应是：“我不会去碰它！”为什么？因为你知道，如果修改它，就要冒破坏它的风险；而如果你破坏了它，那么它就会缠上你了。TDD的最强大之处在于它有一套值得信赖的测试，你完全可以打消对修改代码的恐惧，不必当心会破坏它。当看见糟糕的代码时，完全可以放手整理。代码会变得具有可塑性，你可以安全地将之雕琢成简单面满意的结构。代码修改好后只个要运行所有的测试就可以保证自己的修改是正确的没有问题。</p>
-<p>作为一个专业的程序员怎么能容忍代码持续劣化呢！代码只可以变的越来越健壮，越来越优美！</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1640,7 +1661,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">37</span>
+              <span class="site-state-item-count">41</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1657,7 +1678,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-count">27</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

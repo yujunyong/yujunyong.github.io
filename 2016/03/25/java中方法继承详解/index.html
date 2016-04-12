@@ -1,0 +1,774 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="java,多态," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Geek" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="java中的方法绑定连接一个方法调用到对应的方法体称为绑定。java中有预绑定和动态绑定两种方式。预绑定在性能上并不优与延迟绑定
+预绑定 early binding预绑定，也可以说静态绑定，发生在编译时，用static, final(private是隐式的final)修饰的方法是预绑定的。
+延迟绑定 late binding延迟绑定，也可以说是动态绑定，运行时绑定，发生在运行时，java中除预绑定">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java中方法继承详解">
+<meta property="og:url" content="yujunyong.github.com/2016/03/25/java中方法继承详解/index.html">
+<meta property="og:site_name" content="Geek">
+<meta property="og:description" content="java中的方法绑定连接一个方法调用到对应的方法体称为绑定。java中有预绑定和动态绑定两种方式。预绑定在性能上并不优与延迟绑定
+预绑定 early binding预绑定，也可以说静态绑定，发生在编译时，用static, final(private是隐式的final)修饰的方法是预绑定的。
+延迟绑定 late binding延迟绑定，也可以说是动态绑定，运行时绑定，发生在运行时，java中除预绑定">
+<meta property="og:updated_time" content="2016-03-25T09:47:10.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="java中方法继承详解">
+<meta name="twitter:description" content="java中的方法绑定连接一个方法调用到对应的方法体称为绑定。java中有预绑定和动态绑定两种方式。预绑定在性能上并不优与延迟绑定
+预绑定 early binding预绑定，也可以说静态绑定，发生在编译时，用static, final(private是隐式的final)修饰的方法是预绑定的。
+延迟绑定 late binding延迟绑定，也可以说是动态绑定，运行时绑定，发生在运行时，java中除预绑定">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> java中方法继承详解 | Geek </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Geek</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                java中方法继承详解
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-25T16:08:04+08:00" content="2016-03-25">
+              2016-03-25
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/25/java中方法继承详解/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/25/java中方法继承详解/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="java中的方法绑定"><a href="#java中的方法绑定" class="headerlink" title="java中的方法绑定"></a>java中的方法绑定</h1><p>连接一个方法调用到对应的方法体称为绑定。java中有<strong>预绑定</strong>和<strong>动态绑定</strong>两种方式。预绑定在性能上并不优与延迟绑定</p>
+<h2 id="预绑定-early-binding"><a href="#预绑定-early-binding" class="headerlink" title="预绑定 early binding"></a>预绑定 early binding</h2><p>预绑定，也可以说静态绑定，发生在编译时，用<code>static</code>, <code>final</code>(<code>private</code>是隐式的<code>final</code>)修饰的方法是预绑定的。</p>
+<h2 id="延迟绑定-late-binding"><a href="#延迟绑定-late-binding" class="headerlink" title="延迟绑定 late binding"></a>延迟绑定 late binding</h2><p>延迟绑定，也可以说是动态绑定，运行时绑定，发生在运行时，java中除预绑定的方法外都是延迟绑定。</p>
+<h1 id="继承时有同名的方法"><a href="#继承时有同名的方法" class="headerlink" title="继承时有同名的方法"></a>继承时有同名的方法</h1><h2 id="继承的两个接口中有签名相同的的方法"><a href="#继承的两个接口中有签名相同的的方法" class="headerlink" title="继承的两个接口中有签名相同的的方法"></a>继承的两个接口中有签名相同的的方法</h2><h3 id="两个方法的返回值相同"><a href="#两个方法的返回值相同" class="headerlink" title="两个方法的返回值相同"></a>两个方法的返回值相同</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InterfaceTest</span> </span>&#123;</span><br><span class="line">  <span class="class"><span class="keyword">interface</span> <span class="title">Gift</span>  </span>&#123; <span class="function"><span class="keyword">void</span> <span class="title">present</span><span class="params">()</span></span>; &#125;</span><br><span class="line">  <span class="class"><span class="keyword">interface</span> <span class="title">Guest</span> </span>&#123; <span class="function"><span class="keyword">void</span> <span class="title">present</span><span class="params">()</span></span>; &#125;</span><br><span class="line"></span><br><span class="line">  <span class="class"><span class="keyword">interface</span> <span class="title">Presentable</span> <span class="keyword">extends</span> <span class="title">Gift</span>, <span class="title">Guest</span> </span>&#123; &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    Presentable johnny = <span class="keyword">new</span> Presentable() &#123;</span><br><span class="line">      <span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">present</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Heeeereee's Johnny!!!"</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    johnny.present();                     <span class="comment">// "Heeeereee's Johnny!!!"</span></span><br><span class="line"></span><br><span class="line">    ((Gift) johnny).present();            <span class="comment">// "Heeeereee's Johnny!!!"</span></span><br><span class="line">    ((Guest) johnny).present();           <span class="comment">// "Heeeereee's Johnny!!!"</span></span><br><span class="line"></span><br><span class="line">    Gift johnnyAsGift = (Gift) johnny;</span><br><span class="line">    johnnyAsGift.present();               <span class="comment">// "Heeeereee's Johnny!!!"</span></span><br><span class="line"></span><br><span class="line">    Guest johnnyAsGuest = (Guest) johnny;</span><br><span class="line">    johnnyAsGuest.present();              <span class="comment">// "Heeeereee's Johnny!!!"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面的<code>present</code>方法在两个父接口中完全相同，子接口Presentable可以认为同时继承了两个方法（因为两个方法完全相同），所以代码可以正常执行。</p>
+<p>如果继承的一个类和一个接口中有完全相同的方法present，则子类中present方法默认实现就是父类中的。</p>
+<p>可以用java的延迟绑定机制解释这个原因：</p>
+<ol>
+<li>父类和父接口中的present方法完全相同，所以编译时和两个都是接口的情况相同</li>
+<li>程序运行后当调用方法present，此时才会为这个方法绑定对应的方法体，也就是继承自父类的方法体</li>
+</ol>
+<h3 id="两个方法的返回值不同"><a href="#两个方法的返回值不同" class="headerlink" title="两个方法的返回值不同"></a>两个方法的返回值不同</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InterfaceTest</span> </span>&#123;</span><br><span class="line">  <span class="class"><span class="keyword">interface</span> <span class="title">Gift</span>  </span>&#123; <span class="function"><span class="keyword">void</span> <span class="title">present</span><span class="params">()</span></span>; &#125;</span><br><span class="line">  <span class="class"><span class="keyword">interface</span> <span class="title">Guest</span> </span>&#123; <span class="function"><span class="keyword">boolean</span> <span class="title">present</span><span class="params">()</span></span>; &#125;</span><br><span class="line"></span><br><span class="line">  <span class="class"><span class="keyword">interface</span> <span class="title">Presentable</span> <span class="keyword">extends</span> <span class="title">Gift</span>, <span class="title">Guest</span> </span>&#123; &#125; <span class="comment">// DOES NOT COMPILE!!!</span></span><br><span class="line">  <span class="comment">// "types InterfaceTest.Guest and InterfaceTest.Gift are incompatible;</span></span><br><span class="line">  <span class="comment">//  both define present(), but with unrelated return types"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Gift中的present方法返回void, Guest中的present方法返回boolean，当Presentable继承Gift和Guest时编译不通过。两个父类中的present方法的继承优先级是相同的(继承关系的判断不包含方法的返回类型)，但它们的返回类型不同，子类就不知道应该继承哪个方法了，所以会出现编译错误。</p>
+<h2 id="继承的方法是default方法"><a href="#继承的方法是default方法" class="headerlink" title="继承的方法是default方法"></a>继承的方法是default方法</h2><h3 id="继承自2个接口的方法都是default方法"><a href="#继承自2个接口的方法都是default方法" class="headerlink" title="继承自2个接口的方法都是default方法"></a>继承自2个接口的方法都是default方法</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Jukebox</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">default</span> String <span class="title">rock</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"... all over the world!"</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Carriage</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">default</span> String <span class="title">rock</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"... from side to side"</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MusicalCarriage</span> <span class="keyword">implements</span> <span class="title">Carriage</span>, <span class="title">Jukebox</span> </span>&#123;&#125; <span class="comment">// DOES NOT COMPILE!!!</span></span><br><span class="line"><span class="comment">// class MusicalCarriage inherits unrelated defaults</span></span><br><span class="line"><span class="comment">// for rock() from types Carriage and Jukebox</span></span><br></pre></td></tr></table></figure>
+<p>上面的MusicalCarriageo类编译不通过，因为两个default方法的继承优先级相同，编译器在处理的时候不知道应该继承哪个default方法中的方法体，所以出现编译错误。</p>
+<p>既然是不知道选择哪个方法体引起的错误，那么提供一个优先级高的方法体就可以解决这个错误，代码如下：<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MusicalCarriage</span> <span class="keyword">implements</span> <span class="title">Carriage</span>, <span class="title">Jukebox</span> </span>&#123;</span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">rock</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> Carriage.<span class="keyword">super</span>.rock();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="继承的是一个接口，一个类"><a href="#继承的是一个接口，一个类" class="headerlink" title="继承的是一个接口，一个类"></a>继承的是一个接口，一个类</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Jukebox</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">rock</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"... all over the world!"</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MusicalCarriage</span> <span class="keyword">extends</span> <span class="title">Jukebox</span> <span class="keyword">implements</span> <span class="title">Carriage</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    Carriage c = <span class="keyword">new</span> MusicalCarriage();</span><br><span class="line">    System.out.println(c.rock());   <span class="comment">// ... all over the world!</span></span><br><span class="line"></span><br><span class="line">    Jukebox j = <span class="keyword">new</span> MusicalCarriage();</span><br><span class="line">    System.out.println(j.rock());   <span class="comment">// ... all over the world!</span></span><br><span class="line"></span><br><span class="line">    MusicalCarriage m = <span class="keyword">new</span> MusicalCarriage();</span><br><span class="line">    System.out.println(m.rock());   <span class="comment">// ... all over the world!</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>将上面的接口Jukebox改成了一个类，则代码编译通过。因为在继承时类的优先级要比接口中的default方法高。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag">#java</a>
+          
+            <a href="/tags/多态/" rel="tag">#多态</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/03/21/uml类间关系/" rel="next" title="uml类间关系">
+                <i class="fa fa-chevron-left"></i> uml类间关系
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/03/28/并发和并行/" rel="prev" title="并发和并行">
+                并发和并行 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/03/25/java中方法继承详解/"
+           data-title="java中方法继承详解" data-url="yujunyong.github.com/2016/03/25/java中方法继承详解/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Michael" />
+          <p class="site-author-name" itemprop="name">Michael</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">41</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+          
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/yujunyong" target="_blank">
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#java中的方法绑定"><span class="nav-number">1.</span> <span class="nav-text">java中的方法绑定</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#预绑定-early-binding"><span class="nav-number">1.1.</span> <span class="nav-text">预绑定 early binding</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#延迟绑定-late-binding"><span class="nav-number">1.2.</span> <span class="nav-text">延迟绑定 late binding</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#继承时有同名的方法"><span class="nav-number">2.</span> <span class="nav-text">继承时有同名的方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#继承的两个接口中有签名相同的的方法"><span class="nav-number">2.1.</span> <span class="nav-text">继承的两个接口中有签名相同的的方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#两个方法的返回值相同"><span class="nav-number">2.1.1.</span> <span class="nav-text">两个方法的返回值相同</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#两个方法的返回值不同"><span class="nav-number">2.1.2.</span> <span class="nav-text">两个方法的返回值不同</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#继承的方法是default方法"><span class="nav-number">2.2.</span> <span class="nav-text">继承的方法是default方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#继承自2个接口的方法都是default方法"><span class="nav-number">2.2.1.</span> <span class="nav-text">继承自2个接口的方法都是default方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#继承的是一个接口，一个类"><span class="nav-number">2.2.2.</span> <span class="nav-text">继承的是一个接口，一个类</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Michael</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+  
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.scheme !== 'Pisces' && (CONFIG.sidebar.display === 'post' || CONFIG.sidebar.display === 'always')) {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"yujunyong"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+
+</body>
+</html>

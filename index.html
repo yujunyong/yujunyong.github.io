@@ -228,6 +228,443 @@
             
               
                 
+                <a class="post-title-link" href="/2016/04/10/函数申明和函数表达式/" itemprop="url">
+                  函数申明和函数表达式
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-10T23:18:04+08:00" content="2016-04-10">
+              2016-04-10
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/10/函数申明和函数表达式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/10/函数申明和函数表达式/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>函数申明(function declaration): <code>function test() {};</code><br>函数表达式(function expression): <code>var test = function() {};</code></p>
+</blockquote>
+<p>函数申明和函数表达式在绝大多数情况下没有区别，唯独的区别在创建Function的时机上。</p>
+<p>代码A<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// function declaration</span></span><br><span class="line"></span><br><span class="line">sayHello(); <span class="comment">// Hello!</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayHello</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  alert(<span class="string">'Hello!'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p>代码B<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// function expression</span></span><br><span class="line"></span><br><span class="line">sayHello(); <span class="comment">// TypeError: undefined is not a function</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> sayHello = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  alert(<span class="string">'Hello!'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这两段代码几乎是一样的，但是使用函数声明的代码A运行正常，而使用函数表达式的代码B则会报错。这是因为以下事实：<br><strong>JavaScript是一种解释型语言，函数声明会在JavaScript代码加载后、执行前被解释，而函数表达式只有在执行到这一行代码时才会被解释。</strong></p>
+<p>所以代码A相当于在执行sayHello()前已经建立了一个Function Object并赋给了变量sayHello，其对应代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> sayHello = <span class="keyword">new</span> <span class="built_in">Function</span>(<span class="string">"alert('Hello!')"</span>);</span><br><span class="line">sayHello();</span><br></pre></td></tr></table></figure>
+<p>而代码B在执行sayHello()还未存在Function Object和变量sayHello，因为JavaScript在第一次使用某变量时会建立此变量，所以此处建立变量sayHello，但其值时undefined，未引用任何对象，将其作为函数来调用当然会出错。另外，解释JavaScript时如果某个变量已经存在，则其前面的“var”关键字被忽略，所以B代码等价于下列代码：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">sayHello = <span class="literal">undefined</span>;</span><br><span class="line">sayHello(); <span class="comment">// TypeError: undefined is not a function</span></span><br><span class="line">sayHello = <span class="keyword">new</span> <span class="built_in">Function</span>(<span class="string">"alert('Hello')"</span>);</span><br></pre></td></tr></table></figure>
+<h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><p>大多数浏览器支持将两种语法一起使用，如：<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 除Safari外正确</span></span><br><span class="line"><span class="keyword">var</span> func = <span class="function"><span class="keyword">function</span> <span class="title">func</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>但是以上语法在Safari上会报错。因此为了浏览器兼容性考虑，任何时候都不要合并使用两种语法。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/04/10/IIFE立即调用的函数表达式/" itemprop="url">
+                  IIFE 立即调用的函数表达式
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-10T23:01:18+08:00" content="2016-04-10">
+              2016-04-10
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/10/IIFE立即调用的函数表达式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/10/IIFE立即调用的函数表达式/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="IIFE-Immediately-Invoked-Function-Expression-立即调用的函数表达式"><a href="#IIFE-Immediately-Invoked-Function-Expression-立即调用的函数表达式" class="headerlink" title="IIFE (Immediately Invoked Function Expression 立即调用的函数表达式)"></a>IIFE (Immediately Invoked Function Expression 立即调用的函数表达式)</h1><blockquote>
+<p><a href="/2016/04/10/函数申明和函数表达式/">函数申明和函数表达式</a></p>
+<ul>
+<li>函数申明是语句所以在后面加<code>()</code>会抛出<code>SyntaxError</code>的错误</li>
+<li>函数表达式是表达式可以在它后面加<code>()</code>执行这个函数</li>
+<li>js解释器在遇到关键字<code>function</code>时，默认认为<code>function(){}</code>, <code>function foo(){}</code>这两种形式是函数申明，而不是函数表达式</li>
+<li><code>()</code>, <code>&amp;&amp;</code>, <code>,</code>, <code>!</code>, <code>~</code>, <code>+</code>, <code>-</code>, new 可以明确指出上述的两种形式是函数表达式而不是函数申明</li>
+</ul>
+</blockquote>
+<h2 id="自执行函数表达式写法"><a href="#自执行函数表达式写法" class="headerlink" title="自执行函数表达式写法"></a>自执行函数表达式写法</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 下面2个括弧()都会立即执行</span></span><br><span class="line"></span><br><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="comment">/* code */</span> &#125; ()); <span class="comment">// 推荐使用这个</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="comment">/* code */</span> &#125;)(); <span class="comment">// 但是这个也是可以用的</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 由于括弧()和JS的&amp;&amp;，异或，逗号等操作符是在函数表达式和函数声明上消除歧义的</span></span><br><span class="line"><span class="comment">// 所以一旦解析器知道其中一个已经是表达式了，其它的也都默认为表达式了</span></span><br><span class="line"><span class="comment">// 不过，请注意下一章节的内容解释</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> i = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="keyword">return</span> <span class="number">10</span>; &#125; ();</span><br><span class="line"><span class="literal">true</span> &amp;&amp; <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="comment">/* code */</span> &#125; ();</span><br><span class="line"><span class="number">0</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="comment">/* code */</span> &#125; ();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 如果你不在意返回值，或者不怕难以阅读</span></span><br><span class="line"><span class="comment">// 你甚至可以在function前面加一元操作符号</span></span><br><span class="line"></span><br><span class="line">!<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="comment">/* code */</span> &#125; ();</span><br><span class="line">~<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="comment">/* code */</span> &#125; ();</span><br><span class="line">-<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="comment">/* code */</span> &#125; ();</span><br><span class="line">+<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="comment">/* code */</span> &#125; ();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 还有一个情况，使用new关键字,也可以用，但我不确定它的效率</span></span><br><span class="line"><span class="comment">// http://twitter.com/kuvos/status/18209252090847232</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="comment">/* code */</span> &#125;</span><br><span class="line"><span class="keyword">new</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="comment">/* code */</span> &#125; () <span class="comment">// 如果需要传递参数，只需要加上括弧()</span></span><br></pre></td></tr></table></figure>
+<h2 id="使用IIFE的好处"><a href="#使用IIFE的好处" class="headerlink" title="使用IIFE的好处"></a>使用IIFE的好处</h2><h3 id="提升性能"><a href="#提升性能" class="headerlink" title="提升性能"></a>提升性能</h3><p>减少作用域查找。使用IIFE的一个微小的性能优势是通过匿名函数的参数传递常用全局对象window、document、jQuery，在作用域内引用这些全局对象。JavaScript解释器首先在作用域内查找属性，然后一直沿着链向上查找，直到全局范围。将全局对象放在IIFE作用域内提升js解释器的查找速度和性能。</p>
+<p>传递全局对象到IIFE的一段代码示例：<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Anonymous function that has three arguments</span></span><br><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params">window, document, $</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// You can now reference the window, document, and jQuery objects in a local scope</span></span><br><span class="line"></span><br><span class="line">&#125;(<span class="built_in">window</span>, <span class="built_in">document</span>, <span class="built_in">window</span>.jQuery); <span class="comment">// The global window, document, and jQuery objects are passed into the anonymous function</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="有利于压缩"><a href="#有利于压缩" class="headerlink" title="有利于压缩"></a>有利于压缩</h3><p>另一个微小的优势是有利于代码压缩。既然通过参数传递了这些全局对象，压缩的时候可以将这些全局对象匿名为一个字符的变量名（只要这个字符没有被其他变量使用过）。<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Anonymous function that has three arguments</span></span><br><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params">w, d, $</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// You can now reference the window, document, and jQuery objects in a local scope</span></span><br><span class="line"></span><br><span class="line">&#125;(<span class="built_in">window</span>, <span class="built_in">document</span>, <span class="built_in">window</span>.jQuery); <span class="comment">// The global window, document, and jQuery objects are passed into the anonymous function</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="避免全局命名冲突"><a href="#避免全局命名冲突" class="headerlink" title="避免全局命名冲突"></a>避免全局命名冲突</h3><p>当使用jQuery的时候，全局的window.jQuery对象 作为一个参数传递给$，在匿名函数内部你再也不需要担心$和其他库或者模板申明冲突</p>
+<h2 id="IIFE最佳实践"><a href="#IIFE最佳实践" class="headerlink" title="IIFE最佳实践"></a>IIFE最佳实践</h2><p>如果你有大量的JavaScript代码都在一段IIFE里，要是想查找IIFE传递的实际参数值，必须要滚动到代码最后。幸运的是，你可以使用一个更可读的模式：<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params">library</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line"> <span class="comment">// Calls the second IIFE and locally passes in the global jQuery, window, and document objects</span></span><br><span class="line"> library(<span class="built_in">window</span>, <span class="built_in">document</span>, <span class="built_in">window</span>.jQuery);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Locally scoped parameters </span></span><br><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params">window, document, $</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Library code goes here</span></span><br><span class="line"></span><br><span class="line">&#125;));</span><br></pre></td></tr></table></figure></p>
+<p>这种IIFE模式清晰的展示了传递了哪些全局对象到你的IIFE中，不需要滚动到长文档的最后</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/03/28/并发和并行/" itemprop="url">
+                  并发和并行
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-28T11:22:54+08:00" content="2016-03-28">
+              2016-03-28
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/28/并发和并行/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/28/并发和并行/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><img src="/images/concurrency-parallelism.png" alt="Concurrency Parallelism"></p>
+<h1 id="并发-Concurrency"><a href="#并发-Concurrency" class="headerlink" title="并发 Concurrency"></a>并发 Concurrency</h1><p>并发是当两个任务执行时间有重叠时，CPU分配很小的时间片给两个任务，让它们轮流执行。因为时间片很小所以两个任务看起来像在同时执行。</p>
+<h1 id="并行-Parallelism"><a href="#并行-Parallelism" class="headerlink" title="并行 Parallelism"></a>并行 Parallelism</h1><p>并行是两个任务真的同时在执行。一般来说一个CPU内核可以执行一个任务，有两个内核就可以同时执行两个任务。不过Intel发明了一个核心同时跑两个线程的超线程技术，所以两个任务也可能同时跑在一个内核上面。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/03/25/java中方法继承详解/" itemprop="url">
+                  java中方法继承详解
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-25T16:08:04+08:00" content="2016-03-25">
+              2016-03-25
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/25/java中方法继承详解/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/25/java中方法继承详解/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="java中的方法绑定"><a href="#java中的方法绑定" class="headerlink" title="java中的方法绑定"></a>java中的方法绑定</h1><p>连接一个方法调用到对应的方法体称为绑定。java中有<strong>预绑定</strong>和<strong>动态绑定</strong>两种方式。预绑定在性能上并不优与延迟绑定</p>
+<h2 id="预绑定-early-binding"><a href="#预绑定-early-binding" class="headerlink" title="预绑定 early binding"></a>预绑定 early binding</h2><p>预绑定，也可以说静态绑定，发生在编译时，用<code>static</code>, <code>final</code>(<code>private</code>是隐式的<code>final</code>)修饰的方法是预绑定的。</p>
+<h2 id="延迟绑定-late-binding"><a href="#延迟绑定-late-binding" class="headerlink" title="延迟绑定 late binding"></a>延迟绑定 late binding</h2><p>延迟绑定，也可以说是动态绑定，运行时绑定，发生在运行时，java中除预绑定的方法外都是延迟绑定。</p>
+<h1 id="继承时有同名的方法"><a href="#继承时有同名的方法" class="headerlink" title="继承时有同名的方法"></a>继承时有同名的方法</h1><h2 id="继承的两个接口中有签名相同的的方法"><a href="#继承的两个接口中有签名相同的的方法" class="headerlink" title="继承的两个接口中有签名相同的的方法"></a>继承的两个接口中有签名相同的的方法</h2><h3 id="两个方法的返回值相同"><a href="#两个方法的返回值相同" class="headerlink" title="两个方法的返回值相同"></a>两个方法的返回值相同</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InterfaceTest</span> </span>&#123;</span><br><span class="line">  <span class="class"><span class="keyword">interface</span> <span class="title">Gift</span>  </span>&#123; <span class="function"><span class="keyword">void</span> <span class="title">present</span><span class="params">()</span></span>; &#125;</span><br><span class="line">  <span class="class"><span class="keyword">interface</span> <span class="title">Guest</span> </span>&#123; <span class="function"><span class="keyword">void</span> <span class="title">present</span><span class="params">()</span></span>; &#125;</span><br><span class="line"></span><br><span class="line">  <span class="class"><span class="keyword">interface</span> <span class="title">Presentable</span> <span class="keyword">extends</span> <span class="title">Gift</span>, <span class="title">Guest</span> </span>&#123; &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    Presentable johnny = <span class="keyword">new</span> Presentable() &#123;</span><br><span class="line">      <span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">present</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Heeeereee's Johnny!!!"</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    johnny.present();                     <span class="comment">// "Heeeereee's Johnny!!!"</span></span><br><span class="line"></span><br><span class="line">    ((Gift) johnny).present();            <span class="comment">// "Heeeereee's Johnny!!!"</span></span><br><span class="line">    ((Guest) johnny).present();           <span class="comment">// "Heeeereee's Johnny!!!"</span></span><br><span class="line"></span><br><span class="line">    Gift johnnyAsGift = (Gift) johnny;</span><br><span class="line">    johnnyAsGift.present();               <span class="comment">// "Heeeereee's Johnny!!!"</span></span><br><span class="line"></span><br><span class="line">    Guest johnnyAsGuest = (Guest) johnny;</span><br><span class="line">    johnnyAsGuest.present();              <span class="comment">// "Heeeereee's Johnny!!!"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面的<code>present</code>方法在两个父接口中完全相同，子接口Presentable可以认为同时继承了两个方法（因为两个方法完全相同），所以代码可以正常执行。</p>
+<p>如果继承的一个类和一个接口中有完全相同的方法present，则子类中present方法默认实现就是父类中的。</p>
+<p>可以用java的延迟绑定机制解释这个原因：</p>
+<ol>
+<li>父类和父接口中的present方法完全相同，所以编译时和两个都是接口的情况相同</li>
+<li>程序运行后当调用方法present，此时才会为这个方法绑定对应的方法体，也就是继承自父类的方法体</li>
+</ol>
+<h3 id="两个方法的返回值不同"><a href="#两个方法的返回值不同" class="headerlink" title="两个方法的返回值不同"></a>两个方法的返回值不同</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InterfaceTest</span> </span>&#123;</span><br><span class="line">  <span class="class"><span class="keyword">interface</span> <span class="title">Gift</span>  </span>&#123; <span class="function"><span class="keyword">void</span> <span class="title">present</span><span class="params">()</span></span>; &#125;</span><br><span class="line">  <span class="class"><span class="keyword">interface</span> <span class="title">Guest</span> </span>&#123; <span class="function"><span class="keyword">boolean</span> <span class="title">present</span><span class="params">()</span></span>; &#125;</span><br><span class="line"></span><br><span class="line">  <span class="class"><span class="keyword">interface</span> <span class="title">Presentable</span> <span class="keyword">extends</span> <span class="title">Gift</span>, <span class="title">Guest</span> </span>&#123; &#125; <span class="comment">// DOES NOT COMPILE!!!</span></span><br><span class="line">  <span class="comment">// "types InterfaceTest.Guest and InterfaceTest.Gift are incompatible;</span></span><br><span class="line">  <span class="comment">//  both define present(), but with unrelated return types"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Gift中的present方法返回void, Guest中的present方法返回boolean，当Presentable继承Gift和Guest时编译不通过。两个父类中的present方法的继承优先级是相同的(继承关系的判断不包含方法的返回类型)，但它们的返回类型不同，子类就不知道应该继承哪个方法了，所以会出现编译错误。</p>
+<h2 id="继承的方法是default方法"><a href="#继承的方法是default方法" class="headerlink" title="继承的方法是default方法"></a>继承的方法是default方法</h2><h3 id="继承自2个接口的方法都是default方法"><a href="#继承自2个接口的方法都是default方法" class="headerlink" title="继承自2个接口的方法都是default方法"></a>继承自2个接口的方法都是default方法</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Jukebox</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">default</span> String <span class="title">rock</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"... all over the world!"</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Carriage</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">default</span> String <span class="title">rock</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"... from side to side"</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MusicalCarriage</span> <span class="keyword">implements</span> <span class="title">Carriage</span>, <span class="title">Jukebox</span> </span>&#123;&#125; <span class="comment">// DOES NOT COMPILE!!!</span></span><br><span class="line"><span class="comment">// class MusicalCarriage inherits unrelated defaults</span></span><br><span class="line"><span class="comment">// for rock() from types Carriage and Jukebox</span></span><br></pre></td></tr></table></figure>
+<p>上面的MusicalCarriageo类编译不通过，因为两个default方法的继承优先级相同，编译器在处理的时候不知道应该继承哪个default方法中的方法体，所以出现编译错误。</p>
+<p>既然是不知道选择哪个方法体引起的错误，那么提供一个优先级高的方法体就可以解决这个错误，代码如下：<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MusicalCarriage</span> <span class="keyword">implements</span> <span class="title">Carriage</span>, <span class="title">Jukebox</span> </span>&#123;</span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">rock</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> Carriage.<span class="keyword">super</span>.rock();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="继承的是一个接口，一个类"><a href="#继承的是一个接口，一个类" class="headerlink" title="继承的是一个接口，一个类"></a>继承的是一个接口，一个类</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Jukebox</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">rock</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"... all over the world!"</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MusicalCarriage</span> <span class="keyword">extends</span> <span class="title">Jukebox</span> <span class="keyword">implements</span> <span class="title">Carriage</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    Carriage c = <span class="keyword">new</span> MusicalCarriage();</span><br><span class="line">    System.out.println(c.rock());   <span class="comment">// ... all over the world!</span></span><br><span class="line"></span><br><span class="line">    Jukebox j = <span class="keyword">new</span> MusicalCarriage();</span><br><span class="line">    System.out.println(j.rock());   <span class="comment">// ... all over the world!</span></span><br><span class="line"></span><br><span class="line">    MusicalCarriage m = <span class="keyword">new</span> MusicalCarriage();</span><br><span class="line">    System.out.println(m.rock());   <span class="comment">// ... all over the world!</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>将上面的接口Jukebox改成了一个类，则代码编译通过。因为在继承时类的优先级要比接口中的default方法高。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/03/21/uml类间关系/" itemprop="url">
                   uml类间关系
                 </a>
@@ -890,504 +1327,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/11/05/mysql查询优化/" itemprop="url">
-                  mysql查询优化
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-11-05T15:30:55+08:00" content="2015-11-05">
-              2015-11-05
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/database/" itemprop="url" rel="index">
-                    <span itemprop="name">database</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/11/05/mysql查询优化/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/05/mysql查询优化/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="查询了不需要的数据"><a href="#查询了不需要的数据" class="headerlink" title="查询了不需要的数据"></a>查询了不需要的数据</h1><h2 id="查询了一些不需要的行"><a href="#查询了一些不需要的行" class="headerlink" title="查询了一些不需要的行"></a>查询了一些不需要的行</h2><p>从文章表里面查询最新的10篇文章，这种查询一般是按时间排序，取最新的10篇文章。如果不加其它的限制则会查询表中所有的记录，这样会导致执行效率降低，增加<code>limit</code>可以有效的限制查询的行数，提高效率</p>
-<h2 id="查询了一些不需要的列"><a href="#查询了一些不需要的列" class="headerlink" title="查询了一些不需要的列"></a>查询了一些不需要的列</h2><p>返回电影《Academy Dinosaur》中所有的演员，不要使用下面的查询<br><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> sakila.actor</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> sakila.film_actor <span class="keyword">USING</span>(actor_id)</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> sakila.film <span class="keyword">USING</span>(film_id)</span><br><span class="line"><span class="keyword">WHERE</span> sakila.film.title = <span class="string">'Academy Dinosaur'</span>;</span><br></pre></td></tr></table></figure></p>
-<p>上面的查询会返回3个表中所有的列，但是我们只需要actor表中的字段</p>
-<p>应该使用下面的查询<br><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> sakila.actor.* <span class="keyword">FROM</span> sakila.actor</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> sakila.film_actor <span class="keyword">USING</span>(actor_id)</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> sakila.film <span class="keyword">USING</span>(film_id)</span><br><span class="line"><span class="keyword">WHERE</span> sakila.film.title = <span class="string">'Academy Dinosaur'</span>;</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/10/30/cron表达式/" itemprop="url">
-                  cron表达式
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-10-30T14:23:28+08:00" content="2015-10-30">
-              2015-10-30
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/unix/" itemprop="url" rel="index">
-                    <span itemprop="name">unix</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/10/30/cron表达式/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/30/cron表达式/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="cron表达式的格式"><a href="#cron表达式的格式" class="headerlink" title="cron表达式的格式"></a>cron表达式的格式</h1><p>Seconds Minutes Hours DayofMonth Month DayofWeek Year或<br>Seconds Minutes Hours DayofMonth Month DayofWeek</p>
-<h1 id="每个或可出现的字符"><a href="#每个或可出现的字符" class="headerlink" title="每个或可出现的字符"></a>每个或可出现的字符</h1><ul>
-<li>Seconds: <code>, – * /</code>四个字符，或0-59的整数</li>
-<li>Minutes: <code>, – * /</code>四个字符，或0-59的整数</li>
-<li>Hours: <code>, – * /</code>四个字符，或0-23的整数</li>
-<li>DayofMonth: <code>, – * / ? L W C</code>八个字符，或0-31的整数</li>
-<li>Month: <code>, – * /</code>四个字符，或1-12的整数，或<code>JAN, FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOV and DEC</code></li>
-<li>DayofWeek: <code>, – * / ? L C #</code>八个字符，或1-7的整数，或<code>SUN, MON, TUE, WED, THU, FRI and SAT</code>, <strong>1表示星期天</strong></li>
-<li>Year: <code>, – * /</code>四个字符，或1970-2099的整数</li>
-</ul>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/10/30/cron表达式/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/10/22/线程池/" itemprop="url">
-                  线程池
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-10-22T19:24:25+08:00" content="2015-10-22">
-              2015-10-22
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/10/22/线程池/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/22/线程池/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/10/15/处理多线程问题的方法/" itemprop="url">
-                  处理多线程问题的方法
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-10-15T15:26:54+08:00" content="2015-10-15">
-              2015-10-15
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/10/15/处理多线程问题的方法/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/15/处理多线程问题的方法/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="使用synchronize"><a href="#使用synchronize" class="headerlink" title="使用synchronize"></a>使用synchronize</h1><h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h2><ul>
-<li>多线程环境下，多个线程竞争一个共享的资源，没竞争到的线程只能等待到该资源被释放，再去竞争，这样有点浪费时间。</li>
-<li>在高并发的情况下，会有很多线程被悬挂后面再被恢复，悬挂和恢复操作比较消耗系统资源，需要的时间比较长。</li>
-<li>大多数需要锁的代码块执行的时间比较短，这样就导致了在高并发环境下，消耗的时间主要在线程的悬挂和恢复上。</li>
-<li>可能会出现死锁的问题，可能会阻塞优先级较高，较重要的线程，可能获得锁的线程一直不释放锁(如出现死循环的情况)</li>
-<li>无法中断正在请求同步锁的线程, 在获取锁之前线程会一直等待着, 容易出现死锁问题</li>
-<li>只能在方法内部请求，释放锁，没法跨方法</li>
-</ul>
-<h1 id="使用Lock"><a href="#使用Lock" class="headerlink" title="使用Lock"></a>使用Lock</h1><h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><ul>
-<li>可以控制获取锁时的公平性，当在公平的模式下，等待时间久的线程会优先获取锁(比非公平模式的效率要低)</li>
-<li>一个锁可以有多个Condition, 线程间的交流更加精确（sychronized可以认为只有一个Condition）。</li>
-</ul>
-<h1 id="使用不可变的对象"><a href="#使用不可变的对象" class="headerlink" title="使用不可变的对象"></a>使用不可变的对象</h1><ul>
-<li>String, Boolean, Long, Integer等都是不可变对象，它们是线程安全的，因为不可变所以不会出现脏读，脏写的情况</li>
-</ul>
-<h1 id="使用原子类"><a href="#使用原子类" class="headerlink" title="使用原子类"></a>使用原子类</h1><ul>
-<li>原子类使用高效的方式<a href="#CAS">CAS</a> (compare and swap) + volatile和native方法解决多线程问题，在执行方法时不会被其它线程打断，不会阻塞线程</li>
-<li>AtomicInteger, AtomicLong这些类没有重写hashCode和equals方法，因此它们在比较两个对象值是否相等时是有问题的,它们不能放入集合类中</li>
-</ul>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/10/15/处理多线程问题的方法/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1428,7 +1372,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">37</span>
+              <span class="site-state-item-count">41</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1445,7 +1389,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-count">27</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
