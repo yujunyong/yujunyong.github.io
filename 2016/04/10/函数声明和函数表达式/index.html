@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="js,iife," />
+  <meta name="keywords" content="js," />
 
 
 
@@ -59,31 +59,25 @@
 
 
 
-<meta name="description" content="IIFE (Immediately Invoked Function Expression 立即调用的函数表达式)
-函数声明和函数表达式
+<meta name="description" content="函数声明(function declaration): function test() {};函数表达式(function expression): var test = function() {};
 
-函数声明是语句所以在后面加()会抛出SyntaxError的错误
-函数表达式是表达式可以在它后面加()执行这个函数
-js解释器在遇到关键字function时，默认认为function(){}, function foo(){}这两种形式是函数声明，而不是函数表">
+函数声明和函数表达式在绝大多数情况下没有区别，唯独的区别在创建Function的时机上。
+代码A// function declarationsayHello(); // Hello!funct">
 <meta property="og:type" content="article">
-<meta property="og:title" content="IIFE 立即调用的函数表达式">
-<meta property="og:url" content="yujunyong.github.com/2016/04/10/IIFE立即调用的函数表达式/index.html">
+<meta property="og:title" content="函数声明和函数表达式">
+<meta property="og:url" content="yujunyong.github.com/2016/04/10/函数声明和函数表达式/index.html">
 <meta property="og:site_name" content="Geek">
-<meta property="og:description" content="IIFE (Immediately Invoked Function Expression 立即调用的函数表达式)
-函数声明和函数表达式
+<meta property="og:description" content="函数声明(function declaration): function test() {};函数表达式(function expression): var test = function() {};
 
-函数声明是语句所以在后面加()会抛出SyntaxError的错误
-函数表达式是表达式可以在它后面加()执行这个函数
-js解释器在遇到关键字function时，默认认为function(){}, function foo(){}这两种形式是函数声明，而不是函数表">
-<meta property="og:updated_time" content="2016-04-13T06:48:37.000Z">
+函数声明和函数表达式在绝大多数情况下没有区别，唯独的区别在创建Function的时机上。
+代码A// function declarationsayHello(); // Hello!funct">
+<meta property="og:updated_time" content="2016-04-13T06:48:10.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="IIFE 立即调用的函数表达式">
-<meta name="twitter:description" content="IIFE (Immediately Invoked Function Expression 立即调用的函数表达式)
-函数声明和函数表达式
+<meta name="twitter:title" content="函数声明和函数表达式">
+<meta name="twitter:description" content="函数声明(function declaration): function test() {};函数表达式(function expression): var test = function() {};
 
-函数声明是语句所以在后面加()会抛出SyntaxError的错误
-函数表达式是表达式可以在它后面加()执行这个函数
-js解释器在遇到关键字function时，默认认为function(){}, function foo(){}这两种形式是函数声明，而不是函数表">
+函数声明和函数表达式在绝大多数情况下没有区别，唯独的区别在创建Function的时机上。
+代码A// function declarationsayHello(); // Hello!funct">
 
 
 
@@ -101,7 +95,7 @@ js解释器在遇到关键字function时，默认认为function(){}, function fo
   };
 </script>
 
-  <title> IIFE 立即调用的函数表达式 | Geek </title>
+  <title> 函数声明和函数表达式 | Geek </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -241,7 +235,7 @@ js解释器在遇到关键字function时，默认认为function(){}, function fo
             
             
               
-                IIFE 立即调用的函数表达式
+                函数声明和函数表达式
               
             
           </h1>
@@ -253,7 +247,7 @@ js解释器在遇到关键字function时，默认认为function(){}, function fo
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-10T23:01:18+08:00" content="2016-04-10">
+            <time itemprop="dateCreated" datetime="2016-04-10T23:18:04+08:00" content="2016-04-10">
               2016-04-10
             </time>
           </span>
@@ -264,8 +258,8 @@ js解释器在遇到关键字function时，默认认为function(){}, function fo
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/04/10/IIFE立即调用的函数表达式/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/10/IIFE立即调用的函数表达式/" itemprop="commentsCount"></span>
+                <a href="/2016/04/10/函数声明和函数表达式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/10/函数声明和函数表达式/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -287,22 +281,20 @@ js解释器在遇到关键字function时，默认认为function(){}, function fo
       
 
       
-        <h1 id="IIFE-Immediately-Invoked-Function-Expression-立即调用的函数表达式"><a href="#IIFE-Immediately-Invoked-Function-Expression-立即调用的函数表达式" class="headerlink" title="IIFE (Immediately Invoked Function Expression 立即调用的函数表达式)"></a>IIFE (Immediately Invoked Function Expression 立即调用的函数表达式)</h1><blockquote>
-<p><a href="/2016/04/10/函数声明和函数表达式/">函数声明和函数表达式</a></p>
-<ul>
-<li>函数声明是语句所以在后面加<code>()</code>会抛出<code>SyntaxError</code>的错误</li>
-<li>函数表达式是表达式可以在它后面加<code>()</code>执行这个函数</li>
-<li>js解释器在遇到关键字<code>function</code>时，默认认为<code>function(){}</code>, <code>function foo(){}</code>这两种形式是函数声明，而不是函数表达式</li>
-<li><code>()</code>, <code>&amp;&amp;</code>, <code>,</code>, <code>!</code>, <code>~</code>, <code>+</code>, <code>-</code>, new 可以明确指出上述的两种形式是函数表达式而不是函数声明</li>
-</ul>
+        <blockquote>
+<p>函数声明(function declaration): <code>function test() {};</code><br>函数表达式(function expression): <code>var test = function() {};</code></p>
 </blockquote>
-<h2 id="自执行函数表达式写法"><a href="#自执行函数表达式写法" class="headerlink" title="自执行函数表达式写法"></a>自执行函数表达式写法</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 下面2个括弧()都会立即执行</span></span><br><span class="line"></span><br><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="comment">/* code */</span> &#125; ()); <span class="comment">// 推荐使用这个</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="comment">/* code */</span> &#125;)(); <span class="comment">// 但是这个也是可以用的</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 由于括弧()和JS的&amp;&amp;，异或，逗号等操作符是在函数表达式和函数声明上消除歧义的</span></span><br><span class="line"><span class="comment">// 所以一旦解析器知道其中一个已经是表达式了，其它的也都默认为表达式了</span></span><br><span class="line"><span class="comment">// 不过，请注意下一章节的内容解释</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> i = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="keyword">return</span> <span class="number">10</span>; &#125; ();</span><br><span class="line"><span class="literal">true</span> &amp;&amp; <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="comment">/* code */</span> &#125; ();</span><br><span class="line"><span class="number">0</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="comment">/* code */</span> &#125; ();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 如果你不在意返回值，或者不怕难以阅读</span></span><br><span class="line"><span class="comment">// 你甚至可以在function前面加一元操作符号</span></span><br><span class="line"></span><br><span class="line">!<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="comment">/* code */</span> &#125; ();</span><br><span class="line">~<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="comment">/* code */</span> &#125; ();</span><br><span class="line">-<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="comment">/* code */</span> &#125; ();</span><br><span class="line">+<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="comment">/* code */</span> &#125; ();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 还有一个情况，使用new关键字,也可以用，但我不确定它的效率</span></span><br><span class="line"><span class="comment">// http://twitter.com/kuvos/status/18209252090847232</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="comment">/* code */</span> &#125;</span><br><span class="line"><span class="keyword">new</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="comment">/* code */</span> &#125; () <span class="comment">// 如果需要传递参数，只需要加上括弧()</span></span><br></pre></td></tr></table></figure>
-<h2 id="使用IIFE的好处"><a href="#使用IIFE的好处" class="headerlink" title="使用IIFE的好处"></a>使用IIFE的好处</h2><h3 id="提升性能"><a href="#提升性能" class="headerlink" title="提升性能"></a>提升性能</h3><p>减少作用域查找。使用IIFE的一个微小的性能优势是通过匿名函数的参数传递常用全局对象window、document、jQuery，在作用域内引用这些全局对象。JavaScript解释器首先在作用域内查找属性，然后一直沿着链向上查找，直到全局范围。将全局对象放在IIFE作用域内提升js解释器的查找速度和性能。</p>
-<p>传递全局对象到IIFE的一段代码示例：<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Anonymous function that has three arguments</span></span><br><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params">window, document, $</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// You can now reference the window, document, and jQuery objects in a local scope</span></span><br><span class="line"></span><br><span class="line">&#125;(<span class="built_in">window</span>, <span class="built_in">document</span>, <span class="built_in">window</span>.jQuery); <span class="comment">// The global window, document, and jQuery objects are passed into the anonymous function</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="有利于压缩"><a href="#有利于压缩" class="headerlink" title="有利于压缩"></a>有利于压缩</h3><p>另一个微小的优势是有利于代码压缩。既然通过参数传递了这些全局对象，压缩的时候可以将这些全局对象匿名为一个字符的变量名（只要这个字符没有被其他变量使用过）。<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Anonymous function that has three arguments</span></span><br><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params">w, d, $</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// You can now reference the window, document, and jQuery objects in a local scope</span></span><br><span class="line"></span><br><span class="line">&#125;(<span class="built_in">window</span>, <span class="built_in">document</span>, <span class="built_in">window</span>.jQuery); <span class="comment">// The global window, document, and jQuery objects are passed into the anonymous function</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="避免全局命名冲突"><a href="#避免全局命名冲突" class="headerlink" title="避免全局命名冲突"></a>避免全局命名冲突</h3><p>当使用jQuery的时候，全局的window.jQuery对象 作为一个参数传递给$，在匿名函数内部你再也不需要担心$和其他库或者模板声明冲突</p>
-<h2 id="IIFE最佳实践"><a href="#IIFE最佳实践" class="headerlink" title="IIFE最佳实践"></a>IIFE最佳实践</h2><p>如果你有大量的JavaScript代码都在一段IIFE里，要是想查找IIFE传递的实际参数值，必须要滚动到代码最后。幸运的是，你可以使用一个更可读的模式：<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params">library</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line"> <span class="comment">// Calls the second IIFE and locally passes in the global jQuery, window, and document objects</span></span><br><span class="line"> library(<span class="built_in">window</span>, <span class="built_in">document</span>, <span class="built_in">window</span>.jQuery);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Locally scoped parameters </span></span><br><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params">window, document, $</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Library code goes here</span></span><br><span class="line"></span><br><span class="line">&#125;));</span><br></pre></td></tr></table></figure></p>
-<p>这种IIFE模式清晰的展示了传递了哪些全局对象到你的IIFE中，不需要滚动到长文档的最后</p>
+<p>函数声明和函数表达式在绝大多数情况下没有区别，唯独的区别在创建Function的时机上。</p>
+<p>代码A<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// function declaration</span></span><br><span class="line"></span><br><span class="line">sayHello(); <span class="comment">// Hello!</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayHello</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  alert(<span class="string">'Hello!'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p>代码B<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// function expression</span></span><br><span class="line"></span><br><span class="line">sayHello(); <span class="comment">// TypeError: undefined is not a function</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> sayHello = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  alert(<span class="string">'Hello!'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这两段代码几乎是一样的，但是使用函数声明的代码A运行正常，而使用函数表达式的代码B则会报错。这是因为以下事实：<br><strong>JavaScript是一种解释型语言，函数声明会在JavaScript代码加载后、执行前被解释，而函数表达式只有在执行到这一行代码时才会被解释。</strong></p>
+<p>所以代码A相当于在执行sayHello()前已经建立了一个Function Object并赋给了变量sayHello，其对应代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> sayHello = <span class="keyword">new</span> <span class="built_in">Function</span>(<span class="string">"alert('Hello!')"</span>);</span><br><span class="line">sayHello();</span><br></pre></td></tr></table></figure>
+<p>而代码B在执行sayHello()还未存在Function Object和变量sayHello，因为JavaScript在第一次使用某变量时会建立此变量，所以此处建立变量sayHello，但其值时undefined，未引用任何对象，将其作为函数来调用当然会出错。另外，解释JavaScript时如果某个变量已经存在，则其前面的“var”关键字被忽略，所以B代码等价于下列代码：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">sayHello = <span class="literal">undefined</span>;</span><br><span class="line">sayHello(); <span class="comment">// TypeError: undefined is not a function</span></span><br><span class="line">sayHello = <span class="keyword">new</span> <span class="built_in">Function</span>(<span class="string">"alert('Hello')"</span>);</span><br></pre></td></tr></table></figure>
+<h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><p>大多数浏览器支持将两种语法一起使用，如：<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 除Safari外正确</span></span><br><span class="line"><span class="keyword">var</span> func = <span class="function"><span class="keyword">function</span> <span class="title">func</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>但是以上语法在Safari上会报错。因此为了浏览器兼容性考虑，任何时候都不要合并使用两种语法。</p>
 
       
     </div>
@@ -319,8 +311,6 @@ js解释器在遇到关键字function时，默认认为function(){}, function fo
           
             <a href="/tags/js/" rel="tag">#js</a>
           
-            <a href="/tags/iife/" rel="tag">#iife</a>
-          
         </div>
       
 
@@ -328,17 +318,13 @@ js解释器在遇到关键字function时，默认认为function(){}, function fo
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/03/28/并发和并行/" rel="next" title="并发和并行">
-                <i class="fa fa-chevron-left"></i> 并发和并行
+              <a href="/2016/04/10/IIFE立即调用的函数表达式/" rel="next" title="IIFE 立即调用的函数表达式">
+                <i class="fa fa-chevron-left"></i> IIFE 立即调用的函数表达式
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/04/10/函数声明和函数表达式/" rel="prev" title="函数声明和函数表达式">
-                函数声明和函数表达式 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -364,8 +350,8 @@ js解释器在遇到关键字function时，默认认为function(){}, function fo
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/04/10/IIFE立即调用的函数表达式/"
-           data-title="IIFE 立即调用的函数表达式" data-url="yujunyong.github.com/2016/04/10/IIFE立即调用的函数表达式/">
+      <div class="ds-thread" data-thread-key="2016/04/10/函数声明和函数表达式/"
+           data-title="函数声明和函数表达式" data-url="yujunyong.github.com/2016/04/10/函数声明和函数表达式/">
       </div>
     
   </div>
@@ -477,7 +463,7 @@ js解释器在遇到关键字function时，默认认为function(){}, function fo
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#IIFE-Immediately-Invoked-Function-Expression-立即调用的函数表达式"><span class="nav-number">1.</span> <span class="nav-text">IIFE (Immediately Invoked Function Expression 立即调用的函数表达式)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#自执行函数表达式写法"><span class="nav-number">1.1.</span> <span class="nav-text">自执行函数表达式写法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用IIFE的好处"><span class="nav-number">1.2.</span> <span class="nav-text">使用IIFE的好处</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#提升性能"><span class="nav-number">1.2.1.</span> <span class="nav-text">提升性能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有利于压缩"><span class="nav-number">1.2.2.</span> <span class="nav-text">有利于压缩</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#避免全局命名冲突"><span class="nav-number">1.2.3.</span> <span class="nav-text">避免全局命名冲突</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IIFE最佳实践"><span class="nav-number">1.3.</span> <span class="nav-text">IIFE最佳实践</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#注意"><span class="nav-number">1.</span> <span class="nav-text">注意</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
