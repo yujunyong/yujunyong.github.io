@@ -37,7 +37,7 @@ tags: [shell,tool]
 
 
 # 进程
-* 查看某个进程信息，`ps aux | grep nginx`
+* 查看某个进程信息，`ps aux | grep nginx`, `ps -ef | grep nginx`
 * 后台远行程序，`xlogo &`, `&`放在后台表示在后台运行
 
 # 网络
