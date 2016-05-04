@@ -59,7 +59,7 @@
 
 
 
-<meta name="description" content="Positional Parameters获取参数
+<meta name="description" content="Positional Parameters参数表示
 $#: 添加到Shell的参数个数
 $0: Shell本身的文件名
 $1 - $n: 添加到Shell的各参数值。$1是第1参数、$2是第2参数…
@@ -70,17 +70,17 @@ echo &quot;Number of arguments: $#\$0 = $0\$1 = $1\$2 = $2\$3 = $3\$4 = $4\">
 <meta property="og:title" content="shell中的特殊变量">
 <meta property="og:url" content="yujunyong.github.com/2015/09/25/shell中的特殊变量/index.html">
 <meta property="og:site_name" content="Geek">
-<meta property="og:description" content="Positional Parameters获取参数
+<meta property="og:description" content="Positional Parameters参数表示
 $#: 添加到Shell的参数个数
 $0: Shell本身的文件名
 $1 - $n: 添加到Shell的各参数值。$1是第1参数、$2是第2参数…
 
 新建文件positional-parameters.sh
 echo &quot;Number of arguments: $#\$0 = $0\$1 = $1\$2 = $2\$3 = $3\$4 = $4\">
-<meta property="og:updated_time" content="2015-09-25T09:56:15.000Z">
+<meta property="og:updated_time" content="2016-05-03T04:09:21.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="shell中的特殊变量">
-<meta name="twitter:description" content="Positional Parameters获取参数
+<meta name="twitter:description" content="Positional Parameters参数表示
 $#: 添加到Shell的参数个数
 $0: Shell本身的文件名
 $1 - $n: 添加到Shell的各参数值。$1是第1参数、$2是第2参数…
@@ -309,7 +309,7 @@ echo &quot;Number of arguments: $#\$0 = $0\$1 = $1\$2 = $2\$3 = $3\$4 = $4\">
       
 
       
-        <h1 id="Positional-Parameters"><a href="#Positional-Parameters" class="headerlink" title="Positional Parameters"></a>Positional Parameters</h1><h2 id="获取参数"><a href="#获取参数" class="headerlink" title="获取参数"></a>获取参数</h2><ul>
+        <h1 id="Positional-Parameters"><a href="#Positional-Parameters" class="headerlink" title="Positional Parameters"></a>Positional Parameters</h1><h2 id="参数表示"><a href="#参数表示" class="headerlink" title="参数表示"></a>参数表示</h2><ul>
 <li><code>$#</code>: 添加到Shell的参数个数</li>
 <li><code>$0</code>: Shell本身的文件名</li>
 <li><code>$1 - $n</code>: 添加到Shell的各参数值。$1是第1参数、$2是第2参数…</li>
@@ -321,16 +321,21 @@ echo &quot;Number of arguments: $#\$0 = $0\$1 = $1\$2 = $2\$3 = $3\$4 = $4\">
 <a id="more"></a>
 <h2 id="参数扩展"><a href="#参数扩展" class="headerlink" title="参数扩展"></a>参数扩展</h2><ul>
 <li><code>$*</code>: 所有参数列表，如果<code>$*</code>用双引号括起来，则以<code>$1 $2 $3 ... $n</code>的形式输出</li>
-<li><code>$@</code>: 所有参数列表，如果<code>￥@</code>用双引号括起来，则以<code>$1</code> <code>$2 $3 ... $n</code>的形式输出</li>
+<li><code>$@</code>: 所有参数列表，如果<code>$@</code>用双引号括起来，则以<code>$1</code> <code>$2 $3 ... $n</code>的形式输出</li>
 </ul>
 <p>新建文件expand-param.sh</p>
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="title">print_params</span></span> () &#123;</span><br><span class="line">  <span class="built_in">echo</span> <span class="string">"\$1 = <span class="variable">$1</span>"</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">"\$2 = <span class="variable">$2</span>"</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">"\$3 = <span class="variable">$3</span>"</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">"\$4 = <span class="variable">$4</span>"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">pass_params</span></span> () &#123;</span><br><span class="line">  <span class="built_in">echo</span> <span class="string">'$* :'</span>; <span class="built_in">print</span>_params $*</span><br><span class="line">  <span class="built_in">echo</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">'"$*" :'</span>; <span class="built_in">print</span>_params <span class="string">"$*"</span></span><br><span class="line">  <span class="built_in">echo</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">'$@ :'</span>; <span class="built_in">print</span>_params <span class="variable">$@</span></span><br><span class="line">  <span class="built_in">echo</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">'"$@": '</span>; <span class="built_in">print</span>_params <span class="string">"<span class="variable">$@</span>"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">pass_params <span class="string">"word"</span> <span class="string">"words with spaces"</span></span><br></pre></td></tr></table></figure>
 <p>在中输入<code>sh expand-param.sh</code>, 输出如下<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$* :</span><br><span class="line">$1 = word</span><br><span class="line">$2 = words</span><br><span class="line">$3 = with</span><br><span class="line">$4 = spaces</span><br><span class="line"></span><br><span class="line">&quot;$*&quot; :</span><br><span class="line">$1 = word words with spaces</span><br><span class="line">$2 =</span><br><span class="line">$3 =</span><br><span class="line">$4 =</span><br><span class="line"></span><br><span class="line">$@ :</span><br><span class="line">$1 = word</span><br><span class="line">$2 = words</span><br><span class="line">$3 = with</span><br><span class="line">$4 = spaces</span><br><span class="line"></span><br><span class="line">&quot;$@&quot;:</span><br><span class="line">$1 = word</span><br><span class="line">$2 = words with spaces</span><br><span class="line">$3 =</span><br><span class="line">$4 =</span><br></pre></td></tr></table></figure></p>
-<h2 id="移动参数"><a href="#移动参数" class="headerlink" title="移动参数"></a>移动参数</h2><p>可以使用<code>shift</code>的命令移动参数</p>
+<h2 id="参数移动"><a href="#参数移动" class="headerlink" title="参数移动"></a>参数移动</h2><p>可以使用<code>shift</code>的命令移动参数</p>
 <p>新建文件shift-param.sh</p>
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">count=1</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> [[ <span class="variable">$#</span> <span class="_">-gt</span> 0  ]]; <span class="keyword">do</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">"Argument <span class="variable">$count</span> = <span class="variable">$1</span>"</span></span><br><span class="line">  count=$((count + 1))</span><br><span class="line">  <span class="built_in">shift</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
 <p>在shell中输入命令<code>sh shift-param.sh {1..20}</code>, 输出如下</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Argument 1 = 1</span><br><span class="line">Argument 2 = 2</span><br><span class="line">Argument 3 = 3</span><br><span class="line">Argument 4 = 4</span><br><span class="line">Argument 5 = 5</span><br><span class="line">Argument 6 = 6</span><br><span class="line">Argument 7 = 7</span><br><span class="line">Argument 8 = 8</span><br><span class="line">Argument 9 = 9</span><br><span class="line">Argument 10 = 10</span><br><span class="line">Argument 11 = 11</span><br><span class="line">Argument 12 = 12</span><br><span class="line">Argument 13 = 13</span><br><span class="line">Argument 14 = 14</span><br><span class="line">Argument 15 = 15</span><br><span class="line">Argument 16 = 16</span><br><span class="line">Argument 17 = 17</span><br><span class="line">Argument 18 = 18</span><br><span class="line">Argument 19 = 19</span><br><span class="line">Argument 20 = 20</span><br></pre></td></tr></table></figure>
+<h2 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h2><ul>
+<li><code>$$</code>, Shell本身的pid</li>
+<li><code>$!</code>, Shell最后运行的后台进程的pid</li>
+<li><code>$?</code>, Shell最后运行的命令结束代码</li>
+</ul>
 
       
     </div>
@@ -505,7 +510,7 @@ echo &quot;Number of arguments: $#\$0 = $0\$1 = $1\$2 = $2\$3 = $3\$4 = $4\">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Positional-Parameters"><span class="nav-number">1.</span> <span class="nav-text">Positional Parameters</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#获取参数"><span class="nav-number">1.1.</span> <span class="nav-text">获取参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参数扩展"><span class="nav-number">1.2.</span> <span class="nav-text">参数扩展</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#移动参数"><span class="nav-number">1.3.</span> <span class="nav-text">移动参数</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Positional-Parameters"><span class="nav-number">1.</span> <span class="nav-text">Positional Parameters</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#参数表示"><span class="nav-number">1.1.</span> <span class="nav-text">参数表示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参数扩展"><span class="nav-number">1.2.</span> <span class="nav-text">参数扩展</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参数移动"><span class="nav-number">1.3.</span> <span class="nav-text">参数移动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其它"><span class="nav-number">1.4.</span> <span class="nav-text">其它</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

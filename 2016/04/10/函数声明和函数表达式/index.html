@@ -71,7 +71,7 @@
 
 函数声明和函数表达式在绝大多数情况下没有区别，唯独的区别在创建Function的时机上。
 代码A// function declarationsayHello(); // Hello!funct">
-<meta property="og:updated_time" content="2016-04-13T06:48:10.000Z">
+<meta property="og:updated_time" content="2016-05-04T14:24:13.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="函数声明和函数表达式">
 <meta name="twitter:description" content="函数声明(function declaration): function test() {};函数表达式(function expression): var test = function() {};
@@ -293,8 +293,8 @@
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> sayHello = <span class="keyword">new</span> <span class="built_in">Function</span>(<span class="string">"alert('Hello!')"</span>);</span><br><span class="line">sayHello();</span><br></pre></td></tr></table></figure>
 <p>而代码B在执行sayHello()还未存在Function Object和变量sayHello，因为JavaScript在第一次使用某变量时会建立此变量，所以此处建立变量sayHello，但其值时undefined，未引用任何对象，将其作为函数来调用当然会出错。另外，解释JavaScript时如果某个变量已经存在，则其前面的“var”关键字被忽略，所以B代码等价于下列代码：</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">sayHello = <span class="literal">undefined</span>;</span><br><span class="line">sayHello(); <span class="comment">// TypeError: undefined is not a function</span></span><br><span class="line">sayHello = <span class="keyword">new</span> <span class="built_in">Function</span>(<span class="string">"alert('Hello')"</span>);</span><br></pre></td></tr></table></figure>
-<h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><p>大多数浏览器支持将两种语法一起使用，如：<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 除Safari外正确</span></span><br><span class="line"><span class="keyword">var</span> func = <span class="function"><span class="keyword">function</span> <span class="title">func</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>但是以上语法在Safari上会报错。因此为了浏览器兼容性考虑，任何时候都不要合并使用两种语法。</p>
+<h1 id="命名函数表达式"><a href="#命名函数表达式" class="headerlink" title="命名函数表达式"></a>命名函数表达式</h1><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> foo = <span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"typeof bar(in function): "</span> + <span class="keyword">typeof</span> bar)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// typeof bar(outof function): undefined</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"typeof bar(outof function): "</span> + <span class="keyword">typeof</span> bar)</span><br><span class="line"></span><br><span class="line"><span class="comment">// typeof foo: function</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"typeof foo: "</span> + <span class="keyword">typeof</span> foo)</span><br><span class="line"></span><br><span class="line"><span class="comment">// typeof bar(in function): function</span></span><br><span class="line">foo()</span><br></pre></td></tr></table></figure>
+<p>当函数表达式function后面有名字时，称这种函数表达式为命名函数表达式。上述代码中bar是函数的名字，值得注意的是bar这个函数名只在函数内部可用，在函数外部是不可用的。</p>
 
       
     </div>
@@ -467,7 +467,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#注意"><span class="nav-number">1.</span> <span class="nav-text">注意</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#命名函数表达式"><span class="nav-number">1.</span> <span class="nav-text">命名函数表达式</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
