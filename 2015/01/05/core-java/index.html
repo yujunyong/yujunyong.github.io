@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next mist use-motion">
+<html class="theme-next muse use-motion">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -27,18 +27,45 @@
 
 
 
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
 
-  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
 
 
 
 <link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="java," />
@@ -52,7 +79,7 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
 
 
 
@@ -84,8 +111,8 @@ fi">
 <script type="text/javascript" id="hexo.configuration">
   var NexT = window.NexT || {};
   var CONFIG = {
-    scheme: 'Mist',
-    sidebar: {"position":"left","display":"always"},
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
     fancybox: true,
     motion: true,
     duoshuo: {
@@ -151,29 +178,9 @@ fi">
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
-            
-              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
-            
-            关于
           </a>
         </li>
       
@@ -181,7 +188,7 @@ fi">
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
           </a>
@@ -191,7 +198,7 @@ fi">
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             标签
           </a>
@@ -289,6 +296,7 @@ fi">
           
           
 
+          
         </div>
       </header>
     
@@ -514,6 +522,13 @@ fi">
       
     </div>
 
+    <div>
+      
+        
+
+      
+    </div>
+
     <footer class="post-footer">
       
         <div class="post-tags">
@@ -613,13 +628,13 @@ fi">
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
-          
+
           
             <div class="site-state-item site-state-categories">
-              <a href="/categories">
+              
                 <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">分类</span>
-              </a>
+              
             </div>
           
 
@@ -647,10 +662,11 @@ fi">
           
             
               <span class="links-of-author-item">
-                <a href="https://github.com/yujunyong" target="_blank">
+                <a href="https://github.com/yujunyong" target="_blank" title="GitHub">
                   
-                    <i class="fa fa-github"></i> GitHub
+                    <i class="fa fa-fw fa-github"></i>
                   
+                  GitHub
                 </a>
               </span>
             
@@ -660,17 +676,13 @@ fi">
         
         
 
-        <div class="links-of-author motion-element">
-          
-        </div>
+        
+        
 
       </section>
 
       
         <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc-indicator-top post-toc-indicator">
-            <i class="fa fa-angle-double-up"></i>
-          </div>
           <div class="post-toc">
             
               
@@ -678,9 +690,6 @@ fi">
             
               <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#语法规则"><span class="nav-number">1.</span> <span class="nav-text">语法规则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一个”-java”源文件中是否可以包括多个类-不是内部类-有什么限制"><span class="nav-number">1.1.</span> <span class="nav-text">一个”.java”源文件中是否可以包括多个类(不是内部类)?有什么限制?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用final关键字修饰一个变量时，是引用不能变，还是引用的对象不能变"><span class="nav-number">1.2.</span> <span class="nav-text">使用final关键字修饰一个变量时，是引用不能变，还是引用的对象不能变?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#final，finally，finalize的区别"><span class="nav-number">1.3.</span> <span class="nav-text">final，finally，finalize的区别?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Void-类的作用"><span class="nav-number">1.4.</span> <span class="nav-text">Void 类的作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#boolean占几个字节"><span class="nav-number">1.5.</span> <span class="nav-text">boolean占几个字节?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#java中有几种类型的流"><span class="nav-number">1.6.</span> <span class="nav-text">java中有几种类型的流?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是java序列化，如何实现java序列化-或者请解释Serializable接口的作用。"><span class="nav-number">1.7.</span> <span class="nav-text">什么是java序列化，如何实现java序列化?或者请解释Serializable接口的作用。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#heap和stack有什么区别。"><span class="nav-number">1.8.</span> <span class="nav-text">heap和stack有什么区别。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#垃圾回收器的基本原理是什么-垃圾回收器可以马上回收内存吗-有什么办法主动通知虚拟机进行垃圾回收"><span class="nav-number">1.9.</span> <span class="nav-text">垃圾回收器的基本原理是什么?垃圾回收器可以马上回收内存吗?有什么办法主动通知虚拟机进行垃圾回收?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#java中会存在内存泄漏吗，请简单描述。"><span class="nav-number">1.10.</span> <span class="nav-text">java中会存在内存泄漏吗，请简单描述。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#能不能自己写个类，也叫java-lang-String"><span class="nav-number">1.11.</span> <span class="nav-text">能不能自己写个类，也叫java.lang.String?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#java中实现多态的机制是什么"><span class="nav-number">1.12.</span> <span class="nav-text">java中实现多态的机制是什么?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#abstract的method是否可同时是static，是否可同时是native，是否可同时是synchronized"><span class="nav-number">1.13.</span> <span class="nav-text">abstract的method是否可同时是static，是否可同时是native，是否可同时是synchronized?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#abstract和interface的区别"><span class="nav-number">1.14.</span> <span class="nav-text">abstract和interface的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#接口是否可继承接口-抽象类是否可实现-implements-接口-抽象类是否可继承具体类-concrete-class-抽象类中是否可以有静态的main方法？"><span class="nav-number">1.15.</span> <span class="nav-text">接口是否可继承接口?抽象类是否可实现(implements)接口?抽象类是否可继承具体类(concrete class)?抽象类中是否可以有静态的main方法？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#泛型有什么好处"><span class="nav-number">1.16.</span> <span class="nav-text">泛型有什么好处</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#switch语句能否作用在byte上，能否作用在long上，能否作用在String上"><span class="nav-number">1.17.</span> <span class="nav-text">switch语句能否作用在byte上，能否作用在long上，能否作用在String上?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#是否可以从一个static方法内部发出对非static方法的调用？"><span class="nav-number">1.18.</span> <span class="nav-text">是否可以从一个static方法内部发出对非static方法的调用？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行时异常与一般异常有何异同？"><span class="nav-number">1.19.</span> <span class="nav-text">运行时异常与一般异常有何异同？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#error和exception有什么区别"><span class="nav-number">1.20.</span> <span class="nav-text">error和exception有什么区别?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#请写出你最常见到的5个runtime-exception"><span class="nav-number">1.21.</span> <span class="nav-text">请写出你最常见到的5个runtime exception?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java中的异常处理机制的简单原理和应用"><span class="nav-number">1.22.</span> <span class="nav-text">Java中的异常处理机制的简单原理和应用?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#try-里有一个return语句，那么紧跟在这个try后的finally-里的code会不会被执行，什么时候被执行，在return前还是后"><span class="nav-number">1.23.</span> <span class="nav-text">try{}里有一个return语句，那么紧跟在这个try后的finally{}里的code会不会被执行，什么时候被执行，在return前还是后?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#short-s1-1-s1-s1-1-有什么错-short-s1-1-s1-1-有什么错"><span class="nav-number">1.24.</span> <span class="nav-text">short s1 = 1; s1 = s1 + 1;有什么错? short s1 = 1; s1 += 1;有什么错?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#amp-和-amp-amp-的区别"><span class="nav-number">1.25.</span> <span class="nav-text">&和&&的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Overload和Override的区别"><span class="nav-number">1.26.</span> <span class="nav-text">Overload和Override的区别?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如果两个方法的参数列表完全一样，是否可以让它们的返回值不同来实现重载Overload。"><span class="nav-number">1.27.</span> <span class="nav-text">如果两个方法的参数列表完全一样，是否可以让它们的返回值不同来实现重载Overload。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构造器Constructor是否可被override"><span class="nav-number">1.28.</span> <span class="nav-text">构造器Constructor是否可被override?</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#String相关"><span class="nav-number">2.</span> <span class="nav-text">String相关</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#下面的代码创建了几个String-Object-二者之间有什么区别"><span class="nav-number">2.1.</span> <span class="nav-text">下面的代码创建了几个String Object?二者之间有什么区别?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#下面这条语句一共创建了多少个对象"><span class="nav-number">2.2.</span> <span class="nav-text">下面这条语句一共创建了多少个对象?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#这下面两行代码执行后，原始的String对象中的内容到底变了没有？"><span class="nav-number">2.3.</span> <span class="nav-text">这下面两行代码执行后，原始的String对象中的内容到底变了没有？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#char型变量中能不能存贮一个中文汉字-为什么"><span class="nav-number">2.4.</span> <span class="nav-text">char型变量中能不能存贮一个中文汉字?为什么?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么Java中的密码优先使用-char-而不是String？"><span class="nav-number">2.5.</span> <span class="nav-text">为什么Java中的密码优先使用 char[] 而不是String？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#java-SE-API相关"><span class="nav-number">3.</span> <span class="nav-text">java SE API相关</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#super-getClass-方法调用"><span class="nav-number">3.1.</span> <span class="nav-text">super.getClass()方法调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Math-round-11-5-等于多少-Math-round-11-5-等于多少？"><span class="nav-number">3.2.</span> <span class="nav-text">Math.round(11.5)等于多少?Math.round(-11.5)等于多少？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#下面代码的输出结果"><span class="nav-number">3.3.</span> <span class="nav-text">下面代码的输出结果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-0-0-会输出什么？会异常？编译错误？"><span class="nav-number">3.4.</span> <span class="nav-text">1.0 / 0 会输出什么？会异常？编译错误？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-0-会输出什么？会异常？编译错误？"><span class="nav-number">3.5.</span> <span class="nav-text">1 / 0 会输出什么？会异常？编译错误？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-会输出什么？会异常？编译错误？"><span class="nav-number">3.6.</span> <span class="nav-text">2 / 3 会输出什么？会异常？编译错误？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3f-会输出什么？会异常？编译错误？"><span class="nav-number">3.7.</span> <span class="nav-text">2 / 3f 会输出什么？会异常？编译错误？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组有没有length-这个方法-String有没有length-这个方法"><span class="nav-number">3.8.</span> <span class="nav-text">数组有没有length()这个方法? String有没有length()这个方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Collection和Collections的区别"><span class="nav-number">3.9.</span> <span class="nav-text">Collection和Collections的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#List，Set，Map是否继承自Collection接口"><span class="nav-number">3.10.</span> <span class="nav-text">List，Set，Map是否继承自Collection接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#List、Map、Set-三个接口，存取元素时，各有什么特点"><span class="nav-number">3.11.</span> <span class="nav-text">List、Map、Set 三个接口，存取元素时，各有什么特点?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vector和ArrayList、LinkedList区别"><span class="nav-number">3.12.</span> <span class="nav-text">Vector和ArrayList、LinkedList区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hashtable和HashMap之间的区别"><span class="nav-number">3.13.</span> <span class="nav-text">Hashtable和HashMap之间的区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码编写"><span class="nav-number">4.</span> <span class="nav-text">代码编写</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么时候用assert"><span class="nav-number">4.1.</span> <span class="nav-text">什么时候用assert?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#写clone-方法时，通常都有一行代码，是什么？"><span class="nav-number">4.2.</span> <span class="nav-text">写clone()方法时，通常都有一行代码，是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#下面的代码有什么不妥之处"><span class="nav-number">4.3.</span> <span class="nav-text">下面的代码有什么不妥之处?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#去掉一个-Vector集合中重复的元素。"><span class="nav-number">4.4.</span> <span class="nav-text">去掉一个 Vector集合中重复的元素。</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码查错"><span class="nav-number">5.</span> <span class="nav-text">代码查错</span></a></li></ol></div>
             
-          </div>
-          <div class="post-toc-indicator-bottom post-toc-indicator">
-            <i class="fa fa-angle-double-down"></i>
           </div>
         </section>
       
@@ -712,12 +721,13 @@ fi">
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
+    NexT.Muse
   </a>
 </div>
 
+        
 
-
+        
       </div>
     </footer>
 
@@ -728,12 +738,6 @@ fi">
 
   
 
-
-  
-
-
-
-
 <script type="text/javascript">
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
     window.Promise = null;
@@ -741,198 +745,58 @@ fi">
 </script>
 
 
+
+
+
+
+
+
+
+  
+
+
+
+  
   <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
 
+  
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
 
+  
   <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
 
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
 
 
-
-  
-  
 
   
   
-<script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
 
-<script type="text/javascript" id="sidebar.toc.highlight">
-  $(document).ready(function () {
-    var tocSelector = '.post-toc';
-    var $tocSelector = $(tocSelector);
-    var activeCurrentSelector = '.active-current';
-
-    $tocSelector
-      .on('activate.bs.scrollspy', function () {
-        var $currentActiveElement = $(tocSelector + ' .active').last();
-
-        removeCurrentActiveClass();
-        $currentActiveElement.addClass('active-current');
-
-        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
-      })
-      .on('clear.bs.scrollspy', function () {
-        removeCurrentActiveClass();
-      });
-
-    function removeCurrentActiveClass () {
-      $(tocSelector + ' ' + activeCurrentSelector)
-        .removeClass(activeCurrentSelector.substring(1));
-    }
-
-    function processTOC () {
-      getTOCMaxHeight();
-      toggleTOCOverflowIndicators();
-    }
-
-    function getTOCMaxHeight () {
-      var height = $('.sidebar').height() -
-                   $tocSelector.position().top -
-                   $('.post-toc-indicator-bottom').height();
-
-      $tocSelector.css('height', height);
-
-      return height;
-    }
-
-    function toggleTOCOverflowIndicators () {
-      tocOverflowIndicator(
-        '.post-toc-indicator-top',
-        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
-      );
-
-      tocOverflowIndicator(
-        '.post-toc-indicator-bottom',
-        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
-      )
-    }
-
-    $(document).on('sidebar.motion.complete', function () {
-      processTOC();
-    });
-
-    $('body').scrollspy({ target: tocSelector });
-    $(window).on('resize', function () {
-      if ( $('.sidebar').hasClass('sidebar-active') ) {
-        processTOC();
-      }
-    });
-
-    onScroll($tocSelector);
-
-    function onScroll (element) {
-      element.on('mousewheel DOMMouseScroll', function (event) {
-          var oe = event.originalEvent;
-          var delta = oe.wheelDelta || -oe.detail;
-
-          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
-          event.preventDefault();
-
-          toggleTOCOverflowIndicators();
-      });
-    }
-
-    function tocOverflowIndicator (indicator, action) {
-      var $indicator = $(indicator);
-      var opacity = action === 'show' ? 1 : 0;
-      $indicator.velocity ?
-        $indicator.velocity('stop').velocity({
-          opacity: opacity
-        }, { duration: 100 }) :
-        $indicator.stop().animate({
-          opacity: opacity
-        }, 100);
-    }
-
-  });
-</script>
-
-<script type="text/javascript" id="sidebar.nav">
-  $(document).ready(function () {
-    var html = $('html');
-    var TAB_ANIMATE_DURATION = 200;
-    var hasVelocity = $.isFunction(html.velocity);
-
-    $('.sidebar-nav li').on('click', function () {
-      var item = $(this);
-      var activeTabClassName = 'sidebar-nav-active';
-      var activePanelClassName = 'sidebar-panel-active';
-      if (item.hasClass(activeTabClassName)) {
-        return;
-      }
-
-      var currentTarget = $('.' + activePanelClassName);
-      var target = $('.' + item.data('target'));
-
-      hasVelocity ?
-        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
-          target
-            .velocity('stop')
-            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
-            .addClass(activePanelClassName);
-        }) :
-        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
-          currentTarget.hide();
-          target
-            .stop()
-            .css({'opacity': 0, 'display': 'block'})
-            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
-              currentTarget.removeClass(activePanelClassName);
-              target.addClass(activePanelClassName);
-            });
-        });
-
-      item.siblings().removeClass(activeTabClassName);
-      item.addClass(activeTabClassName);
-    });
-
-    $('.post-toc a').on('click', function (e) {
-      e.preventDefault();
-      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
-      var offset = $(targetSelector).offset().top;
-      hasVelocity ?
-        html.velocity('stop').velocity('scroll', {
-          offset: offset  + 'px',
-          mobileHA: false
-        }) :
-        $('html, body').stop().animate({
-          scrollTop: offset
-        }, 500);
-    });
-
-    // Expand sidebar on post detail page by default, when post has a toc.
-    NexT.motion.middleWares.sidebar = function () {
-      var $tocContent = $('.post-toc-content');
-
-      if (CONFIG.scheme !== 'Pisces' && (CONFIG.sidebar.display === 'post' || CONFIG.sidebar.display === 'always')) {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          NexT.utils.displaySidebar();
-        }
-      }
-    };
-  });
-</script>
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
 
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
 
 
 
@@ -966,9 +830,30 @@ fi">
   
   
   
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
 
   
 
+  
 
 </body>
 </html>
