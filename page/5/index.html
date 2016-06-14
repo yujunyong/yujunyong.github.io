@@ -102,7 +102,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     scheme: 'Muse',
-    sidebar: {"position":"left","display":"post"},
+    sidebar: {"position":"left","display":"always"},
     fancybox: true,
     motion: true,
     duoshuo: {
@@ -177,6 +177,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
@@ -213,6 +223,210 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/10/29/ANSI控制码/" itemprop="url">
+                  ANSI控制码
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-10-29T23:30:24+08:00" content="2014-10-29">
+              2014-10-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/command/" itemprop="url" rel="index">
+                    <span itemprop="name">command</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/10/29/ANSI控制码/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/10/29/ANSI控制码/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>ANSI/3.64控制码标准<br>ANSI控制码均以 Esc[ 作为控制码的开始标志，其中，Esc 的ansi码为 27-十进制，33-八进制，所以在c中，可以使用 \033 表示。</p>
+<h2 id="ANSI控制码"><a href="#ANSI控制码" class="headerlink" title="ANSI控制码"></a>ANSI控制码</h2><table>
+<thead>
+<tr>
+<th>控制码</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\033[0m</td>
+<td>关闭所有属性</td>
+</tr>
+<tr>
+<td>\033[1m</td>
+<td>设置高亮度</td>
+</tr>
+<tr>
+<td>\033[4m</td>
+<td>下划线</td>
+</tr>
+<tr>
+<td>\033[5m</td>
+<td>闪烁</td>
+</tr>
+<tr>
+<td>\033[7m</td>
+<td>反显</td>
+</tr>
+<tr>
+<td>\033[8m</td>
+<td>消隐</td>
+</tr>
+<tr>
+<td>\033[30m - \033[37m</td>
+<td>设置前景色</td>
+</tr>
+<tr>
+<td>\033[40m - \033[47m</td>
+<td>设置背景色</td>
+</tr>
+<tr>
+<td>\033[nA</td>
+<td>光标上移n行</td>
+</tr>
+<tr>
+<td>\033[nB</td>
+<td>光标下移n行</td>
+</tr>
+<tr>
+<td>\033[nC</td>
+<td>光标右移n行</td>
+</tr>
+<tr>
+<td>\033[nD</td>
+<td>渔村左移n行</td>
+</tr>
+<tr>
+<td>\033[2J</td>
+<td>清屏</td>
+</tr>
+<tr>
+<td>\033[K</td>
+<td>清除从光标到行尾的内容</td>
+</tr>
+<tr>
+<td>\033[s</td>
+<td>保存光标位置</td>
+</tr>
+<tr>
+<td>\033[u</td>
+<td>恢复光标位置</td>
+</tr>
+<tr>
+<td>\033[?25l</td>
+<td>隐藏光标</td>
+</tr>
+<tr>
+<td>\033[?25h</td>
+<td>显示光标</td>
+</tr>
+</tbody>
+</table>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2014/10/29/ANSI控制码/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
     
       
 
@@ -520,7 +734,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">42</span>
+              <span class="site-state-item-count">43</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

@@ -102,7 +102,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     scheme: 'Muse',
-    sidebar: {"position":"left","display":"post"},
+    sidebar: {"position":"left","display":"always"},
     fancybox: true,
     motion: true,
     duoshuo: {
@@ -177,6 +177,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
@@ -213,6 +223,109 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/06/08/mysql查询数据库状态/" itemprop="url">
+                  mysql查询数据库状态
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-08T16:43:15+08:00" content="2016-06-08">
+              2016-06-08
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/06/08/mysql查询数据库状态/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/08/mysql查询数据库状态/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="通过information-schema查询信息"><a href="#通过information-schema查询信息" class="headerlink" title="通过information_schema查询信息"></a>通过information_schema查询信息</h1><h2 id="查询数据库连接信息"><a href="#查询数据库连接信息" class="headerlink" title="查询数据库连接信息"></a>查询数据库连接信息</h2><p><code>select user, substring_index(host, &#39;:&#39;, 1) as h, command, count(*) from processlist group by user, h, command;</code></p>
+<h2 id="查询数据库大小"><a href="#查询数据库大小" class="headerlink" title="查询数据库大小"></a>查询数据库大小</h2><p><code>select (sum(data_length)+sum(index_length))/1024/1024/1024 as size(G) from tables where table_schema=&#39;database_name&#39;</code></p>
+<h1 id="通过mysql命令"><a href="#通过mysql命令" class="headerlink" title="通过mysql命令"></a>通过mysql命令</h1><h2 id="查看最大连接数"><a href="#查看最大连接数" class="headerlink" title="查看最大连接数"></a>查看最大连接数</h2><p><code>show variables like &#39;max_connections&#39;;</code></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
     
       
 
@@ -1269,127 +1382,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/01/20/mysql连接相关/" itemprop="url">
-                  mysql连接相关
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-01-20T23:43:24+08:00" content="2016-01-20">
-              2016-01-20
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/mysql/" itemprop="url" rel="index">
-                    <span itemprop="name">mysql</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/01/20/mysql连接相关/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/20/mysql连接相关/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="显示正在运行的线程"><a href="#显示正在运行的线程" class="headerlink" title="显示正在运行的线程"></a>显示正在运行的线程</h1><p>可以通过mysql命令<code>SHOW [FULL] PROCESSLIST</code>, shell命令<code>mysqladmin processlist</code>, <code>information_schema.processlist</code>表查看当前连接到mysql数据库的线程，如果你有<code>PROCESS privilege</code>的特权，则你可以查看所有的线程，否则只能查看当前用户的线程。</p>
-<h1 id="查看mysql允许的最大连接数"><a href="#查看mysql允许的最大连接数" class="headerlink" title="查看mysql允许的最大连接数"></a>查看mysql允许的最大连接数</h1><p><code>show variables like &#39;%max_connections%&#39;</code></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1435,7 +1427,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">42</span>
+              <span class="site-state-item-count">43</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

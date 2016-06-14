@@ -102,7 +102,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     scheme: 'Muse',
-    sidebar: {"position":"left","display":"post"},
+    sidebar: {"position":"left","display":"always"},
     fancybox: true,
     motion: true,
     duoshuo: {
@@ -177,6 +177,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
@@ -213,6 +223,217 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/09/06/shell中的特殊字符/" itemprop="url">
+                  shell中的字符
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-09-06T22:24:19+08:00" content="2015-09-06">
+              2015-09-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/unix/" itemprop="url" rel="index">
+                    <span itemprop="name">unix</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/09/06/shell中的特殊字符/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/09/06/shell中的特殊字符/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="通配符表"><a href="#通配符表" class="headerlink" title="通配符表"></a>通配符表</h1><table>
+<thead>
+<tr>
+<th style="text-align:left">通配符</th>
+<th style="text-align:left">描述</th>
+<th style="text-align:left">表达式</th>
+<th style="text-align:left">匹配的字符</th>
+<th style="text-align:left">不匹配的字符</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">?</td>
+<td style="text-align:left">任意的单个字符</td>
+<td style="text-align:left">fr?.txt</td>
+<td style="text-align:left">fra.txt frb.txt</td>
+<td style="text-align:left">fr.txt ra.txt</td>
+</tr>
+<tr>
+<td style="text-align:left">*</td>
+<td style="text-align:left">0个或多个任意的字符</td>
+<td style="text-align:left">fr*.txt</td>
+<td style="text-align:left">fraaaa.txt fr.txt</td>
+<td style="text-align:left">f.txt fr.text</td>
+</tr>
+<tr>
+<td style="text-align:left">[set]</td>
+<td style="text-align:left">set中的任意一个字符</td>
+<td style="text-align:left">[abc].txt, [0-9].txt</td>
+<td style="text-align:left">a.txt b.txt, 0.txt 1.txt</td>
+<td style="text-align:left">ab.txt d.txt, 01.txt 90.txt</td>
+</tr>
+<tr>
+<td style="text-align:left">[!set]</td>
+<td style="text-align:left">任意一个不在set中的字符</td>
+<td style="text-align:left">[!abc].txt,[!a-zA-Z].txt</td>
+<td style="text-align:left">d.txt _.txt, 9.txt -.txt</td>
+<td style="text-align:left">a.txt dd.txt, A.txt 99.txt</td>
+</tr>
+<tr>
+<td style="text-align:left">[[:class:]]</td>
+<td style="text-align:left">class中的任意一个字符</td>
+<td style="text-align:left">请看<a href="#class表">class表</a></td>
+<td style="text-align:left">请看<a href="#class表">class表</a></td>
+<td style="text-align:left">请看<a href="#class表">class表</a></td>
+</tr>
+</tbody>
+</table>
+<h1 id="class表"><a href="#class表" class="headerlink" title="class表"></a>class表</h1><table>
+<thead>
+<tr>
+<th style="text-align:left">字符类别</th>
+<th style="text-align:left">匹配的字符</th>
+<th style="text-align:left">表达式</th>
+<th style="text-align:left">匹配的字符</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">[:alnum:]</td>
+<td style="text-align:left">任意的一个英文字符或数字</td>
+<td style="text-align:left">[![:alnum:]]<em>, </em>[[:alnum:]-~]</td>
+<td style="text-align:left">任意一个以非英文字符或数字开头的文件, 任意一个以英文字符或数字或’-‘或’~’结尾的文件</td>
+</tr>
+<tr>
+<td style="text-align:left">[:alpha:]</td>
+<td style="text-align:left">任意的一个英文字符</td>
+<td style="text-align:left">[![:alpha:]]<em>, </em>[[:alpha:]-~]</td>
+<td style="text-align:left">任意一个以非英文字符开头的文件, 任意一个以英文字符或’-‘或’~’结尾的文件</td>
+</tr>
+<tr>
+<td style="text-align:left">[:digit:]</td>
+<td style="text-align:left">任意的一个数字</td>
+<td style="text-align:left">[![:digit:]]<em>, </em>[[:digit:]-~]</td>
+<td style="text-align:left">任意一个以非数字开头的文件, 任意一个数字或’-‘或’~’结尾的文件</td>
+</tr>
+<tr>
+<td style="text-align:left">[:lower:]</td>
+<td style="text-align:left">任意的一个小写的英文字符</td>
+<td style="text-align:left">[![:lower:]]<em>, </em>[[:lower:]-~]</td>
+<td style="text-align:left">任意一个以非小写英文字符开头的文件, 任意一个以小写英文字符或’-‘或’~’结尾的文件</td>
+</tr>
+<tr>
+<td style="text-align:left">[:upper:]</td>
+<td style="text-align:left">任意的一个大写英文字符</td>
+<td style="text-align:left">[![:upper:]]<em>, </em>[[:upper:]-~]</td>
+<td style="text-align:left">任意一个以非大写英文字符开头的文件, 任意一个以大写英文字符或’-‘或’~’结尾的文件</td>
+</tr>
+</tbody>
+</table>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/09/06/shell中的特殊字符/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
     
       
 
@@ -1359,141 +1580,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/05/24/工厂模式/" itemprop="url">
-                  工厂模式
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-05-24T11:24:12+08:00" content="2015-05-24">
-              2015-05-24
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/design/" itemprop="url" rel="index">
-                    <span itemprop="name">design</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/05/24/工厂模式/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/24/工厂模式/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="使用工厂模式的场景"><a href="#使用工厂模式的场景" class="headerlink" title="使用工厂模式的场景"></a>使用工厂模式的场景</h1><ul>
-<li>如果在对象A中直接new出对象B，则对象A持有了对象B的引用，如果对象B有改动(如：重命名), 则必需重新编译对象A</li>
-<li>使用工厂模式在对象A中创建对象B的子类，A中不包含B子类的任何信息，达到了解耦的目的，如果以后在A中想使用B的其它子类，也无需更改A中的代码</li>
-<li>工厂模式可以多次返回相同的实例，如jdk中getInstance(), valueOf()这类方法返回的就是相同的实例</li>
-<li>构造方法通过重载得到不同要求的对象实例，这样无法通过方法名知道实例的差别，工厂模式可以通过不同的方法名增加可读性，展示出实例间的差别</li>
-</ul>
-<h1 id="工厂方法模式（Factory-Method）"><a href="#工厂方法模式（Factory-Method）" class="headerlink" title="工厂方法模式（Factory Method）"></a>工厂方法模式（Factory Method）</h1><h2 id="普通工厂模式"><a href="#普通工厂模式" class="headerlink" title="普通工厂模式"></a>普通工厂模式</h2><p>就是建立一个工厂类，对实现了同一接口的一些类进行实例的创建。首先看下关系图：</p>
-<p><img src="/images/simple-factory-method-uml.png" alt="simple-factory-method-uml"></p>
-<p>举例如下：（我们举一个发送邮件和短信的例子）<br>首先，创建二者的共同接口：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Sender</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Send</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>其次，创建实现类：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MailSender</span> <span class="keyword">implements</span> <span class="title">Sender</span> </span>&#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Send</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"this is mailsender!"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<hr>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SmsSender</span> <span class="keyword">implements</span> <span class="title">Sender</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Send</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"this is sms sender!"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/05/24/工厂模式/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1539,7 +1625,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">42</span>
+              <span class="site-state-item-count">43</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

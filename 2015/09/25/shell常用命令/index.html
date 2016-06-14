@@ -104,7 +104,7 @@
 
 创建文件夹
 自动创建父文件夹，mkdir">
-<meta property="og:updated_time" content="2016-03-17T07:38:21.000Z">
+<meta property="og:updated_time" content="2016-06-08T12:02:43.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="shell常用命令">
 <meta name="twitter:description" content="创建文件/文件夹创建文件
@@ -121,7 +121,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     scheme: 'Muse',
-    sidebar: {"position":"left","display":"post"},
+    sidebar: {"position":"left","display":"always"},
     fancybox: true,
     motion: true,
     duoshuo: {
@@ -190,6 +190,16 @@
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
           </a>
         </li>
       
@@ -329,14 +339,23 @@
 <li>显示当前文件夹大小, <code>du -sh</code></li>
 <li>显示当前文件夹下面所有文件的大小, <code>du -sh *</code></li>
 </ul>
-<h2 id="显示系统信息"><a href="#显示系统信息" class="headerlink" title="显示系统信息"></a>显示系统信息</h2><ul>
-<li>显示当前操作系统的信息, <code>lsb_release -a</code></li>
-</ul>
 <h2 id="显示文件夹中的信息"><a href="#显示文件夹中的信息" class="headerlink" title="显示文件夹中的信息"></a>显示文件夹中的信息</h2><ul>
 <li>显示文件夹中的所有文件信息，<code>ls -alh</code></li>
 <li>只显示文件夹中的直接子文件夹，<code>ls | grep ^d</code></li>
 <li>只显示文件夹中的文件，<code>ls | grep -v ^d</code></li>
 <li>显示子文件夹的信息，而不是子文件夹中的内容，<code>ls -dl dir</code></li>
+</ul>
+<p>##</p>
+<ul>
+<li>显示内存使用情况 <code>free -h</code></li>
+</ul>
+<h1 id="监控"><a href="#监控" class="headerlink" title="监控"></a>监控</h1><ul>
+<li>监控内存，io，cpu(只能查看整体), <code>vmstat 2</code></li>
+<li>监控cpu整体信息, <code>mpstat 2</code></li>
+<li>监控cpu每个内存的信息, <code>mpstat -P ALL 2</code></li>
+</ul>
+<h2 id="显示系统信息"><a href="#显示系统信息" class="headerlink" title="显示系统信息"></a>显示系统信息</h2><ul>
+<li>显示当前操作系统的信息, <code>lsb_release -a</code></li>
 </ul>
 <a id="more"></a>
 <h1 id="输入-输出"><a href="#输入-输出" class="headerlink" title="输入/输出"></a>输入/输出</h1><h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><ul>
@@ -346,7 +365,7 @@
 </ul>
 <h1 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h1><ul>
 <li>查看某个进程信息，<code>ps aux | grep nginx</code>, <code>ps -ef | grep nginx</code></li>
-<li>后台远行程序，<code>xlogo &amp;</code>, <code>&amp;</code>放在后台表示在后台运行</li>
+<li>后台运行程序，<code>xlogo &amp;</code>, <code>&amp;</code>放在后台表示在后台运行</li>
 </ul>
 <h1 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h1><h2 id="telnet"><a href="#telnet" class="headerlink" title="telnet"></a>telnet</h2><ul>
 <li>退出telnet，先按下Ctrl+]，再输入quit</li>
@@ -470,7 +489,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">42</span>
+              <span class="site-state-item-count">43</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -534,7 +553,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#创建文件-文件夹"><span class="nav-number">1.</span> <span class="nav-text">创建文件/文件夹</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建文件"><span class="nav-number">1.1.</span> <span class="nav-text">创建文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建文件夹"><span class="nav-number">1.2.</span> <span class="nav-text">创建文件夹</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#显示"><span class="nav-number">2.</span> <span class="nav-text">显示</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#显示文件大小"><span class="nav-number">2.1.</span> <span class="nav-text">显示文件大小</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#显示系统信息"><span class="nav-number">2.2.</span> <span class="nav-text">显示系统信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#显示文件夹中的信息"><span class="nav-number">2.3.</span> <span class="nav-text">显示文件夹中的信息</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#输入-输出"><span class="nav-number">3.</span> <span class="nav-text">输入/输出</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#输出"><span class="nav-number">3.1.</span> <span class="nav-text">输出</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#进程"><span class="nav-number">4.</span> <span class="nav-text">进程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#网络"><span class="nav-number">5.</span> <span class="nav-text">网络</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#telnet"><span class="nav-number">5.1.</span> <span class="nav-text">telnet</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#端口"><span class="nav-number">5.2.</span> <span class="nav-text">端口</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#创建文件-文件夹"><span class="nav-number">1.</span> <span class="nav-text">创建文件/文件夹</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建文件"><span class="nav-number">1.1.</span> <span class="nav-text">创建文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建文件夹"><span class="nav-number">1.2.</span> <span class="nav-text">创建文件夹</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#显示"><span class="nav-number">2.</span> <span class="nav-text">显示</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#显示文件大小"><span class="nav-number">2.1.</span> <span class="nav-text">显示文件大小</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#显示文件夹中的信息"><span class="nav-number">2.2.</span> <span class="nav-text">显示文件夹中的信息</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#监控"><span class="nav-number">3.</span> <span class="nav-text">监控</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#显示系统信息"><span class="nav-number">3.1.</span> <span class="nav-text">显示系统信息</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#输入-输出"><span class="nav-number">4.</span> <span class="nav-text">输入/输出</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#输出"><span class="nav-number">4.1.</span> <span class="nav-text">输出</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#进程"><span class="nav-number">5.</span> <span class="nav-text">进程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#网络"><span class="nav-number">6.</span> <span class="nav-text">网络</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#telnet"><span class="nav-number">6.1.</span> <span class="nav-text">telnet</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#端口"><span class="nav-number">6.2.</span> <span class="nav-text">端口</span></a></li></ol></li></ol></div>
             
           </div>
         </section>

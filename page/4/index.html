@@ -102,7 +102,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     scheme: 'Muse',
-    sidebar: {"position":"left","display":"post"},
+    sidebar: {"position":"left","display":"always"},
     fancybox: true,
     motion: true,
     duoshuo: {
@@ -177,6 +177,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
@@ -213,6 +223,141 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/05/24/工厂模式/" itemprop="url">
+                  工厂模式
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-05-24T11:24:12+08:00" content="2015-05-24">
+              2015-05-24
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/design/" itemprop="url" rel="index">
+                    <span itemprop="name">design</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/05/24/工厂模式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/24/工厂模式/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="使用工厂模式的场景"><a href="#使用工厂模式的场景" class="headerlink" title="使用工厂模式的场景"></a>使用工厂模式的场景</h1><ul>
+<li>如果在对象A中直接new出对象B，则对象A持有了对象B的引用，如果对象B有改动(如：重命名), 则必需重新编译对象A</li>
+<li>使用工厂模式在对象A中创建对象B的子类，A中不包含B子类的任何信息，达到了解耦的目的，如果以后在A中想使用B的其它子类，也无需更改A中的代码</li>
+<li>工厂模式可以多次返回相同的实例，如jdk中getInstance(), valueOf()这类方法返回的就是相同的实例</li>
+<li>构造方法通过重载得到不同要求的对象实例，这样无法通过方法名知道实例的差别，工厂模式可以通过不同的方法名增加可读性，展示出实例间的差别</li>
+</ul>
+<h1 id="工厂方法模式（Factory-Method）"><a href="#工厂方法模式（Factory-Method）" class="headerlink" title="工厂方法模式（Factory Method）"></a>工厂方法模式（Factory Method）</h1><h2 id="普通工厂模式"><a href="#普通工厂模式" class="headerlink" title="普通工厂模式"></a>普通工厂模式</h2><p>就是建立一个工厂类，对实现了同一接口的一些类进行实例的创建。首先看下关系图：</p>
+<p><img src="/images/simple-factory-method-uml.png" alt="simple-factory-method-uml"></p>
+<p>举例如下：（我们举一个发送邮件和短信的例子）<br>首先，创建二者的共同接口：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Sender</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Send</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其次，创建实现类：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MailSender</span> <span class="keyword">implements</span> <span class="title">Sender</span> </span>&#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Send</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"this is mailsender!"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SmsSender</span> <span class="keyword">implements</span> <span class="title">Sender</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Send</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"this is sms sender!"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/05/24/工厂模式/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
     
       
 
@@ -1360,210 +1505,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014/10/29/ANSI控制码/" itemprop="url">
-                  ANSI控制码
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2014-10-29T23:30:24+08:00" content="2014-10-29">
-              2014-10-29
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/command/" itemprop="url" rel="index">
-                    <span itemprop="name">command</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2014/10/29/ANSI控制码/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/10/29/ANSI控制码/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>ANSI/3.64控制码标准<br>ANSI控制码均以 Esc[ 作为控制码的开始标志，其中，Esc 的ansi码为 27-十进制，33-八进制，所以在c中，可以使用 \033 表示。</p>
-<h2 id="ANSI控制码"><a href="#ANSI控制码" class="headerlink" title="ANSI控制码"></a>ANSI控制码</h2><table>
-<thead>
-<tr>
-<th>控制码</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>\033[0m</td>
-<td>关闭所有属性</td>
-</tr>
-<tr>
-<td>\033[1m</td>
-<td>设置高亮度</td>
-</tr>
-<tr>
-<td>\033[4m</td>
-<td>下划线</td>
-</tr>
-<tr>
-<td>\033[5m</td>
-<td>闪烁</td>
-</tr>
-<tr>
-<td>\033[7m</td>
-<td>反显</td>
-</tr>
-<tr>
-<td>\033[8m</td>
-<td>消隐</td>
-</tr>
-<tr>
-<td>\033[30m - \033[37m</td>
-<td>设置前景色</td>
-</tr>
-<tr>
-<td>\033[40m - \033[47m</td>
-<td>设置背景色</td>
-</tr>
-<tr>
-<td>\033[nA</td>
-<td>光标上移n行</td>
-</tr>
-<tr>
-<td>\033[nB</td>
-<td>光标下移n行</td>
-</tr>
-<tr>
-<td>\033[nC</td>
-<td>光标右移n行</td>
-</tr>
-<tr>
-<td>\033[nD</td>
-<td>渔村左移n行</td>
-</tr>
-<tr>
-<td>\033[2J</td>
-<td>清屏</td>
-</tr>
-<tr>
-<td>\033[K</td>
-<td>清除从光标到行尾的内容</td>
-</tr>
-<tr>
-<td>\033[s</td>
-<td>保存光标位置</td>
-</tr>
-<tr>
-<td>\033[u</td>
-<td>恢复光标位置</td>
-</tr>
-<tr>
-<td>\033[?25l</td>
-<td>隐藏光标</td>
-</tr>
-<tr>
-<td>\033[?25h</td>
-<td>显示光标</td>
-</tr>
-</tbody>
-</table>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2014/10/29/ANSI控制码/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1609,7 +1550,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">42</span>
+              <span class="site-state-item-count">43</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
