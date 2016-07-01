@@ -104,7 +104,7 @@
 
 创建文件夹
 自动创建父文件夹，mkdir">
-<meta property="og:updated_time" content="2016-06-14T03:28:32.000Z">
+<meta property="og:updated_time" content="2016-07-01T02:39:47.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="shell常用命令">
 <meta name="twitter:description" content="创建文件/文件夹创建文件
@@ -338,6 +338,8 @@
 <h1 id="显示"><a href="#显示" class="headerlink" title="显示"></a>显示</h1><h2 id="显示文件大小"><a href="#显示文件大小" class="headerlink" title="显示文件大小"></a>显示文件大小</h2><ul>
 <li>显示当前文件夹大小, <code>du -sh</code></li>
 <li>显示当前文件夹下面所有文件的大小, <code>du -sh *</code></li>
+<li>显示硬盘使用情况, <code>df -h</code></li>
+<li>显示内存使用情况 <code>free -h</code></li>
 </ul>
 <h2 id="显示文件夹中的信息"><a href="#显示文件夹中的信息" class="headerlink" title="显示文件夹中的信息"></a>显示文件夹中的信息</h2><ul>
 <li>显示文件夹中的所有文件信息，<code>ls -alh</code></li>
@@ -347,9 +349,8 @@
 </ul>
 <h1 id="监控"><a href="#监控" class="headerlink" title="监控"></a>监控</h1><ul>
 <li>监控内存，io，cpu(只能查看整体), <code>vmstat 2</code></li>
-<li>显示内存使用情况 <code>free -h</code></li>
 <li>监控cpu整体信息, <code>mpstat 2</code></li>
-<li>监控cpu每个内存的信息, <code>mpstat -P ALL 2</code></li>
+<li>监控cpu每个内核的信息, <code>mpstat -P ALL 2</code></li>
 </ul>
 <h2 id="显示系统信息"><a href="#显示系统信息" class="headerlink" title="显示系统信息"></a>显示系统信息</h2><ul>
 <li>显示当前操作系统的信息, <code>lsb_release -a</code></li>
