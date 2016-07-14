@@ -1,0 +1,670 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="js,iife," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Geek" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="IIFE (Immediately Invoked Function Expression 立即调用的函数表达式)
+函数声明和函数表达式
+
+函数声明是语句所以在后面加()会抛出SyntaxError的错误
+函数表达式是表达式可以在它后面加()执行这个函数
+js解释器在遇到关键字function时，默认认为function(){}, function foo(){}这两种形式是函数声明，而不是函数表">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IIFE 立即调用的函数表达式">
+<meta property="og:url" content="yujunyong.github.com/2016/04/10/javascript/IIFE立即调用的函数表达式/index.html">
+<meta property="og:site_name" content="Geek">
+<meta property="og:description" content="IIFE (Immediately Invoked Function Expression 立即调用的函数表达式)
+函数声明和函数表达式
+
+函数声明是语句所以在后面加()会抛出SyntaxError的错误
+函数表达式是表达式可以在它后面加()执行这个函数
+js解释器在遇到关键字function时，默认认为function(){}, function foo(){}这两种形式是函数声明，而不是函数表">
+<meta property="og:updated_time" content="2016-04-13T06:48:37.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="IIFE 立即调用的函数表达式">
+<meta name="twitter:description" content="IIFE (Immediately Invoked Function Expression 立即调用的函数表达式)
+函数声明和函数表达式
+
+函数声明是语句所以在后面加()会抛出SyntaxError的错误
+函数表达式是表达式可以在它后面加()执行这个函数
+js解释器在遇到关键字function时，默认认为function(){}, function foo(){}这两种形式是函数声明，而不是函数表">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> IIFE 立即调用的函数表达式 | Geek </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Geek</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                IIFE 立即调用的函数表达式
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-10T23:01:18+08:00" content="2016-04-10">
+              2016-04-10
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/10/javascript/IIFE立即调用的函数表达式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/10/javascript/IIFE立即调用的函数表达式/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="IIFE-Immediately-Invoked-Function-Expression-立即调用的函数表达式"><a href="#IIFE-Immediately-Invoked-Function-Expression-立即调用的函数表达式" class="headerlink" title="IIFE (Immediately Invoked Function Expression 立即调用的函数表达式)"></a>IIFE (Immediately Invoked Function Expression 立即调用的函数表达式)</h1><blockquote>
+<p><a href="/2016/04/10/函数声明和函数表达式/">函数声明和函数表达式</a></p>
+<ul>
+<li>函数声明是语句所以在后面加<code>()</code>会抛出<code>SyntaxError</code>的错误</li>
+<li>函数表达式是表达式可以在它后面加<code>()</code>执行这个函数</li>
+<li>js解释器在遇到关键字<code>function</code>时，默认认为<code>function(){}</code>, <code>function foo(){}</code>这两种形式是函数声明，而不是函数表达式</li>
+<li><code>()</code>, <code>&amp;&amp;</code>, <code>,</code>, <code>!</code>, <code>~</code>, <code>+</code>, <code>-</code>, new 可以明确指出上述的两种形式是函数表达式而不是函数声明</li>
+</ul>
+</blockquote>
+<h2 id="自执行函数表达式写法"><a href="#自执行函数表达式写法" class="headerlink" title="自执行函数表达式写法"></a>自执行函数表达式写法</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 下面2个括弧()都会立即执行</span></div><div class="line"></div><div class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="comment">/* code */</span> &#125; ()); <span class="comment">// 推荐使用这个</span></div><div class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="comment">/* code */</span> &#125;)(); <span class="comment">// 但是这个也是可以用的</span></div><div class="line"></div><div class="line"><span class="comment">// 由于括弧()和JS的&amp;&amp;，异或，逗号等操作符是在函数表达式和函数声明上消除歧义的</span></div><div class="line"><span class="comment">// 所以一旦解析器知道其中一个已经是表达式了，其它的也都默认为表达式了</span></div><div class="line"><span class="comment">// 不过，请注意下一章节的内容解释</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> i = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="keyword">return</span> <span class="number">10</span>; &#125; ();</div><div class="line"><span class="literal">true</span> &amp;&amp; <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="comment">/* code */</span> &#125; ();</div><div class="line"><span class="number">0</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="comment">/* code */</span> &#125; ();</div><div class="line"></div><div class="line"><span class="comment">// 如果你不在意返回值，或者不怕难以阅读</span></div><div class="line"><span class="comment">// 你甚至可以在function前面加一元操作符号</span></div><div class="line"></div><div class="line">!<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="comment">/* code */</span> &#125; ();</div><div class="line">~<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="comment">/* code */</span> &#125; ();</div><div class="line">-<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="comment">/* code */</span> &#125; ();</div><div class="line">+<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="comment">/* code */</span> &#125; ();</div><div class="line"></div><div class="line"><span class="comment">// 还有一个情况，使用new关键字,也可以用，但我不确定它的效率</span></div><div class="line"><span class="comment">// http://twitter.com/kuvos/status/18209252090847232</span></div><div class="line"></div><div class="line"><span class="keyword">new</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="comment">/* code */</span> &#125;</div><div class="line"><span class="keyword">new</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="comment">/* code */</span> &#125; () <span class="comment">// 如果需要传递参数，只需要加上括弧()</span></div></pre></td></tr></table></figure>
+<h2 id="使用IIFE的好处"><a href="#使用IIFE的好处" class="headerlink" title="使用IIFE的好处"></a>使用IIFE的好处</h2><h3 id="提升性能"><a href="#提升性能" class="headerlink" title="提升性能"></a>提升性能</h3><p>减少作用域查找。使用IIFE的一个微小的性能优势是通过匿名函数的参数传递常用全局对象window、document、jQuery，在作用域内引用这些全局对象。JavaScript解释器首先在作用域内查找属性，然后一直沿着链向上查找，直到全局范围。将全局对象放在IIFE作用域内提升js解释器的查找速度和性能。</p>
+<p>传递全局对象到IIFE的一段代码示例：<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="comment">// Anonymous function that has three arguments</span></div><div class="line"><span class="function"><span class="keyword">function</span>(<span class="params">window, document, $</span>) </span>&#123;</div><div class="line"></div><div class="line">  <span class="comment">// You can now reference the window, document, and jQuery objects in a local scope</span></div><div class="line"></div><div class="line">&#125;(<span class="built_in">window</span>, <span class="built_in">document</span>, <span class="built_in">window</span>.jQuery); <span class="comment">// The global window, document, and jQuery objects are passed into the anonymous function</span></div></pre></td></tr></table></figure></p>
+<h3 id="有利于压缩"><a href="#有利于压缩" class="headerlink" title="有利于压缩"></a>有利于压缩</h3><p>另一个微小的优势是有利于代码压缩。既然通过参数传递了这些全局对象，压缩的时候可以将这些全局对象匿名为一个字符的变量名（只要这个字符没有被其他变量使用过）。<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="comment">// Anonymous function that has three arguments</span></div><div class="line"><span class="function"><span class="keyword">function</span>(<span class="params">w, d, $</span>) </span>&#123;</div><div class="line"></div><div class="line">  <span class="comment">// You can now reference the window, document, and jQuery objects in a local scope</span></div><div class="line"></div><div class="line">&#125;(<span class="built_in">window</span>, <span class="built_in">document</span>, <span class="built_in">window</span>.jQuery); <span class="comment">// The global window, document, and jQuery objects are passed into the anonymous function</span></div></pre></td></tr></table></figure></p>
+<h3 id="避免全局命名冲突"><a href="#避免全局命名冲突" class="headerlink" title="避免全局命名冲突"></a>避免全局命名冲突</h3><p>当使用jQuery的时候，全局的window.jQuery对象 作为一个参数传递给$，在匿名函数内部你再也不需要担心$和其他库或者模板声明冲突</p>
+<h2 id="IIFE最佳实践"><a href="#IIFE最佳实践" class="headerlink" title="IIFE最佳实践"></a>IIFE最佳实践</h2><p>如果你有大量的JavaScript代码都在一段IIFE里，要是想查找IIFE传递的实际参数值，必须要滚动到代码最后。幸运的是，你可以使用一个更可读的模式：<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span> (<span class="params">library</span>) </span>&#123;</div><div class="line"></div><div class="line"> <span class="comment">// Calls the second IIFE and locally passes in the global jQuery, window, and document objects</span></div><div class="line"> library(<span class="built_in">window</span>, <span class="built_in">document</span>, <span class="built_in">window</span>.jQuery);</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// Locally scoped parameters </span></div><div class="line">(<span class="function"><span class="keyword">function</span> (<span class="params">window, document, $</span>) </span>&#123;</div><div class="line"></div><div class="line"><span class="comment">// Library code goes here</span></div><div class="line"></div><div class="line">&#125;));</div></pre></td></tr></table></figure></p>
+<p>这种IIFE模式清晰的展示了传递了哪些全局对象到你的IIFE中，不需要滚动到长文档的最后</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/js/" rel="tag">#js</a>
+          
+            <a href="/tags/iife/" rel="tag">#iife</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/03/28/操作系统/并发和并行/" rel="next" title="并发和并行">
+                <i class="fa fa-chevron-left"></i> 并发和并行
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/04/10/函数声明和函数表达式/" rel="prev" title="函数声明和函数表达式">
+                函数声明和函数表达式 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/04/10/javascript/IIFE立即调用的函数表达式/"
+           data-title="IIFE 立即调用的函数表达式" data-url="yujunyong.github.com/2016/04/10/javascript/IIFE立即调用的函数表达式/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Michael" />
+          <p class="site-author-name" itemprop="name">Michael</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">43</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/yujunyong" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#IIFE-Immediately-Invoked-Function-Expression-立即调用的函数表达式"><span class="nav-number">1.</span> <span class="nav-text">IIFE (Immediately Invoked Function Expression 立即调用的函数表达式)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#自执行函数表达式写法"><span class="nav-number">1.1.</span> <span class="nav-text">自执行函数表达式写法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用IIFE的好处"><span class="nav-number">1.2.</span> <span class="nav-text">使用IIFE的好处</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#提升性能"><span class="nav-number">1.2.1.</span> <span class="nav-text">提升性能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有利于压缩"><span class="nav-number">1.2.2.</span> <span class="nav-text">有利于压缩</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#避免全局命名冲突"><span class="nav-number">1.2.3.</span> <span class="nav-text">避免全局命名冲突</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IIFE最佳实践"><span class="nav-number">1.3.</span> <span class="nav-text">IIFE最佳实践</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Michael</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"yujunyong"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+
+</body>
+</html>

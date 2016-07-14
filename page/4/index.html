@@ -86,15 +86,12 @@
 
 
 
-<meta name="description">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Geek">
 <meta property="og:url" content="yujunyong.github.com/page/4/index.html">
 <meta property="og:site_name" content="Geek">
-<meta property="og:description">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Geek">
-<meta name="twitter:description">
 
 
 
@@ -245,7 +242,7 @@
             
               
                 
-                <a class="post-title-link" href="/2015/05/24/工厂模式/" itemprop="url">
+                <a class="post-title-link" href="/2015/05/24/设计/设计模式/工厂模式/" itemprop="url">
                   工厂模式
                 </a>
               
@@ -289,8 +286,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/05/24/工厂模式/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/24/工厂模式/" itemprop="commentsCount"></span>
+                <a href="/2015/05/24/设计/设计模式/工厂模式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/24/设计/设计模式/工厂模式/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -323,13 +320,13 @@
 <h1 id="工厂方法模式（Factory-Method）"><a href="#工厂方法模式（Factory-Method）" class="headerlink" title="工厂方法模式（Factory Method）"></a>工厂方法模式（Factory Method）</h1><h2 id="普通工厂模式"><a href="#普通工厂模式" class="headerlink" title="普通工厂模式"></a>普通工厂模式</h2><p>就是建立一个工厂类，对实现了同一接口的一些类进行实例的创建。首先看下关系图：</p>
 <p><img src="/images/simple-factory-method-uml.png" alt="simple-factory-method-uml"></p>
 <p>举例如下：（我们举一个发送邮件和短信的例子）<br>首先，创建二者的共同接口：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Sender</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Send</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Sender</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Send</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>其次，创建实现类：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MailSender</span> <span class="keyword">implements</span> <span class="title">Sender</span> </span>&#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Send</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"this is mailsender!"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MailSender</span> <span class="keyword">implements</span> <span class="title">Sender</span> </span>&#123;</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Send</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"this is mailsender!"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <hr>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SmsSender</span> <span class="keyword">implements</span> <span class="title">Sender</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Send</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"this is sms sender!"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SmsSender</span> <span class="keyword">implements</span> <span class="title">Sender</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Send</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"this is sms sender!"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2015/05/24/工厂模式/#more" rel="contents">
+            <a class="btn" href="/2015/05/24/设计/设计模式/工厂模式/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -380,7 +377,7 @@
             
               
                 
-                <a class="post-title-link" href="/2015/05/24/模板方法模式/" itemprop="url">
+                <a class="post-title-link" href="/2015/05/24/设计/设计模式/模板方法模式/" itemprop="url">
                   模板方法模式
                 </a>
               
@@ -424,8 +421,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/05/24/模板方法模式/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/24/模板方法模式/" itemprop="commentsCount"></span>
+                <a href="/2015/05/24/设计/设计模式/模板方法模式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/24/设计/设计模式/模板方法模式/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -453,9 +450,9 @@
 <p><img src="/images/template-method-uml.png" alt="template-method-uml"></p>
 <p>就是在AbstractCalculator类中定义一个主方法calculate，calculate()调用spilt()等，Plus和Minus分别继承AbstractCalculator类，通过对AbstractCalculator的调用实现对子类的调用，看下面的例子：</p>
 <p>AbstractCalculator类</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">AbstractCalculator</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">/*主方法，实现对本类其它方法的调用*/</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">calculate</span><span class="params">(String exp,String opt)</span></span>&#123;</span><br><span class="line">		<span class="keyword">int</span> array[] = split(exp,opt);</span><br><span class="line">		<span class="keyword">return</span> calculate(array[<span class="number">0</span>],array[<span class="number">1</span>]);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">/*被子类重写的方法*/</span></span><br><span class="line">	<span class="function"><span class="keyword">abstract</span> <span class="keyword">public</span> <span class="keyword">int</span> <span class="title">calculate</span><span class="params">(<span class="keyword">int</span> num1,<span class="keyword">int</span> num2)</span></span>;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">int</span>[] split(String exp,String opt)&#123;</span><br><span class="line">		String array[] = exp.split(opt);</span><br><span class="line">		<span class="keyword">int</span> arrayInt[] = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">2</span>];</span><br><span class="line">		arrayInt[<span class="number">0</span>] = Integer.parseInt(array[<span class="number">0</span>]);</span><br><span class="line">		arrayInt[<span class="number">1</span>] = Integer.parseInt(array[<span class="number">1</span>]);</span><br><span class="line">		<span class="keyword">return</span> arrayInt;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">AbstractCalculator</span> </span>&#123;</div><div class="line">	</div><div class="line">	<span class="comment">/*主方法，实现对本类其它方法的调用*/</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">calculate</span><span class="params">(String exp,String opt)</span></span>&#123;</div><div class="line">		<span class="keyword">int</span> array[] = split(exp,opt);</div><div class="line">		<span class="keyword">return</span> calculate(array[<span class="number">0</span>],array[<span class="number">1</span>]);</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="comment">/*被子类重写的方法*/</span></div><div class="line">	<span class="function"><span class="keyword">abstract</span> <span class="keyword">public</span> <span class="keyword">int</span> <span class="title">calculate</span><span class="params">(<span class="keyword">int</span> num1,<span class="keyword">int</span> num2)</span></span>;</div><div class="line">	</div><div class="line">	<span class="keyword">public</span> <span class="keyword">int</span>[] split(String exp,String opt)&#123;</div><div class="line">		String array[] = exp.split(opt);</div><div class="line">		<span class="keyword">int</span> arrayInt[] = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">2</span>];</div><div class="line">		arrayInt[<span class="number">0</span>] = Integer.parseInt(array[<span class="number">0</span>]);</div><div class="line">		arrayInt[<span class="number">1</span>] = Integer.parseInt(array[<span class="number">1</span>]);</div><div class="line">		<span class="keyword">return</span> arrayInt;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2015/05/24/模板方法模式/#more" rel="contents">
+            <a class="btn" href="/2015/05/24/设计/设计模式/模板方法模式/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -639,7 +636,7 @@
             
               
                 
-                <a class="post-title-link" href="/2015/01/05/core-java/" itemprop="url">
+                <a class="post-title-link" href="/2015/01/05/java/core-java/" itemprop="url">
                   core java
                 </a>
               
@@ -683,8 +680,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/01/05/core-java/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/01/05/core-java/" itemprop="commentsCount"></span>
+                <a href="/2015/01/05/java/core-java/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/01/05/java/core-java/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -722,7 +719,7 @@
 <li>字节流继承于InputStream，OutputStream，字符流继承于InputStreamReader，OutputStreamWriter。</li>
 </ul>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2015/01/05/core-java/#more" rel="contents">
+            <a class="btn" href="/2015/01/05/java/core-java/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -773,7 +770,7 @@
             
               
                 
-                <a class="post-title-link" href="/2014/11/26/debug-grunt/" itemprop="url">
+                <a class="post-title-link" href="/2014/11/26/javascript/debug-grunt/" itemprop="url">
                   debug grunt
                 </a>
               
@@ -817,8 +814,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2014/11/26/debug-grunt/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/11/26/debug-grunt/" itemprop="commentsCount"></span>
+                <a href="/2014/11/26/javascript/debug-grunt/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/11/26/javascript/debug-grunt/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -845,7 +842,7 @@
           <p>##Grunt Javascript世界中的构建工具</p>
 <h3 id="Grunt配置文件的debug方法"><a href="#Grunt配置文件的debug方法" class="headerlink" title="Grunt配置文件的debug方法"></a>Grunt配置文件的debug方法</h3><p>Grunt是基于node.js的工具，配置文件是项目根目录下的Gruntfile.js，这是一个普通的js文件。<br>因此调试node.js的方式也同样可以用在调试grunt上面。</p>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2014/11/26/debug-grunt/#more" rel="contents">
+            <a class="btn" href="/2014/11/26/javascript/debug-grunt/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1026,7 +1023,7 @@
             
               
                 
-                <a class="post-title-link" href="/2014/11/09/面向对象设计原则/" itemprop="url">
+                <a class="post-title-link" href="/2014/11/09/设计/面向对象设计原则/" itemprop="url">
                   面象对象设计原则
                 </a>
               
@@ -1070,8 +1067,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2014/11/09/面向对象设计原则/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/11/09/面向对象设计原则/" itemprop="commentsCount"></span>
+                <a href="/2014/11/09/设计/面向对象设计原则/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/11/09/设计/面向对象设计原则/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -1100,7 +1097,7 @@
 <h2 id="依赖倒转原则（Dependence-Inversion-Principle）"><a href="#依赖倒转原则（Dependence-Inversion-Principle）" class="headerlink" title="依赖倒转原则（Dependence Inversion Principle）"></a>依赖倒转原则（Dependence Inversion Principle）</h2><p>针对接口编程，依赖于抽象而不依赖于具体</p>
 <h2 id="接口隔离原则（Interface-Segregation-Principle）"><a href="#接口隔离原则（Interface-Segregation-Principle）" class="headerlink" title="接口隔离原则（Interface Segregation Principle）"></a>接口隔离原则（Interface Segregation Principle）</h2><p>使用多个隔离的接口，比使用单个接口要好。</p>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2014/11/09/面向对象设计原则/#more" rel="contents">
+            <a class="btn" href="/2014/11/09/设计/面向对象设计原则/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1226,7 +1223,7 @@
 <li><p>在vim配置文件中添加如下代码</p>
 </li>
 </ol>
-<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line"><span class="comment">" 设置配色主题</span></span><br><span class="line"><span class="keyword">if</span> $TERM =~ <span class="string">'^xterm'</span> || $TERM =~ <span class="string">'^screen'</span> || $TERM=~ <span class="string">'256color$'</span></span><br><span class="line">	<span class="keyword">set</span> background=dark</span><br><span class="line">	<span class="keyword">let</span> <span class="variable">g:solarized_termcolors</span> = <span class="number">256</span></span><br><span class="line">	<span class="keyword">colorscheme</span> solarized</span><br><span class="line"><span class="keyword">elseif</span> <span class="built_in">has</span>(<span class="string">'gui_running'</span>)</span><br><span class="line">	<span class="keyword">set</span> background=dark</span><br><span class="line">	<span class="keyword">let</span> <span class="variable">g:solarized_termcolors</span> = <span class="number">256</span></span><br><span class="line">	<span class="keyword">colorscheme</span> solarized</span><br><span class="line"><span class="keyword">elseif</span> $TERM =~ <span class="string">'cons25'</span></span><br><span class="line">	<span class="keyword">colorscheme</span> default</span><br><span class="line"><span class="keyword">endif</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight vim"><table><tr><td class="code"><pre><div class="line"><span class="comment">" 设置配色主题</span></div><div class="line"><span class="keyword">if</span> $TERM =~ <span class="string">'^xterm'</span> || $TERM =~ <span class="string">'^screen'</span> || $TERM=~ <span class="string">'256color$'</span></div><div class="line">	<span class="keyword">set</span> background=dark</div><div class="line">	<span class="keyword">let</span> <span class="variable">g:solarized_termcolors</span> = <span class="number">256</span></div><div class="line">	<span class="keyword">colorscheme</span> solarized</div><div class="line"><span class="keyword">elseif</span> <span class="built_in">has</span>(<span class="string">'gui_running'</span>)</div><div class="line">	<span class="keyword">set</span> background=dark</div><div class="line">	<span class="keyword">let</span> <span class="variable">g:solarized_termcolors</span> = <span class="number">256</span></div><div class="line">	<span class="keyword">colorscheme</span> solarized</div><div class="line"><span class="keyword">elseif</span> $TERM =~ <span class="string">'cons25'</span></div><div class="line">	<span class="keyword">colorscheme</span> default</div><div class="line"><span class="keyword">endif</span></div></pre></td></tr></table></figure>
           <div class="post-more-link text-center">
             <a class="btn" href="/2014/11/04/vim配色问题/#more" rel="contents">
               阅读全文 &raquo;
@@ -1279,7 +1276,7 @@
             
               
                 
-                <a class="post-title-link" href="/2014/10/31/java-gc机制/" itemprop="url">
+                <a class="post-title-link" href="/2014/10/31/java/java-gc机制/" itemprop="url">
                   java gc机制
                 </a>
               
@@ -1323,8 +1320,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2014/10/31/java-gc机制/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/10/31/java-gc机制/" itemprop="commentsCount"></span>
+                <a href="/2014/10/31/java/java-gc机制/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/10/31/java/java-gc机制/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -1350,9 +1347,9 @@
         
           <h2 id="存活判定算法"><a href="#存活判定算法" class="headerlink" title="存活判定算法"></a>存活判定算法</h2><h3 id="引用计数算法-Reference-counting"><a href="#引用计数算法-Reference-counting" class="headerlink" title="引用计数算法(Reference counting)"></a>引用计数算法(Reference counting)</h3><p>每个对象都含有一个引用记数器，当有引用连接至对象时，引用计数加1。当引用离开作用域或被置为null时，引用计数减1。<br>垃圾回收器在含有全部对象的列表上遍历时，如果发现某个引用计数器的值为0时，就释放其占用的空间。<br>这种方法有个缺陷，如果对象之间存在循环引用，可能会出现“对象应该被回收，但引用计数却不为零”的情况。</p>
 <p>请看下面的代码：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ReferenceCountingGC</span></span>&#123;</span><br><span class="line">	<span class="keyword">public</span> Object instance = <span class="keyword">null</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">testGC</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		ReferenceCountingGC objA = <span class="keyword">new</span> ReferenceCountingGC();</span><br><span class="line">		ReferenceCountingGC objB = <span class="keyword">new</span> ReferenceCountingGC();</span><br><span class="line">		objA.instance = objB;</span><br><span class="line">		objB.instance = objA;</span><br><span class="line">		objA = <span class="keyword">null</span>;</span><br><span class="line">		objB = <span class="keyword">null</span>;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//假设在这行发生GC, objA和objB是否会被回收？</span></span><br><span class="line">		System.gc();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ReferenceCountingGC</span></span>&#123;</div><div class="line">	<span class="keyword">public</span> Object instance = <span class="keyword">null</span>;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">testGC</span><span class="params">()</span> </span>&#123;</div><div class="line">		ReferenceCountingGC objA = <span class="keyword">new</span> ReferenceCountingGC();</div><div class="line">		ReferenceCountingGC objB = <span class="keyword">new</span> ReferenceCountingGC();</div><div class="line">		objA.instance = objB;</div><div class="line">		objB.instance = objA;</div><div class="line">		objA = <span class="keyword">null</span>;</div><div class="line">		objB = <span class="keyword">null</span>;</div><div class="line">		</div><div class="line">		<span class="comment">//假设在这行发生GC, objA和objB是否会被回收？</span></div><div class="line">		System.gc();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2014/10/31/java-gc机制/#more" rel="contents">
+            <a class="btn" href="/2014/10/31/java/java-gc机制/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1403,7 +1400,7 @@
             
               
                 
-                <a class="post-title-link" href="/2014/10/31/maven-deploy到archiva的相关配制/" itemprop="url">
+                <a class="post-title-link" href="/2014/10/31/java/maven-deploy到archiva的相关配制/" itemprop="url">
                   maven deploy 到 archiva 上面的相关配置
                 </a>
               
@@ -1447,8 +1444,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2014/10/31/maven-deploy到archiva的相关配制/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/10/31/maven-deploy到archiva的相关配制/" itemprop="commentsCount"></span>
+                <a href="/2014/10/31/java/maven-deploy到archiva的相关配制/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/10/31/java/maven-deploy到archiva的相关配制/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -1473,9 +1470,9 @@
       
         
           <h2 id="m2-settings-xml文件的配置"><a href="#m2-settings-xml文件的配置" class="headerlink" title="~/.m2/settings.xml文件的配置"></a>~/.m2/settings.xml文件的配置</h2><h3 id="配置deploy时的用户名，密码"><a href="#配置deploy时的用户名，密码" class="headerlink" title="配置deploy时的用户名，密码"></a>配置deploy时的用户名，密码</h3><p>id必需与distributionManagement下的id匹配</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servers</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">server</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">id</span>&gt;</span>snapshots<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">username</span>&gt;</span>username<span class="tag">&lt;/<span class="name">username</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">password</span>&gt;</span>password<span class="tag">&lt;/<span class="name">password</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">server</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">server</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">id</span>&gt;</span>internal<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">username</span>&gt;</span>username<span class="tag">&lt;/<span class="name">username</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">password</span>&gt;</span>password<span class="tag">&lt;/<span class="name">password</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">server</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servers</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">servers</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">server</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">id</span>&gt;</span>snapshots<span class="tag">&lt;/<span class="name">id</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">username</span>&gt;</span>username<span class="tag">&lt;/<span class="name">username</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">password</span>&gt;</span>password<span class="tag">&lt;/<span class="name">password</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">server</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">server</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">id</span>&gt;</span>internal<span class="tag">&lt;/<span class="name">id</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">username</span>&gt;</span>username<span class="tag">&lt;/<span class="name">username</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">password</span>&gt;</span>password<span class="tag">&lt;/<span class="name">password</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">server</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">servers</span>&gt;</span></div></pre></td></tr></table></figure>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2014/10/31/maven-deploy到archiva的相关配制/#more" rel="contents">
+            <a class="btn" href="/2014/10/31/java/maven-deploy到archiva的相关配制/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>

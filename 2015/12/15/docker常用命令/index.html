@@ -315,11 +315,11 @@
       
 
       
-        <h1 id="进入容器"><a href="#进入容器" class="headerlink" title="进入容器"></a>进入容器</h1><h2 id="进入没有运行的容器"><a href="#进入没有运行的容器" class="headerlink" title="进入没有运行的容器"></a>进入没有运行的容器</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">docker run -i -t container /bin/bash</span><br></pre></td></tr></table></figure>
-<h2 id="进入正在运行的容器"><a href="#进入正在运行的容器" class="headerlink" title="进入正在运行的容器"></a>进入正在运行的容器</h2><p>如果使用的是1.3.0版本以上的Docker,使用以下命令:<br><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it container bash</span><br></pre></td></tr></table></figure></p>
-<p>如果是使用更老的版本，使用以下命令：<br><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">docker run --rm --volume=/usr/<span class="built_in">local</span>/bin:/target jpetazzo/nsenter</span><br><span class="line">sudo docker-enter gitlab</span><br></pre></td></tr></table></figure></p>
-<h1 id="删除镜像-容器"><a href="#删除镜像-容器" class="headerlink" title="删除镜像/容器"></a>删除镜像/容器</h1><h2 id="删除所有的容器"><a href="#删除所有的容器" class="headerlink" title="删除所有的容器"></a>删除所有的容器</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">docker rm $(docker ps <span class="_">-a</span> -q)</span><br></pre></td></tr></table></figure>
-<h2 id="删除所有的镜像"><a href="#删除所有的镜像" class="headerlink" title="删除所有的镜像"></a>删除所有的镜像</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">docker rmi $(docker images -q)</span><br></pre></td></tr></table></figure>
+        <h1 id="进入容器"><a href="#进入容器" class="headerlink" title="进入容器"></a>进入容器</h1><h2 id="进入没有运行的容器"><a href="#进入没有运行的容器" class="headerlink" title="进入没有运行的容器"></a>进入没有运行的容器</h2><figure class="highlight sh"><table><tr><td class="code"><pre><div class="line">docker run -i -t container /bin/bash</div></pre></td></tr></table></figure>
+<h2 id="进入正在运行的容器"><a href="#进入正在运行的容器" class="headerlink" title="进入正在运行的容器"></a>进入正在运行的容器</h2><p>如果使用的是1.3.0版本以上的Docker,使用以下命令:<br><figure class="highlight sh"><table><tr><td class="code"><pre><div class="line">docker <span class="built_in">exec</span> -it container bash</div></pre></td></tr></table></figure></p>
+<p>如果是使用更老的版本，使用以下命令：<br><figure class="highlight sh"><table><tr><td class="code"><pre><div class="line">docker run --rm --volume=/usr/<span class="built_in">local</span>/bin:/target jpetazzo/nsenter</div><div class="line">sudo docker-enter gitlab</div></pre></td></tr></table></figure></p>
+<h1 id="删除镜像-容器"><a href="#删除镜像-容器" class="headerlink" title="删除镜像/容器"></a>删除镜像/容器</h1><h2 id="删除所有的容器"><a href="#删除所有的容器" class="headerlink" title="删除所有的容器"></a>删除所有的容器</h2><figure class="highlight sh"><table><tr><td class="code"><pre><div class="line">docker rm $(docker ps <span class="_">-a</span> -q)</div></pre></td></tr></table></figure>
+<h2 id="删除所有的镜像"><a href="#删除所有的镜像" class="headerlink" title="删除所有的镜像"></a>删除所有的镜像</h2><figure class="highlight sh"><table><tr><td class="code"><pre><div class="line">docker rmi $(docker images -q)</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -350,7 +350,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/11/05/mysql查询优化/" rel="next" title="mysql查询优化">
+              <a href="/2015/11/05/mysql/mysql查询优化/" rel="next" title="mysql查询优化">
                 <i class="fa fa-chevron-left"></i> mysql查询优化
               </a>
             
@@ -358,7 +358,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/01/20/mysql连接相关/" rel="prev" title="mysql连接相关">
+              <a href="/2016/01/20/mysql/mysql连接相关/" rel="prev" title="mysql连接相关">
                 mysql连接相关 <i class="fa fa-chevron-right"></i>
               </a>
             

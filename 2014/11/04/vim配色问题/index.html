@@ -336,7 +336,7 @@
 <li><p>在vim配置文件中添加如下代码</p>
 </li>
 </ol>
-<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line"><span class="comment">" 设置配色主题</span></span><br><span class="line"><span class="keyword">if</span> $TERM =~ <span class="string">'^xterm'</span> || $TERM =~ <span class="string">'^screen'</span> || $TERM=~ <span class="string">'256color$'</span></span><br><span class="line">	<span class="keyword">set</span> background=dark</span><br><span class="line">	<span class="keyword">let</span> <span class="variable">g:solarized_termcolors</span> = <span class="number">256</span></span><br><span class="line">	<span class="keyword">colorscheme</span> solarized</span><br><span class="line"><span class="keyword">elseif</span> <span class="built_in">has</span>(<span class="string">'gui_running'</span>)</span><br><span class="line">	<span class="keyword">set</span> background=dark</span><br><span class="line">	<span class="keyword">let</span> <span class="variable">g:solarized_termcolors</span> = <span class="number">256</span></span><br><span class="line">	<span class="keyword">colorscheme</span> solarized</span><br><span class="line"><span class="keyword">elseif</span> $TERM =~ <span class="string">'cons25'</span></span><br><span class="line">	<span class="keyword">colorscheme</span> default</span><br><span class="line"><span class="keyword">endif</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight vim"><table><tr><td class="code"><pre><div class="line"><span class="comment">" 设置配色主题</span></div><div class="line"><span class="keyword">if</span> $TERM =~ <span class="string">'^xterm'</span> || $TERM =~ <span class="string">'^screen'</span> || $TERM=~ <span class="string">'256color$'</span></div><div class="line">	<span class="keyword">set</span> background=dark</div><div class="line">	<span class="keyword">let</span> <span class="variable">g:solarized_termcolors</span> = <span class="number">256</span></div><div class="line">	<span class="keyword">colorscheme</span> solarized</div><div class="line"><span class="keyword">elseif</span> <span class="built_in">has</span>(<span class="string">'gui_running'</span>)</div><div class="line">	<span class="keyword">set</span> background=dark</div><div class="line">	<span class="keyword">let</span> <span class="variable">g:solarized_termcolors</span> = <span class="number">256</span></div><div class="line">	<span class="keyword">colorscheme</span> solarized</div><div class="line"><span class="keyword">elseif</span> $TERM =~ <span class="string">'cons25'</span></div><div class="line">	<span class="keyword">colorscheme</span> default</div><div class="line"><span class="keyword">endif</span></div></pre></td></tr></table></figure>
 <a id="more"></a>
 <h1 id="可能出现的问题"><a href="#可能出现的问题" class="headerlink" title="可能出现的问题"></a>可能出现的问题</h1><p>环境变量也可以设置成：<code>export TERM=xterm-256color</code>。</p>
 <p>但是如果你在tmux中使用vim的话会出现如下图的情况：<br><img src="/images/vim-solarized-theme-tmux-bug.png" alt="tmux bug"></p>
@@ -374,7 +374,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2014/10/31/java-gc机制/" rel="next" title="java gc机制">
+              <a href="/2014/10/31/java/java-gc机制/" rel="next" title="java gc机制">
                 <i class="fa fa-chevron-left"></i> java gc机制
               </a>
             
@@ -382,7 +382,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2014/11/09/面向对象设计原则/" rel="prev" title="面象对象设计原则">
+              <a href="/2014/11/09/设计/面向对象设计原则/" rel="prev" title="面象对象设计原则">
                 面象对象设计原则 <i class="fa fa-chevron-right"></i>
               </a>
             
