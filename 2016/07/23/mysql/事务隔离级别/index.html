@@ -1,0 +1,772 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="mysql,事务," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Geek" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="未提交读(Read uncommitted)未提交读(READ UNCOMMITTED)是最低的隔离级别。通过名字我们就可以知道，在这种事务隔离级别下，一个事务可以读到另外一个事务未提交的数据。
+未提交读的数据库锁情况
+事务在读数据的时候并未对数据加锁。
+事务在修改数据的时候只对数据增加行级共享锁。
+
+现象事务1读取某行记录时，事务2也能对这行记录进行读取、更新（因为事务一并未对数据增加任何锁）当">
+<meta property="og:type" content="article">
+<meta property="og:title" content="事务隔离级别">
+<meta property="og:url" content="yujunyong.github.com/2016/07/23/mysql/事务隔离级别/index.html">
+<meta property="og:site_name" content="Geek">
+<meta property="og:description" content="未提交读(Read uncommitted)未提交读(READ UNCOMMITTED)是最低的隔离级别。通过名字我们就可以知道，在这种事务隔离级别下，一个事务可以读到另外一个事务未提交的数据。
+未提交读的数据库锁情况
+事务在读数据的时候并未对数据加锁。
+事务在修改数据的时候只对数据增加行级共享锁。
+
+现象事务1读取某行记录时，事务2也能对这行记录进行读取、更新（因为事务一并未对数据增加任何锁）当">
+<meta property="og:updated_time" content="2016-07-24T08:00:37.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="事务隔离级别">
+<meta name="twitter:description" content="未提交读(Read uncommitted)未提交读(READ UNCOMMITTED)是最低的隔离级别。通过名字我们就可以知道，在这种事务隔离级别下，一个事务可以读到另外一个事务未提交的数据。
+未提交读的数据库锁情况
+事务在读数据的时候并未对数据加锁。
+事务在修改数据的时候只对数据增加行级共享锁。
+
+现象事务1读取某行记录时，事务2也能对这行记录进行读取、更新（因为事务一并未对数据增加任何锁）当">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 事务隔离级别 | Geek </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Geek</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                事务隔离级别
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-23T21:20:52+08:00" content="2016-07-23">
+              2016-07-23
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/23/mysql/事务隔离级别/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/23/mysql/事务隔离级别/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="未提交读-Read-uncommitted"><a href="#未提交读-Read-uncommitted" class="headerlink" title="未提交读(Read uncommitted)"></a>未提交读(Read uncommitted)</h1><p>未提交读(READ UNCOMMITTED)是最低的隔离级别。通过名字我们就可以知道，在这种事务隔离级别下，一个事务可以读到另外一个事务未提交的数据。</p>
+<h2 id="未提交读的数据库锁情况"><a href="#未提交读的数据库锁情况" class="headerlink" title="未提交读的数据库锁情况"></a>未提交读的数据库锁情况</h2><ul>
+<li>事务在读数据的时候并未对数据加锁。</li>
+<li>事务在修改数据的时候只对数据增加行级共享锁。</li>
+</ul>
+<h2 id="现象"><a href="#现象" class="headerlink" title="现象"></a>现象</h2><p>事务1读取某行记录时，事务2也能对这行记录进行读取、更新（因为事务一并未对数据增加任何锁）<br>当事务2对该记录进行更新时，事务1再次读取该记录，能读到事务2对该记录的修改版本（因为事务二只增加了共享读锁，事务一可以再增加共享读锁读取数据），即使该修改尚未被提交。<br>事务1更新某行记录时，事务2不能对这行记录做更新，直到事务1结束。（因为事务一对数据增加了共享读锁，事务二不能增加排他写锁进行数据的修改）</p>
+<h2 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h2><table>
+<thead>
+<tr>
+<th>事务一</th>
+<th>事务二</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>UPDATE users SET age = 21 WHERE id = 1;</td>
+</tr>
+<tr>
+<td>SELECT age FROM users WHERE id = 1;</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>ROLLBACK;</td>
+</tr>
+</tbody>
+</table>
+<p>事务一共查询了两次，在两次查询的过程中，事务二对数据进行了修改，并未提交（commit）。但是事务一的第二次查询查到了事务二的修改结果。在数据库的读现象浅析中我们介绍过，这种现象我们称之为<a href="/2016/07/24/mysql/数据库中的读现象/#脏读-一个事务读取到了另外一个事务没有提交的数据">脏读</a>。</p>
+<p>所以，未提交读会导致<a href="/2016/07/24/mysql/数据库中的读现象/#脏读-一个事务读取到了另外一个事务没有提交的数据">脏读</a></p>
+<h1 id="提交读-Read-committed"><a href="#提交读-Read-committed" class="headerlink" title="提交读(Read committed)"></a>提交读(Read committed)</h1><p>提交读(READ COMMITTED)也可以翻译成读已提交，通过名字也可以分析出，在一个事务修改数据过程中，如果事务还没提交，其他事务不能读该数据。</p>
+<h2 id="提交读的数据库锁情况"><a href="#提交读的数据库锁情况" class="headerlink" title="提交读的数据库锁情况"></a>提交读的数据库锁情况</h2><ul>
+<li>事务对当前被读取的数据加 行级共享锁（当读到时才加锁），一旦读完该行，立即释放该行级共享锁；</li>
+<li>事务在更新某数据的瞬间（就是发生更新的瞬间），必须先对其加 行级排他锁，直到事务结束才释放。</li>
+</ul>
+<h2 id="现象-1"><a href="#现象-1" class="headerlink" title="现象"></a>现象</h2><p>事务1在读取某行记录的整个过程中，事务2都可以对该行记录进行读取（因为事务一对该行记录增加行级共享锁的情况下，事务二同样可以对该数据增加共享锁来读数据）。<br>事务1读取某行的一瞬间，事务2不能修改该行数据，但是，只要事务1读取完改行数据，事务2就可以对该行数据进行修改。（事务一在读取的一瞬间会对数据增加共享锁，任何其他事务都不能对该行数据增加排他锁。但是事务一只要读完该行数据，就会释放行级共享锁，一旦锁释放，事务二就可以对数据增加排他锁并修改数据）<br>事务1更新某行记录时，事务2不能对这行记录做更新，(直到事务1结束。事务一在更新数据的时候，会对该行数据增加排他锁，直到事务结束才会释放锁，所以，在事务一没有提交之前，事务二都能不对数据增加共享锁进行数据的读取。所以，提交读可以解决<strong><em>脏读</em></strong>的现象)</p>
+<h2 id="举例-1"><a href="#举例-1" class="headerlink" title="举例"></a>举例</h2><table>
+<thead>
+<tr>
+<th>事务一</th>
+<th>事务二</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SELECT age FROM users WHERE id = 1;</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>UPDATE users SET age = 21 WHERE id = 1; COMMIT;</td>
+</tr>
+<tr>
+<td>SELECT age FROM users WHERE id = 1; COMMIT;</td>
+</tr>
+</tbody>
+</table>
+<p>在提交读隔离级别中，在事务二提交之前，事务一不能读取数据。只有在事务二提交之后，事务一才能读数据。</p>
+<h1 id="可重复读-Repeatable-reads"><a href="#可重复读-Repeatable-reads" class="headerlink" title="可重复读(Repeatable reads)"></a>可重复读(Repeatable reads)</h1><p>可重复读(REPEATABLE READS),由于提交读隔离级别会产生不可重复读的读现象。所以，比提交读更高一个级别的隔离级别就可以解决不可重复读的问题。这种隔离级别就叫可重复读</p>
+<h2 id="可重复读的数据库锁情况"><a href="#可重复读的数据库锁情况" class="headerlink" title="可重复读的数据库锁情况"></a>可重复读的数据库锁情况</h2><ul>
+<li>事务在读取某数据的瞬间（就是开始读取的瞬间），必须先对其加 行级共享锁，直到事务结束才释放；</li>
+<li>事务在更新某数据的瞬间（就是发生更新的瞬间），必须先对其加 行级排他锁，直到事务结束才释放。</li>
+</ul>
+<h2 id="现象-2"><a href="#现象-2" class="headerlink" title="现象"></a>现象</h2><p>事务1在读取某行记录的整个过程中，事务2都可以对该行记录进行读取（因为事务一对该行记录增加行级共享锁的情况下，事务二同样可以对该数据增加共享锁来读数据。）。<br>事务1在读取某行记录的整个过程中，事务2都不能修改该行数据（事务一在读取的整个过程会对数据增加共享锁，直到事务提交才会释放锁，所以整个过程中，任何其他事务都不能对该行数据增加排他锁。所以，可重复读能够解决不可重复读的读现象）<br>事务1更新某行记录时，事务2不能对这行记录做更新，(直到事务1结束。事务一在更新数据的时候，会对该行数据增加排他锁，直到事务结束才会释放锁，所以，在事务一没有提交之前，事务二都能不对数据增加共享锁进行数据的读取。所以，提交读可以解决<strong><em>脏读</em></strong>的现象)</p>
+<h2 id="举例-2"><a href="#举例-2" class="headerlink" title="举例"></a>举例</h2><table>
+<thead>
+<tr>
+<th>事务一</th>
+<th>事务二</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SELECT age FROM users WHERE id = 1; COMMIT;</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>UPDATE users SET age = 21 WHERE id = 1; COMMIT;</td>
+</tr>
+</tbody>
+</table>
+<p>在上面的例子中，只有在事务一提交之后，事务二才能更改该行数据。所以，只要在事务一从开始到结束的这段时间内，无论他读取该行数据多少次，结果都是一样的。</p>
+<p>从上面的例子中我们可以得到结论：可重复读隔离级别可以解决不可重复读的读现象。但是可重复读这种隔离级别中，还有另外一种读现象他解决不了，那就是幻读。看下面的例子：</p>
+<table>
+<thead>
+<tr>
+<th>事务一</th>
+<th>事务二</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SELECT * FROM users WHERE age BETWEEN 10 AND 30;</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>INSERT INTO users VALUES ( 3, ‘Bob’, 27  ); COMMIT;</td>
+</tr>
+<tr>
+<td>SELECT * FROM users WHERE age BETWEEN 10 AND 30;</td>
+</tr>
+</tbody>
+</table>
+<p>上面的两个事务执行情况及现象如下：</p>
+<ol>
+<li>事务一的第一次查询条件是<code>age BETWEEN 10 AND 30;</code>如果这是有十条记录符合条件。这时，他会给符合条件的这十条记录增加行级共享锁。任何其他事务无法更改这十条记录。</li>
+<li>事务二执行一条sql语句，语句的内容是向表中插入一条数据。因为此时没有任何事务对表增加表级锁，所以，该操作可以顺利执行。</li>
+<li>事务一再次执行<code>SELECT * FROM users WHERE age BETWEEN 10 AND 30;</code>时，结果返回的记录变成了十一条，比刚刚增加了一条，增加的这条正是事务二刚刚插入的那条。</li>
+</ol>
+<p>所以，事务一的两次范围查询结果并不相同。这也就是我们提到的幻读。</p>
+<h1 id="可序列化-Serializable"><a href="#可序列化-Serializable" class="headerlink" title="可序列化(Serializable)"></a>可序列化(Serializable)</h1><p>可序列化(Serializable)是最高的隔离级别，前面提到的所有的隔离级别都无法解决的幻读，在可序列化的隔离级别中可以解决。<br>我们说过，产生幻读的原因是事务一在进行范围查询的时候没有增加范围锁(range-locks：给SELECT 的查询中使用一个“WHERE”子句描述范围加锁），所以导致幻读。)</p>
+<h2 id="可序列化的数据库锁情况"><a href="#可序列化的数据库锁情况" class="headerlink" title="可序列化的数据库锁情况"></a>可序列化的数据库锁情况</h2><ul>
+<li>事务在读取数据时，必须先对其加 表级共享锁 ，直到事务结束才释放；</li>
+<li>事务在更新数据时，必须先对其加 表级排他锁 ，直到事务结束才释放。</li>
+</ul>
+<h2 id="现象-3"><a href="#现象-3" class="headerlink" title="现象"></a>现象</h2><p>事务1正在读取A表中的记录时，则事务2也能读取A表，但不能对A表做更新、新增、删除，直到事务1结束。(因为事务一对表增加了表级共享锁，其他事务只能增加共享锁读取数据，不能进行其他任何操作)<br>事务1正在更新A表中的记录时，则事务2不能读取A表的任意记录，更不可能对A表做更新、新增、删除，直到事务1结束。(事务一对表增加了表级排他锁，其他事务不能对表增加共享锁或排他锁，也就无法进行任何操作)</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/mysql/" rel="tag">#mysql</a>
+          
+            <a href="/tags/事务/" rel="tag">#事务</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/23/mysql/悲观锁和乐观锁/" rel="next" title="悲观锁和东观锁">
+                <i class="fa fa-chevron-left"></i> 悲观锁和东观锁
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/07/23/mysql/mysql中的锁/" rel="prev" title="mysql中的锁">
+                mysql中的锁 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/07/23/mysql/事务隔离级别/"
+           data-title="事务隔离级别" data-url="yujunyong.github.com/2016/07/23/mysql/事务隔离级别/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Michael" />
+          <p class="site-author-name" itemprop="name">Michael</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">47</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/yujunyong" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#未提交读-Read-uncommitted"><span class="nav-number">1.</span> <span class="nav-text">未提交读(Read uncommitted)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#未提交读的数据库锁情况"><span class="nav-number">1.1.</span> <span class="nav-text">未提交读的数据库锁情况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#现象"><span class="nav-number">1.2.</span> <span class="nav-text">现象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#举例"><span class="nav-number">1.3.</span> <span class="nav-text">举例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#提交读-Read-committed"><span class="nav-number">2.</span> <span class="nav-text">提交读(Read committed)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#提交读的数据库锁情况"><span class="nav-number">2.1.</span> <span class="nav-text">提交读的数据库锁情况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#现象-1"><span class="nav-number">2.2.</span> <span class="nav-text">现象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#举例-1"><span class="nav-number">2.3.</span> <span class="nav-text">举例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#可重复读-Repeatable-reads"><span class="nav-number">3.</span> <span class="nav-text">可重复读(Repeatable reads)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#可重复读的数据库锁情况"><span class="nav-number">3.1.</span> <span class="nav-text">可重复读的数据库锁情况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#现象-2"><span class="nav-number">3.2.</span> <span class="nav-text">现象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#举例-2"><span class="nav-number">3.3.</span> <span class="nav-text">举例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#可序列化-Serializable"><span class="nav-number">4.</span> <span class="nav-text">可序列化(Serializable)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#可序列化的数据库锁情况"><span class="nav-number">4.1.</span> <span class="nav-text">可序列化的数据库锁情况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#现象-3"><span class="nav-number">4.2.</span> <span class="nav-text">现象</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Michael</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"yujunyong"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+
+</body>
+</html>

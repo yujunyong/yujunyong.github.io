@@ -242,6 +242,624 @@
             
               
                 
+                <a class="post-title-link" href="/2015/09/29/mysql/mysql常用sql/" itemprop="url">
+                  mysql常用sql
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-09-29T00:40:23+08:00" content="2015-09-29">
+              2015-09-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/database/" itemprop="url" rel="index">
+                    <span itemprop="name">database</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/09/29/mysql/mysql常用sql/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/09/29/mysql/mysql常用sql/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h1><h2 id="在where子句中引用取别名的列"><a href="#在where子句中引用取别名的列" class="headerlink" title="在where子句中引用取别名的列"></a>在where子句中引用取别名的列</h2><figure class="highlight sql"><table><tr><td class="code"><pre><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span></div><div class="line">(</div><div class="line">  <span class="keyword">select</span> sal <span class="keyword">as</span> salary, comm <span class="keyword">as</span> commission</div><div class="line">  <span class="keyword">from</span> emp</div><div class="line">) <span class="keyword">as</span> x</div><div class="line"><span class="keyword">where</span> salary &lt; <span class="number">5000</span>;</div></pre></td></tr></table></figure>
+<h2 id="在select语句中使用条件逻辑"><a href="#在select语句中使用条件逻辑" class="headerlink" title="在select语句中使用条件逻辑"></a>在select语句中使用条件逻辑</h2><figure class="highlight sql"><table><tr><td class="code"><pre><div class="line"><span class="keyword">select</span> ename, sal,</div><div class="line">	<span class="keyword">case</span> <span class="keyword">when</span> sal &lt;= <span class="number">2000</span> <span class="keyword">then</span> <span class="string">'UNDERPAID'</span></div><div class="line">		 <span class="keyword">when</span> sal &gt;= <span class="number">4000</span> <span class="keyword">then</span> <span class="string">'OVERPAID'</span></div><div class="line">		 <span class="keyword">else</span> <span class="string">'OK'</span></div><div class="line">	<span class="keyword">end</span> <span class="keyword">as</span> <span class="keyword">status</span></div><div class="line"><span class="keyword">from</span> emp;</div></pre></td></tr></table></figure>
+<h2 id="从表中随机返回n条记录"><a href="#从表中随机返回n条记录" class="headerlink" title="从表中随机返回n条记录"></a>从表中随机返回n条记录</h2><figure class="highlight sql"><table><tr><td class="code"><pre><div class="line"><span class="keyword">select</span> ename, job <span class="keyword">from</span> emp <span class="keyword">order</span> <span class="keyword">by</span> <span class="keyword">rand</span>() <span class="keyword">limit</span> <span class="number">5</span>;</div></pre></td></tr></table></figure>
+<h2 id="找到满足这样条件的员工：即他的收入比紧随其后聘用的员工要少"><a href="#找到满足这样条件的员工：即他的收入比紧随其后聘用的员工要少" class="headerlink" title="找到满足这样条件的员工：即他的收入比紧随其后聘用的员工要少"></a>找到满足这样条件的员工：即他的收入比紧随其后聘用的员工要少</h2><figure class="highlight sql"><table><tr><td class="code"><pre><div class="line"><span class="keyword">select</span> ename, sal, hiredate <span class="keyword">from</span></div><div class="line">(</div><div class="line">	<span class="keyword">select</span> a.ename, a.sal, a.hiredate,</div><div class="line">		(<span class="keyword">select</span> <span class="keyword">min</span>(hiredate) <span class="keyword">from</span> emp b</div><div class="line">			<span class="keyword">where</span> b.hiredate &gt; a.hiredate</div><div class="line">			<span class="keyword">and</span> b.sal &gt; a.sal) <span class="keyword">as</span> next_sal_grtr,</div><div class="line">		(<span class="keyword">select</span> <span class="keyword">min</span>(hiredate) <span class="keyword">from</span> emp b</div><div class="line">			<span class="keyword">where</span> b.hiredate &gt; a.hiredate) <span class="keyword">as</span> next_hire</div><div class="line">	<span class="keyword">from</span> emp a</div><div class="line">) x</div><div class="line"><span class="keyword">where</span> next_sal_grtr = next_hire;</div></pre></td></tr></table></figure>
+<h2 id="返回一个结果集，它包含每个部门中所有员工的姓名，所在部门，工资，聘用日期以及部门中最新聘用员工的工资"><a href="#返回一个结果集，它包含每个部门中所有员工的姓名，所在部门，工资，聘用日期以及部门中最新聘用员工的工资" class="headerlink" title="返回一个结果集，它包含每个部门中所有员工的姓名，所在部门，工资，聘用日期以及部门中最新聘用员工的工资"></a>返回一个结果集，它包含每个部门中所有员工的姓名，所在部门，工资，聘用日期以及部门中最新聘用员工的工资</h2><figure class="highlight sql"><table><tr><td class="code"><pre><div class="line"><span class="keyword">select</span> e.deptno, e.ename, e.sal, e.hiredate,</div><div class="line">	(<span class="keyword">select</span> <span class="keyword">max</span>(d.sal) <span class="keyword">from</span> emp d</div><div class="line">		<span class="keyword">where</span> d.deptno = e.deptno <span class="keyword">and</span> d.hiredate =</div><div class="line">			(<span class="keyword">select</span> <span class="keyword">max</span>(f.hiredate) <span class="keyword">from</span> emp f</div><div class="line">				<span class="keyword">where</span> f.deptno = e.deptno)) <span class="keyword">as</span> latest_sal</div><div class="line"><span class="keyword">from</span> emp e</div><div class="line"><span class="keyword">order</span> <span class="keyword">by</span> e.deptno, e.hiredate <span class="keyword">desc</span>;</div></pre></td></tr></table></figure>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/09/29/mysql/mysql常用sql/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/09/26/shell/shell中的表达式/" itemprop="url">
+                  shell中的表达式
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-09-26T12:52:56+08:00" content="2015-09-26">
+              2015-09-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/unix/" itemprop="url" rel="index">
+                    <span itemprop="name">unix</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/09/26/shell/shell中的表达式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/09/26/shell/shell中的表达式/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="文件表达式"><a href="#文件表达式" class="headerlink" title="文件表达式"></a>文件表达式</h1><table>
+<thead>
+<tr>
+<th style="text-align:left">表达式</th>
+<th style="text-align:left">返回True的条件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><em>file1</em> -ef <em>file2</em></td>
+<td style="text-align:left">file1和file2是同一个文件（link之类的文件）</td>
+</tr>
+<tr>
+<td style="text-align:left"><em>file1</em> -nt <em>file2</em></td>
+<td style="text-align:left">file1比file2新</td>
+</tr>
+<tr>
+<td style="text-align:left"><em>file1</em> -ot <em>file2</em></td>
+<td style="text-align:left">file1比file2旧</td>
+</tr>
+<tr>
+<td style="text-align:left">-e <em>file</em></td>
+<td style="text-align:left">file存在</td>
+</tr>
+<tr>
+<td style="text-align:left">-r <em>file</em></td>
+<td style="text-align:left">file存在并且可读</td>
+</tr>
+<tr>
+<td style="text-align:left">-w <em>file</em></td>
+<td style="text-align:left">file存在并且可写</td>
+</tr>
+<tr>
+<td style="text-align:left">-x <em>file</em></td>
+<td style="text-align:left">file存在并且可执行/可搜索</td>
+</tr>
+<tr>
+<td style="text-align:left">-s <em>file</em></td>
+<td style="text-align:left">file存在并且size大于0</td>
+</tr>
+<tr>
+<td style="text-align:left">-S <em>file</em></td>
+<td style="text-align:left">file存在并且是网络Socket</td>
+</tr>
+<tr>
+<td style="text-align:left">-d <em>file</em></td>
+<td style="text-align:left">file存在并且是文件夹</td>
+</tr>
+<tr>
+<td style="text-align:left">-f <em>file</em></td>
+<td style="text-align:left">file存在并且是普通文件</td>
+</tr>
+<tr>
+<td style="text-align:left">-b <em>file</em></td>
+<td style="text-align:left">file存在并且是<a href="#块文件Block_File">块文件</a></td>
+</tr>
+<tr>
+<td style="text-align:left">-c <em>file</em></td>
+<td style="text-align:left">file存在并且是<a href="#字符文件Character_File">字符文件</a></td>
+</tr>
+<tr>
+<td style="text-align:left">-g <em>file</em></td>
+<td style="text-align:left">file存在并且被设置为<a href="#SGID">SGID</a></td>
+</tr>
+<tr>
+<td style="text-align:left">-u <em>file</em></td>
+<td style="text-align:left">file存在并且被设置为<a href="#SUID">SUID</a></td>
+</tr>
+<tr>
+<td style="text-align:left">-k <em>file</em></td>
+<td style="text-align:left">file存在并且被设置为<a href="#Sticky_Bit">Sticky Bit</a></td>
+</tr>
+<tr>
+<td style="text-align:left">-G <em>file</em></td>
+<td style="text-align:left">file存在并且和调用程序是同一个用户组</td>
+</tr>
+<tr>
+<td style="text-align:left">-O <em>file</em></td>
+<td style="text-align:left">file存在并且和调用程序是同一个拥有者</td>
+</tr>
+<tr>
+<td style="text-align:left">-p <em>file</em></td>
+<td style="text-align:left">file存在并且是命名管道</td>
+</tr>
+<tr>
+<td style="text-align:left">-L <em>file</em></td>
+<td style="text-align:left">file存在并且是符号链接文件</td>
+</tr>
+</tbody>
+</table>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/09/26/shell/shell中的表达式/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/09/25/shell/shell常用命令/" itemprop="url">
+                  shell常用命令
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-09-25T17:57:17+08:00" content="2015-09-25">
+              2015-09-25
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/unix/" itemprop="url" rel="index">
+                    <span itemprop="name">unix</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/09/25/shell/shell常用命令/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/09/25/shell/shell常用命令/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="创建文件-文件夹"><a href="#创建文件-文件夹" class="headerlink" title="创建文件/文件夹"></a>创建文件/文件夹</h1><h2 id="创建文件"><a href="#创建文件" class="headerlink" title="创建文件"></a>创建文件</h2><ul>
+<li>创建内容为空的文件, <code>touch abc.txt 123.txt</code></li>
+<li>创建一行内容的文件, <code>echo &quot;hello world!&quot; &gt;&gt; hello-world.txt</code></li>
+<li>创建多行内容的文件, <code>cat &gt; cat.txt</code>, Ctrl+D结束输入; <code>&gt; cat.txt</code>, Ctrl+C结束输入</li>
+</ul>
+<h2 id="创建文件夹"><a href="#创建文件夹" class="headerlink" title="创建文件夹"></a>创建文件夹</h2><ul>
+<li>自动创建父文件夹，<code>mkdir -p /tmp/fold1/fold2</code></li>
+</ul>
+<h1 id="显示"><a href="#显示" class="headerlink" title="显示"></a>显示</h1><h2 id="显示文件大小"><a href="#显示文件大小" class="headerlink" title="显示文件大小"></a>显示文件大小</h2><ul>
+<li>显示当前文件夹大小, <code>du -sh</code></li>
+<li>显示当前文件夹下面所有文件的大小, <code>du -sh *</code></li>
+<li>显示硬盘使用情况, <code>df -h</code></li>
+<li>显示内存使用情况 <code>free -h</code></li>
+</ul>
+<h2 id="显示文件夹中的信息"><a href="#显示文件夹中的信息" class="headerlink" title="显示文件夹中的信息"></a>显示文件夹中的信息</h2><ul>
+<li>显示文件夹中的所有文件信息，<code>ls -alh</code></li>
+<li>只显示文件夹中的直接子文件夹，<code>ls | grep ^d</code></li>
+<li>只显示文件夹中的文件，<code>ls | grep -v ^d</code></li>
+<li>显示子文件夹的信息，而不是子文件夹中的内容，<code>ls -dl dir</code></li>
+</ul>
+<h1 id="监控"><a href="#监控" class="headerlink" title="监控"></a>监控</h1><ul>
+<li>监控内存，io，cpu(只能查看整体), <code>vmstat 2 -S m</code></li>
+<li>监控cpu整体信息, <code>mpstat 2</code></li>
+<li>监控cpu每个内核的信息, <code>mpstat -P ALL 2</code></li>
+<li>监控单个进程的cpu, io, 内存等资源的使用情况, <code>pidstat -p &lt;pid&gt; 2</code></li>
+<li>监控io, <code>iostat -xm 5</code></li>
+</ul>
+<h2 id="显示系统信息"><a href="#显示系统信息" class="headerlink" title="显示系统信息"></a>显示系统信息</h2><ul>
+<li>显示当前操作系统的信息, <code>lsb_release -a</code></li>
+</ul>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/09/25/shell/shell常用命令/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/09/25/shell/shell中的特殊变量/" itemprop="url">
+                  shell中的特殊变量
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-09-25T17:02:24+08:00" content="2015-09-25">
+              2015-09-25
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/unix/" itemprop="url" rel="index">
+                    <span itemprop="name">unix</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/09/25/shell/shell中的特殊变量/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/09/25/shell/shell中的特殊变量/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="Positional-Parameters"><a href="#Positional-Parameters" class="headerlink" title="Positional Parameters"></a>Positional Parameters</h1><h2 id="参数表示"><a href="#参数表示" class="headerlink" title="参数表示"></a>参数表示</h2><ul>
+<li><code>$#</code>: 添加到Shell的参数个数</li>
+<li><code>$0</code>: Shell本身的文件名</li>
+<li><code>$1 - $n</code>: 添加到Shell的各参数值。$1是第1参数、$2是第2参数…</li>
+</ul>
+<p>新建文件positional-parameters.sh</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><div class="line"><span class="built_in">echo</span> <span class="string">"</div><div class="line">Number of arguments: <span class="variable">$#</span></div><div class="line">\$0 = <span class="variable">$0</span></div><div class="line">\$1 = <span class="variable">$1</span></div><div class="line">\$2 = <span class="variable">$2</span></div><div class="line">\$3 = <span class="variable">$3</span></div><div class="line">\$4 = <span class="variable">$4</span></div><div class="line">\$5 = <span class="variable">$5</span></div><div class="line">\$6 = <span class="variable">$6</span></div><div class="line">\$7 = <span class="variable">$7</span></div><div class="line">\$8 = <span class="variable">$8</span></div><div class="line">\$9 = <span class="variable">$9</span></div><div class="line">"</span></div></pre></td></tr></table></figure>
+<p>在shell中输入<code>sh positional-parameters.sh {1..10}</code>, 输出如下</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">Number of arguments: 10</div><div class="line">$0 = position-parameters.sh</div><div class="line">$1 = 1</div><div class="line">$2 = 2</div><div class="line">$3 = 3</div><div class="line">$4 = 4</div><div class="line">$5 = 5</div><div class="line">$6 = 6</div><div class="line">$7 = 7</div><div class="line">$8 = 8</div><div class="line">$9 = 9</div></pre></td></tr></table></figure>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/09/25/shell/shell中的特殊变量/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/09/06/shell/shell中的特殊字符/" itemprop="url">
                   shell中的字符
                 </a>
@@ -1050,533 +1668,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/06/20/操作系统/浮点数在计算机中的表示/" itemprop="url">
-                  浮点数在计算机中的表示
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-06-20T21:40:41+08:00" content="2015-06-20">
-              2015-06-20
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/os/" itemprop="url" rel="index">
-                    <span itemprop="name">os</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/06/20/操作系统/浮点数在计算机中的表示/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/06/20/操作系统/浮点数在计算机中的表示/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h1><ul>
-<li>在java中<code>2.0/0</code>的结果是<code>Infinity</code>，而<code>2/0</code>的结果是<code>java.lang.ArithmeticException: / by zero</code>，为什么浮点数除以0是无穷大而整数除以0却会报错呢？</li>
-<li>在Float和Double中可以看到<code>POSITIVE_INFINITY</code>, <code>NEGATIVE_INFINITY</code>, <code>NaN</code>这几个常量，而在Integer和Long中却没有，这又是为什么呢？</li>
-<li>浮点数中有+0.0和-0.0的表示，但整数只有0，这又是为什么呢？</li>
-</ul>
-<p>如果你了解浮点数在计算机是是怎么表示的话，就会明白出现上面情况的原因了</p>
-<h1 id="浮点数在计算机中的表示"><a href="#浮点数在计算机中的表示" class="headerlink" title="浮点数在计算机中的表示"></a>浮点数在计算机中的表示</h1><p>根据国际标准IEEE 754，任意一个二进制浮点数V可以表示成下面的形式:</p>
-<p>$$V = (-1)^s \times M \times 2^E$$</p>
-<ul>
-<li>$(-1)^s$表示符号位，当s=0时，V为正数；当s=1时，V为负数。</li>
-<li>M表示有效位数，1 &lt;= M &lt; 2</li>
-<li>$2^E$表示指数位</li>
-</ul>
-<p>如：</p>
-<ul>
-<li>十进制的5.0，写成二进制是101.0，可以表示成$1.01 \times 2^2$。按照上面V的公式可以得出：s=0, M=1.01, E=2</li>
-<li>十进制的-5.0，写成二进制是-101.0，可以表示成$-1 \times 1.01 \times 2^2$按照上面V的公式可以得出：s=1， M=1.01, E=2</li>
-</ul>
-<p>IEEE 754规定，对于32位的浮点数，最高的1位是符号位s，接着的8位是指数E，剩下的23位为有效数字M；<br>对于64位的浮点数，最高的1位是符号位S，接着的11位是指数E，剩下的52位为有效数字M，如下图：<br><img src="/images/standard-floating-point-formats.jpg" alt="standard-floating-point-formats"></p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/06/20/操作系统/浮点数在计算机中的表示/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/06/02/设计/设计模式/策略模式/" itemprop="url">
-                  策略模式
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-06-02T11:43:29+08:00" content="2015-06-02">
-              2015-06-02
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/design/" itemprop="url" rel="index">
-                    <span itemprop="name">design</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/06/02/设计/设计模式/策略模式/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/06/02/设计/设计模式/策略模式/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="策略模式-strategy"><a href="#策略模式-strategy" class="headerlink" title="策略模式(strategy)"></a>策略模式(strategy)</h1><p>策略模式定义了一系列算法，并将每个算法封装起来，使他们可以相互替换，且算法的变化不会影响到使用算法的客户。需要设计一个接口，为一系列实现类提供统一的方法，多个实现类实现该接口，设计一个抽象类（可有可无，属于辅助类），提供辅助函数，关系图如下：</p>
-<p><img src="/images/strategy-uml.png" alt="strategy-uml"></p>
-<p>图中ICalculator提供同意的方法，<br>AbstractCalculator是辅助类，提供辅助方法，接下来，依次实现下每个类：<br>首先统一接口：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ICalculator</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">calculate</span><span class="params">(String exp)</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>辅助类：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">AbstractCalculator</span> </span>&#123;</div><div class="line">	</div><div class="line">	<span class="keyword">public</span> <span class="keyword">int</span>[] split(String exp,String opt)&#123;</div><div class="line">		String array[] = exp.split(opt);</div><div class="line">		<span class="keyword">int</span> arrayInt[] = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">2</span>];</div><div class="line">		arrayInt[<span class="number">0</span>] = Integer.parseInt(array[<span class="number">0</span>]);</div><div class="line">		arrayInt[<span class="number">1</span>] = Integer.parseInt(array[<span class="number">1</span>]);</div><div class="line">		<span class="keyword">return</span> arrayInt;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/06/02/设计/设计模式/策略模式/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/06/02/git常用操作/" itemprop="url">
-                  git常用操作
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-06-02T10:47:37+08:00" content="2015-06-02">
-              2015-06-02
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/command/" itemprop="url" rel="index">
-                    <span itemprop="name">command</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/06/02/git常用操作/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/06/02/git常用操作/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h1><h2 id="添加"><a href="#添加" class="headerlink" title="添加"></a>添加</h2><ul>
-<li>将所有文件添加到git中: <code>git add -A</code></li>
-</ul>
-<h2 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h2><ul>
-<li>删除已经在git中的文件: <code>git rm --cached &lt;name_of_file&gt;</code></li>
-<li>删除没有添加到git的文件：<code>git clean -df</code></li>
-</ul>
-<h1 id="分支操作"><a href="#分支操作" class="headerlink" title="分支操作"></a>分支操作</h1><h2 id="删除-1"><a href="#删除-1" class="headerlink" title="删除"></a>删除</h2><ul>
-<li>删除本地分支: <code>git branch -d &lt;local_branch&gt;</code></li>
-<li>删除远程分支: <code>git push origin &lt;:the_remote_branch&gt;</code></li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/05/24/设计/设计模式/单例模式/" itemprop="url">
-                  单例模式
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-05-24T15:05:52+08:00" content="2015-05-24">
-              2015-05-24
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/design/" itemprop="url" rel="index">
-                    <span itemprop="name">design</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/05/24/设计/设计模式/单例模式/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/24/设计/设计模式/单例模式/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="单例模式（Singleton）"><a href="#单例模式（Singleton）" class="headerlink" title="单例模式（Singleton）"></a>单例模式（Singleton）</h1><p>单例对象（Singleton）是一种常用的设计模式。在Java应用中，单例对象能保证在一个JVM中，该对象只有一个实例存在。这样的模式有几个好处：</p>
-<ul>
-<li>某些类创建比较频繁，对于一些大型的对象，这是一笔很大的系统开销。</li>
-<li>省去了new操作符，降低了系统内存的使用频率，减轻GC压力。</li>
-<li>有些类如交易所的核心交易引擎，控制着交易流程，如果该类可以创建多个的话，系统完全乱了。（比如一个军队出现了多个司令员同时指挥，肯定会乱成一团），所以只有使用单例模式，才能保证核心交易服务器独立控制整个流程。</li>
-</ul>
-<h2 id="静态成员直接初始化，或者在静态代码块初始化都可以"><a href="#静态成员直接初始化，或者在静态代码块初始化都可以" class="headerlink" title="静态成员直接初始化，或者在静态代码块初始化都可以"></a>静态成员直接初始化，或者在静态代码块初始化都可以</h2><figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Singleton</span></span>&#123;</div><div class="line">  <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span></span>&#123;&#125;</div><div class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Singleton singleton = <span class="keyword">new</span> Singleton();</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span></span>&#123;<span class="keyword">return</span> singleton;&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>该实现只要在一个ClassLoad下就会提供一个对象的单例。但是美中不足的是，不管该资源是否被请求，它都会创建一个对象，占用jvm内存。</p>
-<h2 id="根据lazy-initialization思想，使用到时才初始化。"><a href="#根据lazy-initialization思想，使用到时才初始化。" class="headerlink" title="根据lazy initialization思想，使用到时才初始化。"></a>根据lazy initialization思想，使用到时才初始化。</h2><figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Singleton</span></span>&#123;</div><div class="line">  <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span></span>&#123;&#125;</div><div class="line">  <span class="keyword">private</span> <span class="keyword">static</span> Singleton singleton ;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> Singleton <span class="title">getInstance</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">if</span>(singleton==<span class="keyword">null</span>)</div><div class="line">      singleton = <span class="keyword">new</span> Singleton();</div><div class="line">    <span class="keyword">return</span> singleton;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/05/24/设计/设计模式/单例模式/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1622,7 +1713,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">43</span>
+              <span class="site-state-item-count">47</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1630,7 +1721,7 @@
           
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
@@ -1639,7 +1730,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-count">29</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
