@@ -37,6 +37,3 @@ tags: [shell,tool]
 
 # 其它
 * `;`, 表示"连续指令", 如：`cd /tmp; touch 123.txt`
-* `$$`, Shell本身的pid
-* `$!`, Shell最后运行的后台进程的pid
-* `$?`, Shell最后运行的命令结束代码

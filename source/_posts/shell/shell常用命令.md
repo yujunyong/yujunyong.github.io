@@ -17,15 +17,25 @@ tags: [shell,tool]
 ## 显示文件大小
 * 显示当前文件夹大小, `du -sh`
 * 显示当前文件夹下面所有文件的大小, `du -sh *`
+* 显示硬盘使用情况, `df -h`
+* 显示内存使用情况 `free -h`
 
-## 显示系统信息
-* 显示当前操作系统的信息, `lsb_release -a`
 
 ## 显示文件夹中的信息
 * 显示文件夹中的所有文件信息，`ls -alh`
 * 只显示文件夹中的直接子文件夹，`ls | grep ^d`
 * 只显示文件夹中的文件，`ls | grep -v ^d`
 * 显示子文件夹的信息，而不是子文件夹中的内容，`ls -dl dir`
+
+# 监控
+* 监控内存，io，cpu(只能查看整体), `vmstat 2 -S m`
+* 监控cpu整体信息, `mpstat 2`
+* 监控cpu每个内核的信息, `mpstat -P ALL 2`
+* 监控单个进程的cpu, io, 内存等资源的使用情况, `pidstat -p <pid> 2`
+* 监控io, `iostat -xm 5`
+
+## 显示系统信息
+* 显示当前操作系统的信息, `lsb_release -a`
 
 <!-- more -->
 
@@ -38,7 +48,7 @@ tags: [shell,tool]
 
 # 进程
 * 查看某个进程信息，`ps aux | grep nginx`, `ps -ef | grep nginx`
-* 后台远行程序，`xlogo &`, `&`放在后台表示在后台运行
+* 后台运行程序，`xlogo &`, `&`放在后台表示在后台运行
 
 # 网络
 ## telnet

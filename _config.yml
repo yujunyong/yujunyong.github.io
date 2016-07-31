@@ -69,7 +69,9 @@ theme: next
 ## Docs: http://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repository: https://github.com/yujunyong/yujunyong.github.io.git
+  repository:
+    github: https://github.com/yujunyong/yujunyong.github.io.git
+    coding: https://git.coding.net/yujunyong/yujunyong.git
   branch: master
 
 feed:
